@@ -1,0 +1,21 @@
+//
+//  Subscription.swift
+//  Geocast2
+//
+//  Created by Andrew Brown on 11/23/15.
+//  Copyright © 2015 Andrew Brown. All rights reserved.
+//
+
+import Foundation
+
+class PodcastSubscription: NSObject {
+    let subscriptionDate: NSDate
+    let podcast: Podcast
+    private var episodeStats = [String : UserEpisodeData]()
+    
+    init(podcast: Podcast) {
+        self.podcast = podcast
+        self.subscriptionDate = NSDate()
+    }
+    
+}
