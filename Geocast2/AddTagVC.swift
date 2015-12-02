@@ -6,4 +6,10 @@
 //  Copyright © 2015 Andrew Brown. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class AddTagViewController : UITableViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}

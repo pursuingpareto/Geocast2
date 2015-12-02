@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1A69DC91C0E740000CB61C2 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */; };
+		A1A69DCB1C0E749700CB61C2 /* EpisodesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */; };
 		A1A9CB9E1C03B94100628351 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CB9D1C03B94100628351 /* AppDelegate.swift */; };
 		A1A9CBA31C03B94100628351 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1A9CBA11C03B94100628351 /* Main.storyboard */; };
 		A1A9CBA51C03B94100628351 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1A9CBA41C03B94100628351 /* Assets.xcassets */; };
@@ -17,15 +19,14 @@
 		A1A9CBCE1C03BAC200628351 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBCD1C03BAC200628351 /* Episode.swift */; };
 		A1A9CBD01C03BAD000628351 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBCF1C03BAD000628351 /* Podcast.swift */; };
 		A1A9CBD21C03BAE400628351 /* PodcastSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBD11C03BAE400628351 /* PodcastSubscription.swift */; };
-		A1A9CBD51C03BB5400628351 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBD41C03BB5400628351 /* MainTabController.swift */; };
+		A1A9CBD51C03BB5400628351 /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBD41C03BB5400628351 /* MainTabVC.swift */; };
 		A1A9CBD71C03BB7900628351 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBD61C03BB7900628351 /* User.swift */; };
 		A1A9CBD91C03BBA200628351 /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBD81C03BBA200628351 /* UserLocationManager.swift */; };
-		A1A9CBDB1C03BBE500628351 /* EpisodesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBDA1C03BBE500628351 /* EpisodesController.swift */; };
-		A1A9CBDD1C03BC0400628351 /* SubscriptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBDC1C03BC0400628351 /* SubscriptionsController.swift */; };
-		A1A9CBDF1C03BC1F00628351 /* PodcastSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBDE1C03BC1F00628351 /* PodcastSearchController.swift */; };
+		A1A9CBDD1C03BC0400628351 /* SubscriptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBDC1C03BC0400628351 /* SubscriptionsVC.swift */; };
+		A1A9CBDF1C03BC1F00628351 /* PodcastSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBDE1C03BC1F00628351 /* PodcastSearchVC.swift */; };
 		A1A9CBE11C03BC4D00628351 /* ITunesAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBE01C03BC4D00628351 /* ITunesAPIController.swift */; };
-		A1A9CBE31C03BC6100628351 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBE21C03BC6100628351 /* MapViewController.swift */; };
-		A1A9CBE51C03BD1100628351 /* AddTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBE41C03BD1100628351 /* AddTagController.swift */; };
+		A1A9CBE31C03BC6100628351 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBE21C03BC6100628351 /* MapVC.swift */; };
+		A1A9CBE51C03BD1100628351 /* AddTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBE41C03BD1100628351 /* AddTagVC.swift */; };
 		A1A9CBE71C03C3C700628351 /* UserEpisodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBE61C03C3C700628351 /* UserEpisodeData.swift */; };
 		A1A9CBEB1C03DDE700628351 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBEA1C03DDE700628351 /* FeedParser.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
+		A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesVC.swift; sourceTree = "<group>"; };
 		A1A9CB9A1C03B94100628351 /* Geocast2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocast2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A9CB9D1C03B94100628351 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1A9CBA21C03B94100628351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -64,15 +67,14 @@
 		A1A9CBCD1C03BAC200628351 /* Episode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		A1A9CBCF1C03BAD000628351 /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		A1A9CBD11C03BAE400628351 /* PodcastSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastSubscription.swift; sourceTree = "<group>"; };
-		A1A9CBD41C03BB5400628351 /* MainTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
+		A1A9CBD41C03BB5400628351 /* MainTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabVC.swift; sourceTree = "<group>"; };
 		A1A9CBD61C03BB7900628351 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A1A9CBD81C03BBA200628351 /* UserLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
-		A1A9CBDA1C03BBE500628351 /* EpisodesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesController.swift; sourceTree = "<group>"; };
-		A1A9CBDC1C03BC0400628351 /* SubscriptionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsController.swift; sourceTree = "<group>"; };
-		A1A9CBDE1C03BC1F00628351 /* PodcastSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastSearchController.swift; sourceTree = "<group>"; };
+		A1A9CBDC1C03BC0400628351 /* SubscriptionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsVC.swift; sourceTree = "<group>"; };
+		A1A9CBDE1C03BC1F00628351 /* PodcastSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastSearchVC.swift; sourceTree = "<group>"; };
 		A1A9CBE01C03BC4D00628351 /* ITunesAPIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITunesAPIController.swift; sourceTree = "<group>"; };
-		A1A9CBE21C03BC6100628351 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		A1A9CBE41C03BD1100628351 /* AddTagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagController.swift; sourceTree = "<group>"; };
+		A1A9CBE21C03BC6100628351 /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		A1A9CBE41C03BD1100628351 /* AddTagVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagVC.swift; sourceTree = "<group>"; };
 		A1A9CBE61C03C3C700628351 /* UserEpisodeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEpisodeData.swift; sourceTree = "<group>"; };
 		A1A9CBEA1C03DDE700628351 /* FeedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +104,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A1A69DC31C0E737600CB61C2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A1A9CBD81C03BBA200628351 /* UserLocationManager.swift */,
+				A1A9CBE01C03BC4D00628351 /* ITunesAPIController.swift */,
+				A1A9CBEA1C03DDE700628351 /* FeedParser.swift */,
+				A1A9CBCB1C03BA8800628351 /* PodcastPlayer.swift */,
+				A1A9CBD41C03BB5400628351 /* MainTabVC.swift */,
+				A1A9CBDC1C03BC0400628351 /* SubscriptionsVC.swift */,
+				A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */,
+				A1A9CBDE1C03BC1F00628351 /* PodcastSearchVC.swift */,
+				A1A9CBE41C03BD1100628351 /* AddTagVC.swift */,
+				A1A9CBE21C03BC6100628351 /* MapVC.swift */,
+				A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		A1A9CB911C03B94100628351 = {
 			isa = PBXGroup;
 			children = (
@@ -126,18 +146,9 @@
 			isa = PBXGroup;
 			children = (
 				A1A9CB9D1C03B94100628351 /* AppDelegate.swift */,
-				A1A9CBD81C03BBA200628351 /* UserLocationManager.swift */,
-				A1A9CBCB1C03BA8800628351 /* PodcastPlayer.swift */,
-				A1A9CBD41C03BB5400628351 /* MainTabController.swift */,
-				A1A9CBE41C03BD1100628351 /* AddTagController.swift */,
-				A1A9CBDA1C03BBE500628351 /* EpisodesController.swift */,
-				A1A9CBEA1C03DDE700628351 /* FeedParser.swift */,
-				A1A9CBDC1C03BC0400628351 /* SubscriptionsController.swift */,
-				A1A9CBDE1C03BC1F00628351 /* PodcastSearchController.swift */,
-				A1A9CBE01C03BC4D00628351 /* ITunesAPIController.swift */,
-				A1A9CBE21C03BC6100628351 /* MapViewController.swift */,
-				A1A9CBD31C03BB0100628351 /* Models */,
 				A1A9CBA11C03B94100628351 /* Main.storyboard */,
+				A1A69DC31C0E737600CB61C2 /* Controllers */,
+				A1A9CBD31C03BB0100628351 /* Models */,
 				A1A9CBA41C03B94100628351 /* Assets.xcassets */,
 				A1A9CBA61C03B94100628351 /* LaunchScreen.storyboard */,
 				A1A9CBA91C03B94100628351 /* Info.plist */,
@@ -307,21 +318,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1A9CBD21C03BAE400628351 /* PodcastSubscription.swift in Sources */,
-				A1A9CBDB1C03BBE500628351 /* EpisodesController.swift in Sources */,
 				A1A9CBE71C03C3C700628351 /* UserEpisodeData.swift in Sources */,
 				A1A9CBCC1C03BA8800628351 /* PodcastPlayer.swift in Sources */,
-				A1A9CBD51C03BB5400628351 /* MainTabController.swift in Sources */,
+				A1A9CBD51C03BB5400628351 /* MainTabVC.swift in Sources */,
 				A1A9CBCE1C03BAC200628351 /* Episode.swift in Sources */,
+				A1A69DC91C0E740000CB61C2 /* PlayerVC.swift in Sources */,
 				A1A9CBD71C03BB7900628351 /* User.swift in Sources */,
-				A1A9CBE51C03BD1100628351 /* AddTagController.swift in Sources */,
+				A1A69DCB1C0E749700CB61C2 /* EpisodesVC.swift in Sources */,
+				A1A9CBE51C03BD1100628351 /* AddTagVC.swift in Sources */,
 				A1A9CBEB1C03DDE700628351 /* FeedParser.swift in Sources */,
-				A1A9CBDF1C03BC1F00628351 /* PodcastSearchController.swift in Sources */,
+				A1A9CBDF1C03BC1F00628351 /* PodcastSearchVC.swift in Sources */,
 				A1A9CB9E1C03B94100628351 /* AppDelegate.swift in Sources */,
 				A1A9CBD01C03BAD000628351 /* Podcast.swift in Sources */,
 				A1A9CBE11C03BC4D00628351 /* ITunesAPIController.swift in Sources */,
 				A1A9CBD91C03BBA200628351 /* UserLocationManager.swift in Sources */,
-				A1A9CBDD1C03BC0400628351 /* SubscriptionsController.swift in Sources */,
-				A1A9CBE31C03BC6100628351 /* MapViewController.swift in Sources */,
+				A1A9CBDD1C03BC0400628351 /* SubscriptionsVC.swift in Sources */,
+				A1A9CBE31C03BC6100628351 /* MapVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +560,7 @@
 				A1A9CBC41C03B94100628351 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A1A9CBC51C03B94100628351 /* Build configuration list for PBXNativeTarget "Geocast2Tests" */ = {
 			isa = XCConfigurationList;
@@ -556,6 +569,7 @@
 				A1A9CBC71C03B94100628351 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A1A9CBC81C03B94100628351 /* Build configuration list for PBXNativeTarget "Geocast2UITests" */ = {
 			isa = XCConfigurationList;
@@ -564,6 +578,7 @@
 				A1A9CBCA1C03B94100628351 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

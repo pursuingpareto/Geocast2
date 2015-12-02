@@ -8,9 +8,11 @@
 
 import UIKit
 
-class SubscriptionsController: UITableViewController {
+class SubscriptionsViewController: UITableViewController {
     
-    let subscriptionIdentifier = "subscriptionCell"
+    let subscriptionCellIdentifier = "subscriptionCell"
+    let podcastSearchSegueIdentifier = "podcastSearchSegue"
+    let episodesSegueIdentifier = "episodesSegue"
     var subscriptions : [PodcastSubscription] = [PodcastSubscription]()
     var imageCache = [String : UIImage]()
     var customRefreshControl = UIRefreshControl()
@@ -30,14 +32,14 @@ class SubscriptionsController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(subscriptionIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(subscriptionCellIdentifier, forIndexPath: indexPath)
         let subscription = subscriptions[indexPath.row]
         cell.textLabel?.text = subscription.podcast.title
         return cell
     }
 }
 
-extension SubscriptionsController: ITunesAPIControllerDelegate {
+extension SubscriptionsViewController: ITunesAPIControllerDelegate {
     func didReceivePodcasts(podcasts: [Podcast]) {
         print("got podcasts")
         // TODO - implement

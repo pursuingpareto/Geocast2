@@ -31,21 +31,12 @@ class ITunesAPIController {
                 print(error!.localizedDescription)
             }
             else {
-                var err: NSError?
-                
                 if let data = data {
-                    var jsonResult = (try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
-                    if(err != nil) {
-                        // If there is an error parsing JSON, print it to the console
-                        print("JSON Error \(err!.localizedDescription)")
-                    }
-                    
+                    let jsonResult = (try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
                     let results: NSArray = jsonResult["results"] as! NSArray
                     var podcasts = [Podcast]()
                     podcasts = Podcast.podcastsWithJSON(results)
-                    
-                    self.delegate.didReceivePodcasts(podcasts) // THIS IS THE NEW LINE!!
-                    
+                    self.delegate.didReceivePodcasts(podcasts)
                 }
             }
         })
@@ -58,7 +49,7 @@ class ITunesAPIController {
         let itunesSearchTerm = searchTerm.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
         
         // Now escape anything else that isn't URL-friendly
-        if let escapedSearchTerm = itunesSearchTerm.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) {
+        if let escapedSearchTerm = itunesSearchTerm.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) {
             let urlPath = "https://itunes.apple.com/search?term=\(escapedSearchTerm)&media=podcast"
             getFromITunes(urlPath)
         }

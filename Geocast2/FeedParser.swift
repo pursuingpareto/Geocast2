@@ -85,13 +85,13 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
             self.insideItem = true
         }
         if elementName == "content" {
-            var url = attributeDict["url"]
+            let url = attributeDict["url"]
             if url != nil {
                 entryDictionary["mp3Url"] = url
             }
         }
         if elementName == "enclosure" {
-            var url = attributeDict["url"]
+            let url = attributeDict["url"]
             if url != nil {
                 entryDictionary["mp3Url"] = url
             }
@@ -99,7 +99,7 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
     }
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
-        var newString: String = "\(entryValue)\(string)"
+        let newString: String = "\(entryValue)\(string)"
         entryValue = newString
     }
     
@@ -168,7 +168,7 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
         }
         
         var fractionalTime = string.characters.split { $0 == "." }.map { String($0) }
-        var wholeTime = fractionalTime[0]
+        let wholeTime = fractionalTime[0]
         var splitTime = wholeTime.characters.split { $0 == ":" }.map { String($0) }
         switch splitTime.count {
         case 1:
