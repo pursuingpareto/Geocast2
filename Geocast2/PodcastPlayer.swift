@@ -11,6 +11,12 @@ import AVFoundation
 
 class PodcastPlayer: NSObject {
     
+    var currentItemStatus: AVPlayerItemStatus? {
+        return ((player.currentItem) != nil) ? player.currentItem?.status : nil
+    }
+    
+    var isPlaying: Bool { return (player.rate > 0) }
+    
     private var currentEpisode: Episode?
     private var player: AVPlayer = AVPlayer()
     private var onItemReady: () -> Void = {}
@@ -25,7 +31,7 @@ class PodcastPlayer: NSObject {
     func loadEpisode(episode: Episode, withUserEpisodeData data: UserEpisodeData?, completion: () -> Void) {
         if let currentEp = currentEpisode {
             if currentEp == episode {
-                // no need to do anything
+                // TODO : fix this... need to incorporate user data
                 return
             }
         }
@@ -45,12 +51,7 @@ class PodcastPlayer: NSObject {
         }
     }
     
-    private func loadItem(playerItem: AVPlayerItem) {
-        player.currentItem?.removeObserver(self, forKeyPath: "status", context: &playerItemStatusContext)
-        player.replaceCurrentItemWithPlayerItem(playerItem)
-        player.currentItem?.addObserver(self, forKeyPath: "status", options: .New, context: &playerItemStatusContext)
-        print("playerItemStatusIs \(playerItem.status.rawValue)")
-    }
+    func getCurrentEpisode() -> Episode? { return currentEpisode }
     
     func play() {
         guard readyToPlay() else {
@@ -121,8 +122,10 @@ class PodcastPlayer: NSObject {
         player.currentItem?.removeObserver(self, forKeyPath: "status", context: &playerItemStatusContext)
     }
     
-//    private func periodicallyCheckPlayerItem(item: AVPlayerItem, withInterval interval: Float, duration: CMTime) {
-//        let timer = NSTimer(timeInterval: <#T##NSTimeInterval#>, target: <#T##AnyObject#>, selector: <#T##Selector#>, userInfo: <#T##AnyObject?#>, repeats: <#T##Bool#>)
-//    }
-    
+    private func loadItem(playerItem: AVPlayerItem) {
+        player.currentItem?.removeObserver(self, forKeyPath: "status", context: &playerItemStatusContext)
+        player.replaceCurrentItemWithPlayerItem(playerItem)
+        player.currentItem?.addObserver(self, forKeyPath: "status", options: .New, context: &playerItemStatusContext)
+        print("playerItemStatusIs \(playerItem.status.rawValue)")
+    }
 }

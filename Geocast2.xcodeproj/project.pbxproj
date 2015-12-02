@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A141E27E1C0FB6D800ABE766 /* vertical_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A141E27D1C0FB6D800ABE766 /* vertical_bar.png */; };
 		A1A69DC91C0E740000CB61C2 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */; };
 		A1A69DCB1C0E749700CB61C2 /* EpisodesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */; };
 		A1A69DCD1C0E7FC500CB61C2 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A141E27D1C0FB6D800ABE766 /* vertical_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vertical_bar.png; path = ../../Geocast/Geocast/Images.xcassets/vertical_bar.imageset/vertical_bar.png; sourceTree = "<group>"; };
 		A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
 		A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesVC.swift; sourceTree = "<group>"; };
 		A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				A1A9CBD31C03BB0100628351 /* Models */,
 				A1A69DD01C0E802200CB61C2 /* Views */,
 				A1A9CBA41C03B94100628351 /* Assets.xcassets */,
+				A141E27D1C0FB6D800ABE766 /* vertical_bar.png */,
 				A1A9CBA61C03B94100628351 /* LaunchScreen.storyboard */,
 				A1A9CBA91C03B94100628351 /* Info.plist */,
 			);
@@ -311,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1A9CBA81C03B94100628351 /* LaunchScreen.storyboard in Resources */,
+				A141E27E1C0FB6D800ABE766 /* vertical_bar.png in Resources */,
 				A1A9CBA51C03B94100628351 /* Assets.xcassets in Resources */,
 				A1A9CBA31C03B94100628351 /* Main.storyboard in Resources */,
 			);
