@@ -37,28 +37,60 @@
             <point key="canvasLocation" x="1532" y="89"/>
         </scene>
         <!--Subscriptions View Controller-->
-        <scene sceneID="aj5-iT-9gi">
+        <scene sceneID="wWN-pI-IGZ">
             <objects>
-                <viewController id="KNK-XG-5bv" customClass="SubscriptionsViewController" customModule="Geocast2" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hLu-O1-FM8"/>
-                        <viewControllerLayoutGuide type="bottom" id="RMZ-SZ-BYy"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tfj-jW-62P">
+                <tableViewController id="3cY-Fy-59I" customClass="SubscriptionsViewController" customModule="Geocast2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="itb-Yr-NsT">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="cjt-Id-Rzf"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZoB-Ud-RmT">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZoB-Ud-RmT" id="Abi-ga-kaz">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="subscriptionCell" id="sYE-cJ-8eh" customClass="PodcastCell" customModule="Geocast2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sYE-cJ-8eh" id="AZP-bg-Dnv">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noSubscriptionsCell" id="WQM-SZ-MzM" customClass="NoPodcastsCell" customModule="Geocast2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="180" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WQM-SZ-MzM" id="BR2-pP-0mN">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3cY-Fy-59I" id="Mhy-ea-7Tz"/>
+                            <outlet property="delegate" destination="3cY-Fy-59I" id="NoZ-fd-23P"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="EX5-Mq-Q9K"/>
                     <connections>
-                        <segue destination="Ygn-rS-tZw" kind="show" identifier="episodesSegue" id="uTT-S0-sXh"/>
-                        <segue destination="Psb-tm-aZU" kind="show" identifier="podcastSearchSegue" id="Vyj-sb-T36"/>
+                        <segue destination="k1u-dY-C9h" kind="show" identifier="podcastSearchSegue" id="nu5-2P-kLe"/>
+                        <segue destination="Sa8-zV-Vxj" kind="show" identifier="episodesSegue" id="tde-4H-s1I"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ili-bd-hVV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jzz-0b-bus" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1548" y="750"/>
+            <point key="canvasLocation" x="1548" y="763"/>
         </scene>
         <!--Episodes Controller-->
         <scene sceneID="Xqq-tg-vIP">
@@ -80,6 +112,16 @@
                                 </tableViewCellContentView>
                                 <animations/>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="episodeCell" id="3Ac-4e-JK5" customClass="EpisodeCell" customModule="Geocast2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Ac-4e-JK5" id="Es6-kO-0yk">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Sa8-zV-Vxj" id="vEK-nF-6T8"/>
@@ -90,7 +132,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7yM-SV-LsU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2999" y="754"/>
+            <point key="canvasLocation" x="2230" y="1197"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="O1g-Vr-Czk">
@@ -127,32 +169,12 @@
                     </tabBar>
                     <connections>
                         <segue destination="qrE-X5-U4Q" kind="relationship" relationship="viewControllers" id="nYX-OY-ypf"/>
-                        <segue destination="J5y-95-Zec" kind="relationship" relationship="viewControllers" id="dNY-v1-LuJ"/>
+                        <segue destination="qHr-NS-RSZ" kind="relationship" relationship="viewControllers" id="4RH-tF-69M"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iNX-4p-X5Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-84" y="420"/>
-        </scene>
-        <!--Item 2-->
-        <scene sceneID="Cas-gG-RJk">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J5y-95-Zec" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="nQa-hn-2Mq"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="reN-oG-mPA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="KNK-XG-5bv" kind="relationship" relationship="rootViewController" id="6qI-dZ-bcp"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O9M-RB-Eqn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="736" y="750"/>
         </scene>
         <!--Podcast Search Controller-->
         <scene sceneID="i8z-FV-Ga0">
@@ -174,6 +196,16 @@
                                 </tableViewCellContentView>
                                 <animations/>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" id="yeQ-Kg-QdC" customClass="PodcastSearchCell" customModule="Geocast2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yeQ-Kg-QdC" id="7Eh-Py-laV">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="k1u-dY-C9h" id="MLl-e1-UPZ"/>
@@ -181,48 +213,37 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="QaE-c5-mqg"/>
+                    <connections>
+                        <segue destination="Sa8-zV-Vxj" kind="show" identifier="episodesSegue" id="zfI-yK-3hr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="npi-K0-Inn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3093" y="89"/>
+            <point key="canvasLocation" x="2214" y="420"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="8k4-lX-jOQ">
+        <!--Item-->
+        <scene sceneID="e8y-sz-Qnm">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ygn-rS-tZw" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qHr-NS-RSZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="sgx-O3-DQU"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iR5-dE-pHW">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UwQ-K1-YBz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Sa8-zV-Vxj" kind="relationship" relationship="rootViewController" id="95B-Wh-9yx"/>
+                        <segue destination="3cY-Fy-59I" kind="relationship" relationship="rootViewController" id="dhr-TP-oIo"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="K8Z-lR-gsq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pfU-Nl-tj8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2281" y="754"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="KN9-Xd-pbw">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Psb-tm-aZU" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cqq-lV-J2F">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="k1u-dY-C9h" kind="relationship" relationship="rootViewController" id="ZFE-1m-e4H"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gpz-z7-SAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2281" y="89"/>
+            <point key="canvasLocation" x="736" y="763"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="zfI-yK-3hr"/>
+    </inferredMetricsTieBreakers>
 </document>

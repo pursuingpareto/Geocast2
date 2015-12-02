@@ -10,15 +10,28 @@ import UIKit
 
 class EpisodesController : UITableViewController {
     
+    private let episodeCellIdentifier = "episodeCell"
+    
+    private var podcast: Podcast!
     private var episodes = [Episode]()
-    let episodeIdentifier = "episodeCell"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        FeedParser.parsePodcast(podcast, withFeedParserDelegate: self)
+//        tableView.reloadData()
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    func setPodcast(podcast: Podcast) {
+        self.podcast = podcast
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -30,7 +43,7 @@ class EpisodesController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(episodeIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(episodeCellIdentifier, forIndexPath: indexPath) as! EpisodeCell
         let episode = episodes[indexPath.row]
         cell.textLabel?.text = episode.title
         return cell
@@ -40,6 +53,7 @@ class EpisodesController : UITableViewController {
 extension EpisodesController: FeedParserDelegate {
     
     func didParseFeedIntoEpisodes(episodes: [Episode]) {
-        // TODO : Implement
+        self.episodes = episodes
+        tableView.reloadData()
     }
 }

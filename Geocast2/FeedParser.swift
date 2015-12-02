@@ -57,6 +57,7 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
     }
     
     class func parsePodcast(podcast: Podcast, withFeedParserDelegate feedParserDelegate: FeedParserDelegate) {
+        print("about to parse \(podcast.title)")
         let feedUrl = podcast.feedUrl
         
         let session = NSURLSession.sharedSession()
@@ -69,10 +70,12 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
                     let parser = FeedParser(data: data, podcast: podcast)
                     parser.feedParserDelegate = feedParserDelegate
                     parser.shouldProcessNamespaces = true
+                    print("about to parse")
                     parser.parse()
                 }
             }
         })
+        task.resume()
     }
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
@@ -136,7 +139,7 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
                 continue
             }
             let newEpisode = Episode(podcast: feedParser.podcast, mp3URL: mp3Url, title: title)
-            
+            print("new episode is \(newEpisode.title)")
             // now try to add other fields
             if let durationString: String = entry["duration"] {
                 if let duration = FeedParser.durationFromString(durationString) {

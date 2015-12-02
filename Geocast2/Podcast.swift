@@ -28,7 +28,7 @@ class Podcast: NSObject {
     
     
     class func podcastsWithJSON(allResults: NSArray) -> [Podcast] {
-        var dateFormatter = NSDateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-ddThh:mm:ssZ"
         var podcasts = [Podcast]()
         if allResults.count>0 {
