@@ -24,4 +24,13 @@ class Episode: NSObject {
         self.mp3URL = mp3URL
         self.title = title
     }
+    
+}
+
+func ==(left: Episode, right: Episode) -> Bool {
+    return left.mp3URL == right.mp3URL
+}
+
+func !=(left: Episode, right: Episode) -> Bool {
+    return !(left == right)
 }

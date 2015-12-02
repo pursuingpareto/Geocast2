@@ -139,7 +139,6 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
                 continue
             }
             let newEpisode = Episode(podcast: feedParser.podcast, mp3URL: mp3Url, title: title)
-            print("new episode is \(newEpisode.title)")
             // now try to add other fields
             if let durationString: String = entry["duration"] {
                 if let duration = FeedParser.durationFromString(durationString) {

@@ -6,12 +6,13 @@
 //  Copyright © 2015 Andrew Brown. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import CoreMedia
 
 class UserEpisodeData: NSObject {
     var lastPlayedAt: NSDate?
     var percentListenedTo: Float! = 0.0
-    var lastPlayedTimestamp: NSTimeInterval! = NSTimeInterval()
+    var lastPlayedTimestamp: CMTime = kCMTimeZero
     let episode: Episode
     
     init(episode: Episode) {

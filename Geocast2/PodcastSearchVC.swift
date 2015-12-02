@@ -39,7 +39,6 @@ class PodcastSearchController: UITableViewController {
         if let episodesController = segue.destinationViewController as? EpisodesController {
             let podcast = podcastsFound[tableView.indexPathForSelectedRow!.row]
             episodesController.setPodcast(podcast)
-            print("setting podcast to \(podcast.title)")
         }
         super.prepareForSegue(segue, sender: sender)
     }
@@ -60,7 +59,6 @@ class PodcastSearchController: UITableViewController {
         let podcast: Podcast = podcastsFound[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(searchResultCellIdentifier, forIndexPath: indexPath) as! PodcastSearchCell
         cell.textLabel?.text = podcast.title
-        print("dequeuing cell for \(podcast.title)")
         return cell
     }
     

@@ -11,7 +11,7 @@ import Foundation
 class PodcastSubscription: NSObject {
     let subscriptionDate: NSDate
     let podcast: Podcast
-    private var episodeStats = [String : UserEpisodeData]()
+    var episodeData = [NSURL : UserEpisodeData?]()
     
     init(podcast: Podcast) {
         self.podcast = podcast

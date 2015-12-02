@@ -10,6 +10,8 @@ import UIKit
 
 class EpisodesController : UITableViewController {
     
+    private let playerSegueIdentifier = "playerSegue"
+    
     private let episodeCellIdentifier = "episodeCell"
     
     private var podcast: Podcast!
@@ -47,6 +49,15 @@ class EpisodesController : UITableViewController {
         let episode = episodes[indexPath.row]
         cell.textLabel?.text = episode.title
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let episode = episodes[indexPath.row]
+        let userEpisodeData: UserEpisodeData? = User.sharedInstance.getUserData(forEpisode: episode)
+        PodcastPlayer.sharedInstance.loadEpisode(episode, withUserEpisodeData: userEpisodeData, completion: {(item) in
+            PodcastPlayer.sharedInstance.play()
+            self.tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
+        })
     }
 }
 

@@ -12,7 +12,7 @@ class User : NSObject {
     static let sharedInstance = User()
     
     // the key is the podcast collection id
-    private let subscriptions = [Int : PodcastSubscription]()
+    private let subscriptions = [Int : PodcastSubscription?]()
     
     func subscribe(podcast: Podcast) -> Bool {
         return false
@@ -24,5 +24,15 @@ class User : NSObject {
     
     func getSubscriptions() -> [PodcastSubscription] {
         return []
+    }
+    
+    func getUserData(forEpisode episode: Episode) -> UserEpisodeData? {
+        guard let subscription = subscriptions[episode.podcast.collectionId] else {
+            return nil
+        }
+        guard let data = subscription!.episodeData[episode.mp3URL] else {
+            return nil
+        }
+        return data
     }
 }
