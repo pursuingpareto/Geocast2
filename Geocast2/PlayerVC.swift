@@ -207,7 +207,8 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func hideButtonPressed(sender: AnyObject) {
-        // TODO : Implement
+        self.tabBarController?.selectedIndex = MainTabController.TabIndex.podcastIndex.rawValue
+        self.tabBarController?.tabBar.hidden = false
     }
     
     @IBAction func settingsButtonPressed(sender: AnyObject) {

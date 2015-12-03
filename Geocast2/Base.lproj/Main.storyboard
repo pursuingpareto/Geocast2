@@ -359,7 +359,7 @@
             </objects>
             <point key="canvasLocation" x="2230" y="1197"/>
         </scene>
-        <!--Item-->
+        <!--Near Me-->
         <scene sceneID="AST-hz-duI">
             <objects>
                 <viewController id="Vc7-07-3IF" customClass="MapViewController" customModule="Geocast2" customModuleProvider="target" sceneMemberID="viewController">
@@ -385,7 +385,7 @@
                             <constraint firstItem="gH3-WY-zew" firstAttribute="top" secondItem="T2G-Eh-skV" secondAttribute="bottom" id="UsI-Ys-9NQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="foC-zi-WvJ"/>
+                    <tabBarItem key="tabBarItem" title="Near Me" id="foC-zi-WvJ"/>
                     <connections>
                         <outlet property="mapView" destination="T2G-Eh-skV" id="wUH-Rl-uzx"/>
                     </connections>
@@ -394,7 +394,7 @@
             </objects>
             <point key="canvasLocation" x="728" y="-537"/>
         </scene>
-        <!--Item 1-->
+        <!--Player-->
         <scene sceneID="O1g-Vr-Czk">
             <objects>
                 <viewController id="qrE-X5-U4Q" customClass="PlayerViewController" customModule="Geocast2" customModuleProvider="target" sceneMemberID="viewController">
@@ -527,7 +527,7 @@
                             <constraint firstItem="BYc-zt-m4f" firstAttribute="leading" secondItem="ibn-Cn-fm7" secondAttribute="trailing" constant="40" id="zpv-SY-3Sc"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="5F5-zb-tdC"/>
+                    <tabBarItem key="tabBarItem" title="Player" id="5F5-zb-tdC"/>
                     <connections>
                         <outlet property="playButton" destination="gPI-d2-kj6" id="fle-JW-BAl"/>
                         <outlet property="playbackToolbar" destination="hVA-Rw-wd0" id="k6V-JS-aBx"/>
@@ -609,11 +609,11 @@
             </objects>
             <point key="canvasLocation" x="2214" y="420"/>
         </scene>
-        <!--Item-->
+        <!--Podcasts-->
         <scene sceneID="e8y-sz-Qnm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qHr-NS-RSZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="sgx-O3-DQU"/>
+                    <tabBarItem key="tabBarItem" title="Podcasts" id="sgx-O3-DQU"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UwQ-K1-YBz">
