@@ -123,6 +123,79 @@
                                 </tableViewCellContentView>
                                 <animations/>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="podcastSummaryCell" rowHeight="150" id="CgQ-rf-jub" customClass="PodcastSummaryCell" customModule="Geocast2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="180" width="600" height="150"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CgQ-rf-jub" id="gAB-F1-V9T">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ela-Ad-SyB">
+                                            <rect key="frame" x="8" y="8" width="90" height="90"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="90" id="9lQ-8L-Ab9"/>
+                                                <constraint firstAttribute="height" constant="90" id="N6L-CR-vbF"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Za-8A-gtF">
+                                            <rect key="frame" x="8" y="111" width="90" height="30"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="wIH-yr-1c4"/>
+                                                <constraint firstAttribute="width" constant="90" id="zlF-ze-TL8"/>
+                                            </constraints>
+                                            <state key="normal" title="Subscribe"/>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6I-Tv-9Mb">
+                                            <rect key="frame" x="106" y="8" width="486" height="40"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Or5-8L-LqO">
+                                            <rect key="frame" x="106" y="56" width="486" height="79"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstItem="Or5-8L-LqO" firstAttribute="top" secondItem="u6I-Tv-9Mb" secondAttribute="bottom" constant="17" id="07K-Mw-U0G"/>
+                                        <constraint firstItem="u6I-Tv-9Mb" firstAttribute="leading" secondItem="gAB-F1-V9T" secondAttribute="leadingMargin" constant="98" id="1aI-1O-4MK"/>
+                                        <constraint firstItem="2Za-8A-gtF" firstAttribute="top" secondItem="ela-Ad-SyB" secondAttribute="bottom" constant="8" id="5KL-cG-Djr"/>
+                                        <constraint firstItem="2Za-8A-gtF" firstAttribute="leading" secondItem="ela-Ad-SyB" secondAttribute="leading" id="AeJ-yX-OqH"/>
+                                        <constraint firstItem="Or5-8L-LqO" firstAttribute="leading" secondItem="u6I-Tv-9Mb" secondAttribute="leading" id="QQV-ga-y5W"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="2Za-8A-gtF" secondAttribute="bottom" id="Qb0-eM-zpM"/>
+                                        <constraint firstItem="u6I-Tv-9Mb" firstAttribute="leading" secondItem="ela-Ad-SyB" secondAttribute="trailing" constant="8" id="R50-Vy-GWN"/>
+                                        <constraint firstAttribute="topMargin" secondItem="ela-Ad-SyB" secondAttribute="top" id="VEn-8N-B8L"/>
+                                        <constraint firstAttribute="topMargin" secondItem="u6I-Tv-9Mb" secondAttribute="top" id="cup-Uf-OFy"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Or5-8L-LqO" secondAttribute="bottom" constant="-3" id="hXE-Rm-0og"/>
+                                        <constraint firstItem="u6I-Tv-9Mb" firstAttribute="top" secondItem="ela-Ad-SyB" secondAttribute="top" id="qef-cw-A84"/>
+                                        <constraint firstItem="Or5-8L-LqO" firstAttribute="trailing" secondItem="u6I-Tv-9Mb" secondAttribute="trailing" id="qoz-Wd-teY"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="ela-Ad-SyB" secondAttribute="leading" id="xCl-io-xkV"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="u6I-Tv-9Mb" secondAttribute="trailing" id="znO-nI-Mf7"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="R50-Vy-GWN"/>
+                                            <exclude reference="qef-cw-A84"/>
+                                            <exclude reference="5KL-cG-Djr"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="imageView" destination="ela-Ad-SyB" id="IpT-27-Z9Z"/>
+                                    <outlet property="podcastImageView" destination="ela-Ad-SyB" id="ohw-90-amn"/>
+                                    <outlet property="podcastSummary" destination="Or5-8L-LqO" id="vCq-DY-dM0"/>
+                                    <outlet property="podcastTitle" destination="u6I-Tv-9Mb" id="Ezm-He-m0d"/>
+                                    <outlet property="subscribeButton" destination="2Za-8A-gtF" id="8Sy-R0-lSL"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Sa8-zV-Vxj" id="vEK-nF-6T8"/>

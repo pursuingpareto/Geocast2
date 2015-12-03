@@ -13,6 +13,7 @@
 		A141E2841C10C90900ABE766 /* Geotag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2831C10C90900ABE766 /* Geotag.swift */; };
 		A141E2861C10CE2900ABE766 /* GeotagAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2851C10CE2900ABE766 /* GeotagAnnotationView.swift */; };
 		A141E2881C10D66100ABE766 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2871C10D66100ABE766 /* DummyData.swift */; };
+		A141E28A1C10DA3300ABE766 /* PodcastSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2891C10DA3300ABE766 /* PodcastSummaryCell.swift */; };
 		A1A69DC91C0E740000CB61C2 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */; };
 		A1A69DCB1C0E749700CB61C2 /* EpisodesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */; };
 		A1A69DCD1C0E7FC500CB61C2 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */; };
@@ -64,6 +65,7 @@
 		A141E2831C10C90900ABE766 /* Geotag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotag.swift; sourceTree = "<group>"; };
 		A141E2851C10CE2900ABE766 /* GeotagAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeotagAnnotationView.swift; sourceTree = "<group>"; };
 		A141E2871C10D66100ABE766 /* DummyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
+		A141E2891C10DA3300ABE766 /* PodcastSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastSummaryCell.swift; sourceTree = "<group>"; };
 		A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
 		A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesVC.swift; sourceTree = "<group>"; };
 		A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				A1A69DD11C0E850E00CB61C2 /* PodcastSearchCell.swift */,
 				A1A69DD31C0E952500CB61C2 /* EpisodeCell.swift */,
 				A141E2851C10CE2900ABE766 /* GeotagAnnotationView.swift */,
+				A141E2891C10DA3300ABE766 /* PodcastSummaryCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				A1A9CBE11C03BC4D00628351 /* ITunesAPIController.swift in Sources */,
 				A1A9CBDD1C03BC0400628351 /* SubscriptionsVC.swift in Sources */,
 				A1A69DCD1C0E7FC500CB61C2 /* PodcastCell.swift in Sources */,
+				A141E28A1C10DA3300ABE766 /* PodcastSummaryCell.swift in Sources */,
 				A1A9CBE31C03BC6100628351 /* MapVC.swift in Sources */,
 				A1A69DCF1C0E7FFA00CB61C2 /* NoPodcastsCell.swift in Sources */,
 			);

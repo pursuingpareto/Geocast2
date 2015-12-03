@@ -26,6 +26,11 @@ class User : NSObject {
         return []
     }
     
+    func isSubscribedTo(podcast: Podcast) -> Bool {
+        // TODO : Implement
+        return false
+    }
+    
     func getUserData(forEpisode episode: Episode) -> UserEpisodeData? {
         guard let subscription = subscriptions[episode.podcast.collectionId] else {
             return nil

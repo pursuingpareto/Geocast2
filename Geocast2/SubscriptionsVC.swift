@@ -80,7 +80,7 @@ class SubscriptionsViewController: UITableViewController {
         tableView.addSubview(customRefreshControl)
     }
     
-    private func refreshPodcasts() {
+    func refreshPodcasts() {
         // TODO : Implement
     }
     

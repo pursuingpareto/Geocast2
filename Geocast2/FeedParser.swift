@@ -146,7 +146,12 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
                 }
             }
             
-            let summary = entry["description"]
+            var summary = entry["description"]
+            
+            if summary == nil {
+                summary = entry["itunes:summary"]
+            }
+            
             let itunesSummary = entry["itunes:summary"]
             let subtitle = entry["itunes:subtitle"]
             let pubDate = FeedParser.dateFromString(entry["pubDate"])

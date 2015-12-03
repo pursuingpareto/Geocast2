@@ -15,6 +15,7 @@ class DummyData: NSObject {
     
     class func getPodcast() -> Podcast {
         let podcast = Podcast(title: "Radiolab", collectionId: 152249110, feedUrl: NSURL(string: "http://feeds.wnyc.org/radiolab")!)
+        podcast.summary = "Radiolab is a podcast that explores how humans and nature..."
         return podcast
     }
     
