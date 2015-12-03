@@ -57,7 +57,7 @@ class EpisodesController : UITableViewController {
         tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
 
         PodcastPlayer.sharedInstance.loadEpisode(episode, withUserEpisodeData: userEpisodeData, completion: {(item) in
-            PodcastPlayer.sharedInstance.play()
+//            PodcastPlayer.sharedInstance.play()
         })
     }
 }

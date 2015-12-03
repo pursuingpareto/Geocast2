@@ -29,7 +29,6 @@ class PlayerViewController: UIViewController {
     private var player = PodcastPlayer.sharedInstance
     private var fastForwardAmount = CMTimeMake(15, 1)
     private var rewindAmount = CMTimeMake(15, 1)
-    private var timer : NSTimer?
     
     private let addTagSegueIdentifier = "addTagSegue"
     
@@ -71,6 +70,11 @@ class PlayerViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "newEpisodeLoaded", name: newEpisodeLoadedNotificationKey, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateToolbar", name: playRateChangedNotificationKey, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemStatusChanged", name: playerItemStatusChangedNotificationKey, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTime", name: playTimerUpdateNotificationKey, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     private func setupProgressBar() {
@@ -150,8 +154,18 @@ class PlayerViewController: UIViewController {
         prepareView(forReadinessState: getCurrentReadinessState())
     }
 
-    func updateTime(sender: AnyObject?) {
-        // TODO : Implement
+    func updateTime() {
+        print("updating time for vc")
+        if let playTime = player.currentPlayTime {
+            print(playTime.asString())
+            playedTime.text = playTime.asString()
+            if let duration = player.duration {
+                remainingTime.text = (duration - playTime).asString()
+                let progress = playTime.seconds / duration.seconds
+                progressBar.value = Float(progress)
+            }
+            
+        }
     }
     
     func updateToolbar() {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A141E27E1C0FB6D800ABE766 /* vertical_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A141E27D1C0FB6D800ABE766 /* vertical_bar.png */; };
+		A141E2801C0FE45E00ABE766 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E27F1C0FE45E00ABE766 /* Helpers.swift */; };
 		A1A69DC91C0E740000CB61C2 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */; };
 		A1A69DCB1C0E749700CB61C2 /* EpisodesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */; };
 		A1A69DCD1C0E7FC500CB61C2 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		A141E27D1C0FB6D800ABE766 /* vertical_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vertical_bar.png; path = ../../Geocast/Geocast/Images.xcassets/vertical_bar.imageset/vertical_bar.png; sourceTree = "<group>"; };
+		A141E27F1C0FE45E00ABE766 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
 		A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesVC.swift; sourceTree = "<group>"; };
 		A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				A1A9CB9D1C03B94100628351 /* AppDelegate.swift */,
+				A141E27F1C0FE45E00ABE766 /* Helpers.swift */,
 				A1A9CBA11C03B94100628351 /* Main.storyboard */,
 				A1A69DC31C0E737600CB61C2 /* Controllers */,
 				A1A9CBD31C03BB0100628351 /* Models */,
@@ -356,6 +359,7 @@
 				A1A9CBDF1C03BC1F00628351 /* PodcastSearchVC.swift in Sources */,
 				A1A9CB9E1C03B94100628351 /* AppDelegate.swift in Sources */,
 				A1A9CBD01C03BAD000628351 /* Podcast.swift in Sources */,
+				A141E2801C0FE45E00ABE766 /* Helpers.swift in Sources */,
 				A1A9CBE11C03BC4D00628351 /* ITunesAPIController.swift in Sources */,
 				A1A9CBD91C03BBA200628351 /* UserLocationManager.swift in Sources */,
 				A1A9CBDD1C03BC0400628351 /* SubscriptionsVC.swift in Sources */,

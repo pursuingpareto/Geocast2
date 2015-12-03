@@ -12,18 +12,23 @@ import AVFoundation
 let newEpisodeLoadedNotificationKey = "com.andybrown.newEpisodeLoadedKey"
 let playRateChangedNotificationKey = "com.andybrown.playRateChangedKey"
 let playerItemStatusChangedNotificationKey = "com.andybrown.playerItemStatusChangedKey"
+let playTimerUpdateNotificationKey = "com.andybrown.playTimerUpdateKey"
 
 class PodcastPlayer: NSObject {
     
     var currentItemStatus: AVPlayerItemStatus {
         return ((player.currentItem) != nil) ? player.currentItem!.status : AVPlayerItemStatus.Unknown
     }
-    
+    var currentPlayTime: CMTime? {
+        return player.currentTime()
+    }
+    var duration: CMTime?
     var isPlaying: Bool { return (player.rate > 0) }
     
-    private var currentEpisode: Episode?
+    private var currentEpisode: Episode? = nil
     private var player: AVPlayer = AVPlayer()
     private var onItemReady: () -> Void = {}
+    private var playTimer: NSTimer?
     
     class var sharedInstance: PodcastPlayer {
         struct Singleton {
@@ -67,6 +72,7 @@ class PodcastPlayer: NSObject {
         }
         player.play()
         NSNotificationCenter.defaultCenter().postNotificationName(playRateChangedNotificationKey, object: self)
+        playTimer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "updateTime", userInfo: nil, repeats: true)
     }
     
     func pause() {
@@ -74,12 +80,20 @@ class PodcastPlayer: NSObject {
             print("cannot pause now")
             return
         }
+        print("about to pause")
         player.pause()
+        playTimer?.invalidate()
+    }
+    
+    func updateTime() {
+        NSNotificationCenter.defaultCenter().postNotificationName(playTimerUpdateNotificationKey, object: self)
     }
     
     func seekToTime(time: CMTime) {
         if readyToPlay() {
-            player.seekToTime(time)
+            player.seekToTime(time, completionHandler: {_ in 
+                self.updateTime()
+            })
         }
     }
     
@@ -111,6 +125,8 @@ class PodcastPlayer: NSObject {
         print("OBSERVING VALUE FOR KEY PATH \(keyPath)")
         if context == &playerItemStatusContext {
             print("change is \(change?[NSKeyValueChangeNewKey])")
+            duration = player.currentItem?.duration
+//            currentPlayTime = player.currentTime()
             NSNotificationCenter.defaultCenter().postNotificationName(playerItemStatusChangedNotificationKey, object: self)
 //            if let status = player.currentItem?.status {
 //                switch status {
