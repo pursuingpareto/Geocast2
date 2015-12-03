@@ -43,6 +43,18 @@ class PlayerViewController: UIViewController {
         prepareView(forReadinessState: getCurrentReadinessState())
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == addTagSegueIdentifier {
+            let tagVC = segue.destinationViewController as! AddTagViewController
+            if let episode = player.getCurrentEpisode() {
+                tagVC.episode = episode
+            } else {
+                return
+            }
+        }
+        super.prepareForSegue(segue, sender: sender)
+    }
+    
     func prepareView(forReadinessState readinessState: ReadinessState) {
         switch readinessState {
         case .NoData:
@@ -199,7 +211,30 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func settingsButtonPressed(sender: AnyObject) {
-        // TODO : Implement
+        let alertController = UIAlertController()
+        if let episode = player.getCurrentEpisode() {
+            var subscribeAction: UIAlertAction!
+            if !User.sharedInstance.isSubscribedTo(episode.podcast) {
+                subscribeAction = UIAlertAction(title: "Subscribe to Podcast", style: .Default) { (action) in
+                    User.sharedInstance.subscribe(episode.podcast)
+                }
+            } else {
+                subscribeAction = UIAlertAction(title: "Unsubscribe to Podcast", style: .Default) { (action) in
+                    User.sharedInstance.unsubscribe(episode.podcast)
+                }
+            }
+            alertController.addAction(subscribeAction)
+        }
+        
+        let tagAction = UIAlertAction(title: "Tag with Location", style: .Default) { (action) in
+            self.performSegueWithIdentifier("addTagSegue", sender: self)
+        }
+        alertController.addAction(tagAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in }
+        alertController.addAction(cancelAction)
+        
+        self.presentViewController(alertController, animated: true){}
     }
     
     @IBAction func progressBarScrubbed(sender: UISlider) {

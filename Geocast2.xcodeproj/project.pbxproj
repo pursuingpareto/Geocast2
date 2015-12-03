@@ -14,6 +14,11 @@
 		A141E2861C10CE2900ABE766 /* GeotagAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2851C10CE2900ABE766 /* GeotagAnnotationView.swift */; };
 		A141E2881C10D66100ABE766 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2871C10D66100ABE766 /* DummyData.swift */; };
 		A141E28A1C10DA3300ABE766 /* PodcastSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2891C10DA3300ABE766 /* PodcastSummaryCell.swift */; };
+		A141E28C1C10EB2A00ABE766 /* SearchLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E28B1C10EB2A00ABE766 /* SearchLocationCell.swift */; };
+		A141E28E1C10EB3400ABE766 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E28D1C10EB3400ABE766 /* LocationCell.swift */; };
+		A141E2901C10EB3D00ABE766 /* TagDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E28F1C10EB3D00ABE766 /* TagDescriptionCell.swift */; };
+		A141E2921C10EB4600ABE766 /* AddTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2911C10EB4600ABE766 /* AddTagCell.swift */; };
+		A141E2941C10EB5000ABE766 /* TagLocationButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2931C10EB5000ABE766 /* TagLocationButtonsCell.swift */; };
 		A1A69DC91C0E740000CB61C2 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */; };
 		A1A69DCB1C0E749700CB61C2 /* EpisodesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */; };
 		A1A69DCD1C0E7FC500CB61C2 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */; };
@@ -66,6 +71,11 @@
 		A141E2851C10CE2900ABE766 /* GeotagAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeotagAnnotationView.swift; sourceTree = "<group>"; };
 		A141E2871C10D66100ABE766 /* DummyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		A141E2891C10DA3300ABE766 /* PodcastSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastSummaryCell.swift; sourceTree = "<group>"; };
+		A141E28B1C10EB2A00ABE766 /* SearchLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationCell.swift; sourceTree = "<group>"; };
+		A141E28D1C10EB3400ABE766 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		A141E28F1C10EB3D00ABE766 /* TagDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDescriptionCell.swift; sourceTree = "<group>"; };
+		A141E2911C10EB4600ABE766 /* AddTagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagCell.swift; sourceTree = "<group>"; };
+		A141E2931C10EB5000ABE766 /* TagLocationButtonsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagLocationButtonsCell.swift; sourceTree = "<group>"; };
 		A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
 		A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesVC.swift; sourceTree = "<group>"; };
 		A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
@@ -151,6 +161,11 @@
 				A1A69DD31C0E952500CB61C2 /* EpisodeCell.swift */,
 				A141E2851C10CE2900ABE766 /* GeotagAnnotationView.swift */,
 				A141E2891C10DA3300ABE766 /* PodcastSummaryCell.swift */,
+				A141E28B1C10EB2A00ABE766 /* SearchLocationCell.swift */,
+				A141E28D1C10EB3400ABE766 /* LocationCell.swift */,
+				A141E28F1C10EB3D00ABE766 /* TagDescriptionCell.swift */,
+				A141E2911C10EB4600ABE766 /* AddTagCell.swift */,
+				A141E2931C10EB5000ABE766 /* TagLocationButtonsCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -356,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A141E2921C10EB4600ABE766 /* AddTagCell.swift in Sources */,
 				A1A9CBD21C03BAE400628351 /* PodcastSubscription.swift in Sources */,
 				A1A9CBE71C03C3C700628351 /* UserEpisodeData.swift in Sources */,
 				A1A69DD21C0E850E00CB61C2 /* PodcastSearchCell.swift in Sources */,
@@ -366,6 +382,7 @@
 				A141E2821C10C5BF00ABE766 /* TagManager.swift in Sources */,
 				A141E2881C10D66100ABE766 /* DummyData.swift in Sources */,
 				A1A69DC91C0E740000CB61C2 /* PlayerVC.swift in Sources */,
+				A141E2941C10EB5000ABE766 /* TagLocationButtonsCell.swift in Sources */,
 				A1A9CBD71C03BB7900628351 /* User.swift in Sources */,
 				A1A69DCB1C0E749700CB61C2 /* EpisodesVC.swift in Sources */,
 				A1A9CBE51C03BD1100628351 /* AddTagVC.swift in Sources */,
@@ -374,10 +391,13 @@
 				A141E2841C10C90900ABE766 /* Geotag.swift in Sources */,
 				A1A9CBDF1C03BC1F00628351 /* PodcastSearchVC.swift in Sources */,
 				A1A9CB9E1C03B94100628351 /* AppDelegate.swift in Sources */,
+				A141E28E1C10EB3400ABE766 /* LocationCell.swift in Sources */,
 				A1A9CBD01C03BAD000628351 /* Podcast.swift in Sources */,
 				A141E2801C0FE45E00ABE766 /* Helpers.swift in Sources */,
 				A1A9CBE11C03BC4D00628351 /* ITunesAPIController.swift in Sources */,
+				A141E2901C10EB3D00ABE766 /* TagDescriptionCell.swift in Sources */,
 				A1A9CBDD1C03BC0400628351 /* SubscriptionsVC.swift in Sources */,
+				A141E28C1C10EB2A00ABE766 /* SearchLocationCell.swift in Sources */,
 				A1A69DCD1C0E7FC500CB61C2 /* PodcastCell.swift in Sources */,
 				A141E28A1C10DA3300ABE766 /* PodcastSummaryCell.swift in Sources */,
 				A1A9CBE31C03BC6100628351 /* MapVC.swift in Sources */,

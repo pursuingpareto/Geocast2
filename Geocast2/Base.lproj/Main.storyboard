@@ -16,7 +16,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="se2-JH-mD0">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchLocationCell" id="se2-JH-mD0" customClass="SearchLocationCell" customModule="Geocast2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="se2-JH-mD0" id="NHS-Jd-9Mu">
@@ -25,6 +25,157 @@
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationCell" rowHeight="76" id="lwW-Y5-Qrm" customClass="LocationCell" customModule="Geocast2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="600" height="76"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lwW-Y5-Qrm" id="Y4H-go-Ikk">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djj-hy-ky5">
+                                            <rect key="frame" x="8" y="45" width="579" height="30"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoG-ke-gHE">
+                                            <rect key="frame" x="8" y="8" width="579" height="29"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="leadingMargin" secondItem="AoG-ke-gHE" secondAttribute="leading" id="74s-W9-rei"/>
+                                        <constraint firstItem="djj-hy-ky5" firstAttribute="top" secondItem="AoG-ke-gHE" secondAttribute="bottom" constant="8" id="8XK-ud-qE5"/>
+                                        <constraint firstAttribute="topMargin" secondItem="AoG-ke-gHE" secondAttribute="top" id="dSv-4I-4UA"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="AoG-ke-gHE" secondAttribute="trailing" constant="5" id="gTb-OE-4vh"/>
+                                        <constraint firstItem="djj-hy-ky5" firstAttribute="trailing" secondItem="AoG-ke-gHE" secondAttribute="trailing" id="nKz-Zn-IeF"/>
+                                        <constraint firstItem="djj-hy-ky5" firstAttribute="leading" secondItem="AoG-ke-gHE" secondAttribute="leading" id="rVk-wn-yYg"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="addressLabel" destination="djj-hy-ky5" id="FZx-Vn-hbM"/>
+                                    <outlet property="nameLabel" destination="AoG-ke-gHE" id="MWK-rb-xdl"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tagDescriptionCell" rowHeight="81" id="myf-6T-3bh" customClass="TagDescriptionCell" customModule="Geocast2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="148" width="600" height="81"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="myf-6T-3bh" id="hvg-tu-fVd">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S6G-83-QQT">
+                                            <rect key="frame" x="8" y="8" width="584" height="64"/>
+                                            <animations/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="leadingMargin" secondItem="S6G-83-QQT" secondAttribute="leading" id="IhK-3O-C9G"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="S6G-83-QQT" secondAttribute="trailing" id="ZJD-3v-cfM"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="S6G-83-QQT" secondAttribute="bottom" id="gD5-WV-7ml"/>
+                                        <constraint firstAttribute="topMargin" secondItem="S6G-83-QQT" secondAttribute="top" id="wNB-ak-P86"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="textView" destination="S6G-83-QQT" id="mEQ-BZ-KKP"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addTagCell" rowHeight="92" id="FVP-n8-aqH" customClass="AddTagCell" customModule="Geocast2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="229" width="600" height="92"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FVP-n8-aqH" id="DYb-N8-xwm">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="91"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ndp-gI-U53">
+                                            <rect key="frame" x="101" y="8" width="491" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oMd-Ke-ylw">
+                                            <rect key="frame" x="101" y="35" width="491" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekp-Pk-eDw">
+                                            <rect key="frame" x="101" y="62" width="491" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="topMargin" secondItem="Ndp-gI-U53" secondAttribute="top" id="5Rj-73-fy8"/>
+                                        <constraint firstItem="oMd-Ke-ylw" firstAttribute="leading" secondItem="DYb-N8-xwm" secondAttribute="leadingMargin" constant="93" id="66p-Nr-BKh"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="Ndp-gI-U53" secondAttribute="leading" id="9MB-HO-CWD"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="oMd-Ke-ylw" secondAttribute="trailing" id="9cf-zO-kYJ"/>
+                                        <constraint firstItem="ekp-Pk-eDw" firstAttribute="top" secondItem="oMd-Ke-ylw" secondAttribute="bottom" constant="6" id="Kw4-Pv-vMG"/>
+                                        <constraint firstItem="oMd-Ke-ylw" firstAttribute="top" secondItem="Ndp-gI-U53" secondAttribute="bottom" constant="6" id="dZH-j0-6NU"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ndp-gI-U53" secondAttribute="trailing" id="rmI-1R-iEm"/>
+                                        <constraint firstItem="ekp-Pk-eDw" firstAttribute="leading" secondItem="DYb-N8-xwm" secondAttribute="leadingMargin" constant="93" id="vGi-sN-3hd"/>
+                                        <constraint firstItem="Ndp-gI-U53" firstAttribute="leading" secondItem="DYb-N8-xwm" secondAttribute="leadingMargin" constant="93" id="vQn-TD-u09"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ekp-Pk-eDw" secondAttribute="trailing" id="wWe-KT-oZE"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="9MB-HO-CWD"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="ekp-Pk-eDw" id="0k3-2O-4dG"/>
+                                    <outlet property="episodeLabel" destination="Ndp-gI-U53" id="th9-YY-LbZ"/>
+                                    <outlet property="locationLabel" destination="oMd-Ke-ylw" id="9Jx-YK-LzO"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tagLocationButtonsCell" rowHeight="87" id="oDo-RH-O3A" customClass="TagLocationButtonsCell" customModule="Geocast2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="321" width="600" height="87"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oDo-RH-O3A" id="OfH-xa-1IG">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="86"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g98-RF-75M">
+                                            <rect key="frame" x="8" y="8" width="584" height="70"/>
+                                            <animations/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="addTagButtonPressed:" destination="hxa-e7-AzE" eventType="touchUpInside" id="dlN-7V-c0S"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="topMargin" secondItem="g98-RF-75M" secondAttribute="top" id="0Xy-hP-YNX"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="g98-RF-75M" secondAttribute="trailing" id="88N-if-XJm"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="g98-RF-75M" secondAttribute="bottom" id="uhD-wo-Ird"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="g98-RF-75M" secondAttribute="leading" id="v2c-O2-6yy"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="addTagButton" destination="g98-RF-75M" id="Tff-Bd-ObR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
