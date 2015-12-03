@@ -9,10 +9,14 @@
 import UIKit
 import AVFoundation
 
+let newEpisodeLoadedNotificationKey = "com.andybrown.newEpisodeLoadedKey"
+let playRateChangedNotificationKey = "com.andybrown.playRateChangedKey"
+let playerItemStatusChangedNotificationKey = "com.andybrown.playerItemStatusChangedKey"
+
 class PodcastPlayer: NSObject {
     
-    var currentItemStatus: AVPlayerItemStatus? {
-        return ((player.currentItem) != nil) ? player.currentItem?.status : nil
+    var currentItemStatus: AVPlayerItemStatus {
+        return ((player.currentItem) != nil) ? player.currentItem!.status : AVPlayerItemStatus.Unknown
     }
     
     var isPlaying: Bool { return (player.rate > 0) }
@@ -36,6 +40,9 @@ class PodcastPlayer: NSObject {
             }
         }
         currentEpisode = episode
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(newEpisodeLoadedNotificationKey, object: self)
+        
         print("currentEpisode is \(currentEpisode!.title)")
         let url = currentEpisode!.mp3URL
         print("mp3URL is at \(url.path)")
@@ -59,6 +66,7 @@ class PodcastPlayer: NSObject {
             return
         }
         player.play()
+        NSNotificationCenter.defaultCenter().postNotificationName(playRateChangedNotificationKey, object: self)
     }
     
     func pause() {
@@ -103,16 +111,17 @@ class PodcastPlayer: NSObject {
         print("OBSERVING VALUE FOR KEY PATH \(keyPath)")
         if context == &playerItemStatusContext {
             print("change is \(change?[NSKeyValueChangeNewKey])")
-            if let status = player.currentItem?.status {
-                switch status {
-                case .ReadyToPlay:
-                    onItemReady()
-                case .Failed:
-                    print("loading failed")
-                case .Unknown:
-                    print("status unknown")
-                }
-            }
+            NSNotificationCenter.defaultCenter().postNotificationName(playerItemStatusChangedNotificationKey, object: self)
+//            if let status = player.currentItem?.status {
+//                switch status {
+//                case .ReadyToPlay:
+//                    onItemReady()
+//                case .Failed:
+//                    print("loading failed")
+//                case .Unknown:
+//                    print("status unknown")
+//                }
+//            }
         } else {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         }

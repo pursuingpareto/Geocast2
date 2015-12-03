@@ -54,9 +54,10 @@ class EpisodesController : UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let episode = episodes[indexPath.row]
         let userEpisodeData: UserEpisodeData? = User.sharedInstance.getUserData(forEpisode: episode)
+        tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
+
         PodcastPlayer.sharedInstance.loadEpisode(episode, withUserEpisodeData: userEpisodeData, completion: {(item) in
             PodcastPlayer.sharedInstance.play()
-            self.tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
         })
     }
 }

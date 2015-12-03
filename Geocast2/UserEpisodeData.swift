@@ -11,7 +11,7 @@ import CoreMedia
 
 class UserEpisodeData: NSObject {
     var lastPlayedAt: NSDate?
-    var percentListenedTo: Float! = 0.0
+    var fractionListenedTo: Float! = 0.0
     var lastPlayedTimestamp: CMTime = kCMTimeZero
     let episode: Episode
     
