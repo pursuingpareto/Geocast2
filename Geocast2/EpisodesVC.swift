@@ -64,15 +64,15 @@ class EpisodesController : UITableViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(summaryCellIdentifier, forIndexPath: indexPath) as! PodcastSummaryCell
             cell.podcastTitle.text = podcast.title
-            print("podcast is \(podcast.title)")
+
             cell.podcastSummary.text = podcast.summary
-            print("summary is \(podcast.summary)")
+
             if User.sharedInstance.isSubscribedTo(podcast) {
                 cell.subscribeButton.hidden = true
             } else {
                 cell.subscribeButton.addTarget(self, action: "subscribeButtonClicked:", forControlEvents: .TouchUpInside)
             }
-            print("summary cell is \(cell)")
+
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(episodeCellIdentifier, forIndexPath: indexPath) as! EpisodeCell

@@ -34,6 +34,8 @@ class PodcastPlayer: UIResponder {
     private var onItemReady: () -> Void = {}
     private var playTimer: NSTimer?
     
+    var timerUpdateIncrement = NSTimeInterval(1.0)
+    
     class var sharedInstance: PodcastPlayer {
         struct Singleton {
             static let instance = PodcastPlayer()
@@ -52,7 +54,6 @@ class PodcastPlayer: UIResponder {
         NSNotificationCenter.defaultCenter().postNotificationName(newEpisodeLoadedNotificationKey, object: self)
         print("currentEpisode is \(currentEpisode!.title)")
         let url = currentEpisode!.mp3URL
-        print("mp3URL is at \(url.path)")
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
             let playerItem = AVPlayerItem(URL: url)
             self.loadItem(playerItem)
@@ -74,7 +75,7 @@ class PodcastPlayer: UIResponder {
         }
         player.play()
         NSNotificationCenter.defaultCenter().postNotificationName(playRateChangedNotificationKey, object: self)
-        playTimer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+        playTimer = NSTimer.scheduledTimerWithTimeInterval(timerUpdateIncrement, target: self, selector: "updateTime", userInfo: nil, repeats: true)
     }
     
     func pause() {
@@ -82,7 +83,6 @@ class PodcastPlayer: UIResponder {
             print("cannot pause now")
             return
         }
-        print("about to pause")
         player.pause()
         playTimer?.invalidate()
     }
@@ -104,6 +104,13 @@ class PodcastPlayer: UIResponder {
             MPNowPlayingInfoPropertyPlaybackRate: self.player.rate
         ]
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
+        PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: episode.podcast.largeImageURL, completion: { image -> Void in
+            guard let image = image else {
+                print("got bad image")
+                return
+            }
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
+        })
     }
     
     func seekToTime(time: CMTime) {
@@ -127,11 +134,9 @@ class PodcastPlayer: UIResponder {
             if player.currentItem?.status == .ReadyToPlay {
                 return true
             } else {
-                print("player item status is \(player.currentItem?.status.rawValue)")
                 return false
             }
         } else {
-            print("player status is \(player.status.rawValue)")
             return false
         }
     }
@@ -139,9 +144,7 @@ class PodcastPlayer: UIResponder {
     private var playerItemStatusContext = 0
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        print("OBSERVING VALUE FOR KEY PATH \(keyPath)")
         if context == &playerItemStatusContext {
-            print("change is \(change?[NSKeyValueChangeNewKey])")
             duration = player.currentItem?.duration
             setupRemoteControl(withItem: player.currentItem)
             NSNotificationCenter.defaultCenter().postNotificationName(playerItemStatusChangedNotificationKey, object: self)
@@ -158,7 +161,6 @@ class PodcastPlayer: UIResponder {
         player.currentItem?.removeObserver(self, forKeyPath: "status", context: &playerItemStatusContext)
         player.replaceCurrentItemWithPlayerItem(playerItem)
         player.currentItem?.addObserver(self, forKeyPath: "status", options: .New, context: &playerItemStatusContext)
-        print("playerItemStatusIs \(playerItem.status.rawValue)")
     }
     
     func setupRemoteControl(withItem item: AVPlayerItem?) {
@@ -183,12 +185,18 @@ class PodcastPlayer: UIResponder {
                 MPNowPlayingInfoPropertyPlaybackRate: self.player.rate
             ]
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
+            PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: episode.podcast.largeImageURL, completion: { image -> Void in
+                guard let image = image else {
+                    print("got bad image")
+                    return
+                }
+                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
+            })
         }
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
-            print("block done")
         }
         catch {
             print("Audio session error.")
@@ -216,6 +224,14 @@ class PodcastPlayer: UIResponder {
                 return
             }
         }
+//        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
+//        PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: episode.podcast.largeImageURL, completion: { image -> Void in
+//            guard let image = image else {
+//                print("got bad image")
+//                return
+//            }
+//            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = image
+//        })
     }
 
 

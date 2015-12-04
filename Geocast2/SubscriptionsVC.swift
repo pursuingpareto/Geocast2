@@ -45,7 +45,9 @@ class SubscriptionsViewController: UITableViewController {
             switch segueIdentifier {
             case episodesSegueIdentifier:
                 // TODO : Implement
-                print("preparing for episodesSegue")
+                let destinationVC = segue.destinationViewController as! EpisodesController
+                let podcast = subscriptions[tableView.indexPathForSelectedRow!.row].podcast
+                destinationVC.setPodcast(podcast)
             case podcastSearchSegueIdentifier:
                 // TODO : Implement
                 print("preparing for podcactSearchSegue")
@@ -85,7 +87,6 @@ class SubscriptionsViewController: UITableViewController {
     }
     
     func addPodcast() {
-        print("about to segue")
         performSegueWithIdentifier(podcastSearchSegueIdentifier, sender: self)
     }
     
@@ -123,6 +124,10 @@ class SubscriptionsViewController: UITableViewController {
         }
         
         return finalCell!
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier(episodesSegueIdentifier, sender: self)
     }
     
     override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {

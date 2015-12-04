@@ -15,6 +15,15 @@ enum PodcastOrderingOption {
 
 class User : NSObject {
     static let sharedInstance = User()
+    override init() {
+        super.init()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerUpdated", name: playTimerUpdateNotificationKey, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     
     // the key is the podcast collection id
     private var subscriptions = [Int : PodcastSubscription?]()
@@ -26,6 +35,37 @@ class User : NSObject {
             let subscription = PodcastSubscription(podcast: podcast)
             subscriptions[podcast.collectionId] = subscription
             return true
+        }
+    }
+    
+    func playerUpdated() {
+        let player = PodcastPlayer.sharedInstance
+        guard let ep = player.getCurrentEpisode() else {
+            print("couldn't get current episode")
+            return
+        }
+        if let sub = subscriptions[ep.podcast.collectionId] {
+            if let data = sub?.episodeData[ep.mp3URL] {
+                data?.lastPlayedAt = NSDate()
+                if let timestamp = player.currentPlayTime {
+                    data?.lastPlayedTimestamp = timestamp
+                }
+                guard let duration = player.duration else {
+                    print("couldn't get duration")
+                    return
+                }
+                guard let fraction = data?.fractionListenedTo else {
+                    return
+                }
+                let secondsSoFar = fraction * Float(duration.seconds)
+                let newSeconds = secondsSoFar + Float(player.timerUpdateIncrement)
+                data?.fractionListenedTo = newSeconds / Float(duration.seconds)
+            } else {
+                let UED = UserEpisodeData(episode: ep)
+                sub?.episodeData[ep.mp3URL] = UED
+            }
+        } else {
+            print("did NOT get subscription")
         }
     }
     

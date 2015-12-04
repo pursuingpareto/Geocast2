@@ -54,7 +54,6 @@ class MapViewController: UIViewController {
             location = defaultLocation
         }
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0), {
-            print("getting current tags")
             self.currentTags = self.tagManager.getTags(nearLocation: location)
             dispatch_async(dispatch_get_main_queue(), {
                 self.addTagsToMapView()

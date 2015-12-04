@@ -13,6 +13,8 @@ class PersistenceManager: NSObject {
     
     static let sharedInstance = PersistenceManager()
     
+    private var imageCache = [NSURL : UIImage]()
+    
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     func fetchSubscriptionData() -> [SubscribedPodcast]? {
@@ -23,6 +25,31 @@ class PersistenceManager: NSObject {
         } catch {
             print("error")
             return nil
+        }
+    }
+    
+    func attemptToGetImageFromCache(withURL url: NSURL?, completion: (image: UIImage?) -> Void) {
+        guard let url = url else {
+            print("invalid URL sent to attemptToGetImageFromCache")
+            return
+        }
+        if let img = imageCache[url] {
+            print("got image from cache")
+            completion(image: img)
+        } else {
+            print("did not get image from \(url.path)")
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
+                if error == nil {
+                    var image = UIImage(data: data!)
+                    self.imageCache[url] = image
+                    completion(image: image)
+                } else {
+                    print("error getting image was \(error)")
+                    completion(image: nil)
+                }
+            })
+            task.resume()
         }
     }
     
@@ -37,13 +64,7 @@ class PersistenceManager: NSObject {
         }
     }
     
-    
-//    func fetchEpisodeData(forEpisodesInSubscription subscription: SubscribedPodcast) -> [EpisodeWithStats]? {
-//        
-//    }
-    
     func updateUserWithStoredData() {
-        print("updating user with stored data...")
         if let subscribedPCs = fetchSubscriptionData() {
             var userSubs = [Int: PodcastSubscription]()
             for subscribedPC in subscribedPCs {
@@ -51,7 +72,6 @@ class PersistenceManager: NSObject {
                 userSubs[pcSub.podcast.collectionId] = pcSub
             }
             if let epsWithStats = fetchEpisodeData() {
-                print("  epsWithStats is \(epsWithStats)")
                 for ep in epsWithStats {
                     let userEpisodeData = ep.toUserEpisodeData()
                     let podcastSub = (ep.podcast as! SubscribedPodcast).toPodcastSubscription()
@@ -61,7 +81,6 @@ class PersistenceManager: NSObject {
                         userSubs[collectionId]?.episodeData[userEpisodeData.episode.mp3URL] = userEpisodeData
                     }
                 }
-                print("  about to wipe subscriptions and update")
                 User.sharedInstance.wipeSubscriptionsAndUpdate(withSubscriptions: userSubs)
             }
         }
@@ -90,11 +109,8 @@ class PersistenceManager: NSObject {
         print("subs has length \(subs.count)")
         for sub in subs {
             let subscribedPC = SubscribedPodcast.fromPodcastSubscription(podcastSubscription: sub)
-            print("got subscribedPC with title \(subscribedPC.title)")
         }
         do {
-            print("SAVING USER DATA")
-            print("CONTEXT is \(managedObjectContext)")
             try managedObjectContext.save()
         } catch {
             print(error)

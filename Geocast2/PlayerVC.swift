@@ -172,9 +172,7 @@ class PlayerViewController: UIViewController {
     }
 
     func updateTime() {
-        print("updating time for vc")
         if let playTime = player.currentPlayTime {
-            print(playTime.asString())
             playedTime.text = playTime.asString()
             if let duration = player.duration {
                 remainingTime.text = (duration - playTime).asString()

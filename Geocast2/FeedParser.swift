@@ -57,7 +57,7 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
     }
     
     class func parsePodcast(podcast: Podcast, withFeedParserDelegate feedParserDelegate: FeedParserDelegate) {
-        print("about to parse \(podcast.title)")
+
         let feedUrl = podcast.feedUrl
         
         let session = NSURLSession.sharedSession()
@@ -70,7 +70,7 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
                     let parser = FeedParser(data: data, podcast: podcast)
                     parser.feedParserDelegate = feedParserDelegate
                     parser.shouldProcessNamespaces = true
-                    print("about to parse")
+
                     parser.parse()
                 }
             }

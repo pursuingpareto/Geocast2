@@ -25,7 +25,6 @@ class ITunesAPIController {
         let url = NSURL(string: path)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
-            print("Task completed")
             if(error != nil) {
                 // If there is an error in the web request, print it to the console
                 print(error!.localizedDescription)
@@ -57,7 +56,6 @@ class ITunesAPIController {
     
     func lookupPodcasts(collectionIds: [Int]) {
         let id_string = collectionIds.map {($0.description)}.joinWithSeparator("," )
-        print("Looking up \(id_string)")
         getFromITunes("https://itunes.apple.com/lookup?media=podcast&id=\(id_string)")
     }
 }

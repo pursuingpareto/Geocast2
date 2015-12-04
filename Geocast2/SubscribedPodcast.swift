@@ -13,11 +13,7 @@ import CoreData
 class SubscribedPodcast: NSManagedObject {
 
     class func fromPodcastSubscription(podcastSubscription sub: PodcastSubscription) -> SubscribedPodcast {
-        print("getting subscribed podcast from pcsub")
-        
         let context = PersistenceManager.sharedInstance.managedObjectContext
-        
-        print("context is \(context)")
         
         let sp = NSEntityDescription.insertNewObjectForEntityForName("SubscribedPodcast", inManagedObjectContext: context) as! SubscribedPodcast
         let pc = sub.podcast
@@ -38,8 +34,6 @@ class SubscribedPodcast: NSManagedObject {
 //            print(error)
 //        }
         do {
-            print("saving 1 USER DATA")
-
             try context.save()
         } catch {
             print(error)

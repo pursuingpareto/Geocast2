@@ -15,7 +15,6 @@ extension CMTime {
         let hours = Int(floor(totalSeconds / 3600))
         let mins = Int(floor((totalSeconds % 3600) / 60))
         let secs = Int(floor((totalSeconds % 3600) % 60))
-        print("hours: \(hours)\nmins:  \(mins)\nsecs:  \(secs)")
         if hours > 0 {
             return String(format: "%i:%02i:%02i", hours, mins, secs)
         } else {
