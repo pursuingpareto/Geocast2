@@ -25,7 +25,7 @@ class EpisodesController : UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         FeedParser.parsePodcast(podcast, withFeedParserDelegate: self)
-//        tableView.reloadData()
+        tableView.reloadData()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -47,6 +47,13 @@ class EpisodesController : UITableViewController {
     func subscribeButtonClicked(sender: AnyObject?) {
         print("subscribing user to \(podcast.title)")
         User.sharedInstance.subscribe(podcast)
+        if let button = sender as? UIButton {
+            UIView.animateWithDuration(0.1, animations: {
+                button.alpha = 0.0
+                }, completion: { _ in
+                    button.hidden = true
+            })
+        }
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
