@@ -27,8 +27,6 @@ class PlayerViewController: UIViewController {
     @IBOutlet private weak var playbackToolbar: UIToolbar!
     
     private var player = PodcastPlayer.sharedInstance
-    private var fastForwardAmount = CMTimeMake(15, 1)
-    private var rewindAmount = CMTimeMake(15, 1)
     
     private let addTagSegueIdentifier = "addTagSegue"
     
@@ -53,6 +51,13 @@ class PlayerViewController: UIViewController {
             }
         }
         super.prepareForSegue(segue, sender: sender)
+    }
+    
+    override func remoteControlReceivedWithEvent(event: UIEvent?) {
+        super.remoteControlReceivedWithEvent(event)
+        if event?.type == .RemoteControl {
+            player.remoteControlReceivedWithEvent(event)
+        }
     }
     
     func prepareView(forReadinessState readinessState: ReadinessState) {
@@ -199,11 +204,11 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction private func fastForwardPressed(sender: AnyObject) {
-        player.fastForwardBy(fastForwardAmount)
+        player.fastForwardBy(player.fastForwardAmount)
     }
     
     @IBAction private func rewindPressed(sender: AnyObject) {
-        player.rewindBy(rewindAmount)
+        player.rewindBy(player.rewindAmount)
     }
     
     @IBAction func hideButtonPressed(sender: AnyObject) {

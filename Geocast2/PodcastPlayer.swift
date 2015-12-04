@@ -8,13 +8,17 @@
 
 import UIKit
 import AVFoundation
+import MediaPlayer
 
 let newEpisodeLoadedNotificationKey = "com.andybrown.newEpisodeLoadedKey"
 let playRateChangedNotificationKey = "com.andybrown.playRateChangedKey"
 let playerItemStatusChangedNotificationKey = "com.andybrown.playerItemStatusChangedKey"
 let playTimerUpdateNotificationKey = "com.andybrown.playTimerUpdateKey"
 
-class PodcastPlayer: NSObject {
+class PodcastPlayer: UIResponder {
+    
+    var fastForwardAmount = CMTimeMake(15, 1)
+    var rewindAmount = CMTimeMake(15, 1)
     
     var currentItemStatus: AVPlayerItemStatus {
         return ((player.currentItem) != nil) ? player.currentItem!.status : AVPlayerItemStatus.Unknown
@@ -45,9 +49,7 @@ class PodcastPlayer: NSObject {
             }
         }
         currentEpisode = episode
-        
         NSNotificationCenter.defaultCenter().postNotificationName(newEpisodeLoadedNotificationKey, object: self)
-        
         print("currentEpisode is \(currentEpisode!.title)")
         let url = currentEpisode!.mp3URL
         print("mp3URL is at \(url.path)")
@@ -87,6 +89,21 @@ class PodcastPlayer: NSObject {
     
     func updateTime() {
         NSNotificationCenter.defaultCenter().postNotificationName(playTimerUpdateNotificationKey, object: self)
+        guard let episode = getCurrentEpisode() else {
+            return
+        }
+        guard let totalSeconds = player.currentItem?.duration.seconds else {
+            return
+        }
+        var songInfo: [String: AnyObject] = [
+            MPMediaItemPropertyArtist: episode.podcast.title,
+            MPMediaItemPropertyTitle: episode.title,
+            MPMediaItemPropertyPlaybackDuration: totalSeconds,
+            //                MPMediaItemPropertyArtwork: podcastArt,
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: player.currentTime().seconds,
+            MPNowPlayingInfoPropertyPlaybackRate: self.player.rate
+        ]
+        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
     }
     
     func seekToTime(time: CMTime) {
@@ -126,18 +143,8 @@ class PodcastPlayer: NSObject {
         if context == &playerItemStatusContext {
             print("change is \(change?[NSKeyValueChangeNewKey])")
             duration = player.currentItem?.duration
-//            currentPlayTime = player.currentTime()
+            setupRemoteControl(withItem: player.currentItem)
             NSNotificationCenter.defaultCenter().postNotificationName(playerItemStatusChangedNotificationKey, object: self)
-//            if let status = player.currentItem?.status {
-//                switch status {
-//                case .ReadyToPlay:
-//                    onItemReady()
-//                case .Failed:
-//                    print("loading failed")
-//                case .Unknown:
-//                    print("status unknown")
-//                }
-//            }
         } else {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         }
@@ -153,4 +160,65 @@ class PodcastPlayer: NSObject {
         player.currentItem?.addObserver(self, forKeyPath: "status", options: .New, context: &playerItemStatusContext)
         print("playerItemStatusIs \(playerItem.status.rawValue)")
     }
+    
+    func setupRemoteControl(withItem item: AVPlayerItem?) {
+//        UIApplication.sharedApplication().endReceivingRemoteControlEvents()
+        if item == nil || item?.status != .ReadyToPlay {
+            return
+        }
+        if NSClassFromString("MPNowPlayingInfoCenter") != nil {
+//            let podcastArt = MPMediaItemArtwork(image: image!)
+            guard let episode = getCurrentEpisode() else {
+                return
+            }
+            guard let totalSeconds = item?.duration.seconds else {
+                return
+            }
+            var songInfo: [String: AnyObject] = [
+                MPMediaItemPropertyArtist: episode.podcast.title,
+                MPMediaItemPropertyTitle: episode.title,
+                MPMediaItemPropertyPlaybackDuration: totalSeconds,
+//                MPMediaItemPropertyArtwork: podcastArt,
+                MPNowPlayingInfoPropertyElapsedPlaybackTime: player.currentTime().seconds,
+                MPNowPlayingInfoPropertyPlaybackRate: self.player.rate
+            ]
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
+        }
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            print("block done")
+        }
+        catch {
+            print("Audio session error.")
+        }
+    }
+    
+    override func remoteControlReceivedWithEvent(event: UIEvent?) {
+//        let podcastArt = MPMediaItemArtwork(image: image!)
+        if event?.type == UIEventType.RemoteControl {
+            guard let subtype = event?.subtype else {
+                return
+            }
+            switch subtype {
+            case .RemoteControlPlay:
+                play()
+            case .RemoteControlPause:
+                pause()
+            case .RemoteControlNextTrack:
+                fastForwardBy(fastForwardAmount)
+            case .RemoteControlPreviousTrack:
+                rewindBy(rewindAmount)
+            case .RemoteControlTogglePlayPause:
+                isPlaying ? pause() : play()
+            default:
+                return
+            }
+        }
+    }
+
+
+    
+    
 }
