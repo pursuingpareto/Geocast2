@@ -19,6 +19,13 @@
 		A141E2901C10EB3D00ABE766 /* TagDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E28F1C10EB3D00ABE766 /* TagDescriptionCell.swift */; };
 		A141E2921C10EB4600ABE766 /* AddTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2911C10EB4600ABE766 /* AddTagCell.swift */; };
 		A141E2941C10EB5000ABE766 /* TagLocationButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2931C10EB5000ABE766 /* TagLocationButtonsCell.swift */; };
+		A141E2971C11224C00ABE766 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A141E2951C11224C00ABE766 /* CoreDataModel.xcdatamodeld */; };
+		A141E2AE1C11266300ABE766 /* EpisodeWithStats+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2AA1C11266300ABE766 /* EpisodeWithStats+CoreDataProperties.swift */; };
+		A141E2AF1C11266300ABE766 /* EpisodeWithStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2AB1C11266300ABE766 /* EpisodeWithStats.swift */; };
+		A141E2B01C11266300ABE766 /* SubscribedPodcast+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2AC1C11266300ABE766 /* SubscribedPodcast+CoreDataProperties.swift */; };
+		A141E2B11C11266300ABE766 /* SubscribedPodcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2AD1C11266300ABE766 /* SubscribedPodcast.swift */; };
+		A141E2B41C1126D700ABE766 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2B31C1126D700ABE766 /* PersistenceManager.swift */; };
+		A141E2B61C11348900ABE766 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A141E2B51C11348900ABE766 /* CoreData.framework */; };
 		A1A69DC91C0E740000CB61C2 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */; };
 		A1A69DCB1C0E749700CB61C2 /* EpisodesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */; };
 		A1A69DCD1C0E7FC500CB61C2 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */; };
@@ -76,6 +83,13 @@
 		A141E28F1C10EB3D00ABE766 /* TagDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDescriptionCell.swift; sourceTree = "<group>"; };
 		A141E2911C10EB4600ABE766 /* AddTagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagCell.swift; sourceTree = "<group>"; };
 		A141E2931C10EB5000ABE766 /* TagLocationButtonsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagLocationButtonsCell.swift; sourceTree = "<group>"; };
+		A141E2961C11224C00ABE766 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		A141E2AA1C11266300ABE766 /* EpisodeWithStats+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EpisodeWithStats+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A141E2AB1C11266300ABE766 /* EpisodeWithStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeWithStats.swift; sourceTree = "<group>"; };
+		A141E2AC1C11266300ABE766 /* SubscribedPodcast+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubscribedPodcast+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A141E2AD1C11266300ABE766 /* SubscribedPodcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribedPodcast.swift; sourceTree = "<group>"; };
+		A141E2B31C1126D700ABE766 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		A141E2B51C11348900ABE766 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
 		A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesVC.swift; sourceTree = "<group>"; };
 		A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
@@ -114,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A141E2B61C11348900ABE766 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +149,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A141E2B21C11267800ABE766 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				A141E2951C11224C00ABE766 /* CoreDataModel.xcdatamodeld */,
+				A141E2AA1C11266300ABE766 /* EpisodeWithStats+CoreDataProperties.swift */,
+				A141E2AB1C11266300ABE766 /* EpisodeWithStats.swift */,
+				A141E2AC1C11266300ABE766 /* SubscribedPodcast+CoreDataProperties.swift */,
+				A141E2AD1C11266300ABE766 /* SubscribedPodcast.swift */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
 		A1A69DC31C0E737600CB61C2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +175,7 @@
 				A1A9CBE41C03BD1100628351 /* AddTagVC.swift */,
 				A1A9CBE21C03BC6100628351 /* MapVC.swift */,
 				A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */,
+				A141E2B31C1126D700ABE766 /* PersistenceManager.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -173,6 +201,7 @@
 		A1A9CB911C03B94100628351 = {
 			isa = PBXGroup;
 			children = (
+				A141E2B51C11348900ABE766 /* CoreData.framework */,
 				A1A9CB9C1C03B94100628351 /* Geocast2 */,
 				A1A9CBB11C03B94100628351 /* Geocast2Tests */,
 				A1A9CBBC1C03B94100628351 /* Geocast2UITests */,
@@ -229,6 +258,7 @@
 		A1A9CBD31C03BB0100628351 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A141E2B21C11267800ABE766 /* Core Data */,
 				A1A9CBD61C03BB7900628351 /* User.swift */,
 				A1A9CBCF1C03BAD000628351 /* Podcast.swift */,
 				A1A9CBD11C03BAE400628351 /* PodcastSubscription.swift */,
@@ -376,15 +406,21 @@
 				A1A9CBE71C03C3C700628351 /* UserEpisodeData.swift in Sources */,
 				A1A69DD21C0E850E00CB61C2 /* PodcastSearchCell.swift in Sources */,
 				A141E2861C10CE2900ABE766 /* GeotagAnnotationView.swift in Sources */,
+				A141E2B01C11266300ABE766 /* SubscribedPodcast+CoreDataProperties.swift in Sources */,
 				A1A9CBCC1C03BA8800628351 /* PodcastPlayer.swift in Sources */,
+				A141E2971C11224C00ABE766 /* CoreDataModel.xcdatamodeld in Sources */,
+				A141E2B41C1126D700ABE766 /* PersistenceManager.swift in Sources */,
 				A1A9CBD51C03BB5400628351 /* MainTabVC.swift in Sources */,
 				A1A9CBCE1C03BAC200628351 /* Episode.swift in Sources */,
+				A141E2B11C11266300ABE766 /* SubscribedPodcast.swift in Sources */,
 				A141E2821C10C5BF00ABE766 /* TagManager.swift in Sources */,
 				A141E2881C10D66100ABE766 /* DummyData.swift in Sources */,
 				A1A69DC91C0E740000CB61C2 /* PlayerVC.swift in Sources */,
 				A141E2941C10EB5000ABE766 /* TagLocationButtonsCell.swift in Sources */,
+				A141E2AF1C11266300ABE766 /* EpisodeWithStats.swift in Sources */,
 				A1A9CBD71C03BB7900628351 /* User.swift in Sources */,
 				A1A69DCB1C0E749700CB61C2 /* EpisodesVC.swift in Sources */,
+				A141E2AE1C11266300ABE766 /* EpisodeWithStats+CoreDataProperties.swift in Sources */,
 				A1A9CBE51C03BD1100628351 /* AddTagVC.swift in Sources */,
 				A1A9CBEB1C03DDE700628351 /* FeedParser.swift in Sources */,
 				A1A69DD41C0E952500CB61C2 /* EpisodeCell.swift in Sources */,
@@ -649,6 +685,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A141E2951C11224C00ABE766 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A141E2961C11224C00ABE766 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = A141E2961C11224C00ABE766 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A1A9CB921C03B94100628351 /* Project object */;
 }

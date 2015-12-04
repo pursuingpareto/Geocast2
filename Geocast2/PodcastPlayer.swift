@@ -95,7 +95,7 @@ class PodcastPlayer: UIResponder {
         guard let totalSeconds = player.currentItem?.duration.seconds else {
             return
         }
-        var songInfo: [String: AnyObject] = [
+        let songInfo: [String: AnyObject] = [
             MPMediaItemPropertyArtist: episode.podcast.title,
             MPMediaItemPropertyTitle: episode.title,
             MPMediaItemPropertyPlaybackDuration: totalSeconds,
@@ -174,7 +174,7 @@ class PodcastPlayer: UIResponder {
             guard let totalSeconds = item?.duration.seconds else {
                 return
             }
-            var songInfo: [String: AnyObject] = [
+            let songInfo: [String: AnyObject] = [
                 MPMediaItemPropertyArtist: episode.podcast.title,
                 MPMediaItemPropertyTitle: episode.title,
                 MPMediaItemPropertyPlaybackDuration: totalSeconds,

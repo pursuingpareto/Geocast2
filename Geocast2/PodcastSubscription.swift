@@ -9,7 +9,7 @@
 import Foundation
 
 class PodcastSubscription: NSObject {
-    let subscriptionDate: NSDate
+    var subscriptionDate: NSDate
     let podcast: Podcast
     var episodeData = [NSURL : UserEpisodeData?]()
     

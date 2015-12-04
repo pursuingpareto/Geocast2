@@ -53,6 +53,14 @@ class User : NSObject {
         }
     }
     
+    func getSubscription(forPodcast podcast: Podcast) -> PodcastSubscription? {
+        if let subscription = subscriptions[podcast.collectionId] {
+            return subscription
+        } else {
+            return nil
+        }
+    }
+    
     func isSubscribedTo(podcast: Podcast) -> Bool {
         if let sub = subscriptions[podcast.collectionId] {
             if sub != nil {
@@ -70,5 +78,12 @@ class User : NSObject {
             return nil
         }
         return data
+    }
+    
+    func wipeSubscriptionsAndUpdate(withSubscriptions subs: [Int:PodcastSubscription]) {
+        self.subscriptions.removeAll()
+        for (collID, podcastSub) in subs {
+            self.subscriptions[collID] = podcastSub
+        }
     }
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Xcode 7.0">
+    <entity name="EpisodeWithStats" representedClassName=".EpisodeWithStats" syncable="YES">
+        <attribute name="fractionListenedTo" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="itunesSummary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastPlayedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastPlayedTimestamp" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="mp3Url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pubDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalSeconds" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="podcast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubscribedPodcast" syncable="YES"/>
+    </entity>
+    <entity name="SubscribedPodcast" representedClassName=".SubscribedPodcast" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="collectionId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="episodeCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="feedUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="largeImageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="subscriptionDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailImageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="SubscribedPodcast" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="EpisodeWithStats" positionX="-54" positionY="63" width="128" height="210"/>
+    </elements>
+</model>
