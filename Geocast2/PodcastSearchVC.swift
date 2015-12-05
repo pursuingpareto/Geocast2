@@ -10,7 +10,7 @@ import UIKit
 
 class PodcastSearchController: UITableViewController {
     
-    private let searchResultCellIdentifier = "searchResultCell"
+    private let subscriptionCellIdentifier = "subscriptionCell"
     
     private let episodesSegueIdentifier = "episodesSegue"
     
@@ -56,9 +56,29 @@ class PodcastSearchController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let podcast: Podcast = podcastsFound[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(searchResultCellIdentifier, forIndexPath: indexPath) as! PodcastSearchCell
-        cell.textLabel?.text = podcast.title
+        let cell = tableView.dequeueReusableCellWithIdentifier(subscriptionCellIdentifier)! as! PodcastCell
+        let podcast = podcastsFound[indexPath.row]
+        //            cell.textLabel?.text = podcast.title
+        cell.titleLabel.text = podcast.title
+        
+        if let lastDate = podcast.lastUpdated {
+            print("got a last update time")
+            cell.detailLabel.text = "\(podcast.episodeCount!) Episodes, last \(lastDate.shortTimeAgoSinceNow())"
+        } else {
+            print("NO UPDATE TIME!")
+        }
+        
+        PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: podcast.thumbnailImageURL, completion: { image -> Void in
+            if let image = image {
+                dispatch_async(dispatch_get_main_queue(), {
+                    let updateCell = tableView.cellForRowAtIndexPath(indexPath)
+                    if let updateCell = updateCell as? PodcastCell {
+                        updateCell.podcastImageView.image = image
+                    }
+                })
+            }
+        })
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }
     
@@ -73,6 +93,11 @@ class PodcastSearchController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier(episodesSegueIdentifier, sender: self)
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100
+    }
+    
 }
 
 extension PodcastSearchController: ITunesAPIControllerDelegate {
