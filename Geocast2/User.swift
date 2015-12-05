@@ -120,6 +120,29 @@ class User : NSObject {
         return data
     }
     
+    func updateSubscriptionsWithNewPodcasts(podcasts: [Podcast]) {
+        for newPC in podcasts {
+            if self.isSubscribedTo(newPC) {
+                let sub = getSubscription(forPodcast: newPC)!
+                let oldPC = sub.podcast
+                if oldPC.lastUpdated == nil {
+                    oldPC.lastUpdated = newPC.lastUpdated
+                } else if newPC.lastUpdated != nil {
+                    if oldPC.lastUpdated!.compare(newPC.lastUpdated!) == NSComparisonResult.OrderedAscending {
+                        oldPC.lastUpdated = newPC.lastUpdated
+                    }
+                }
+                if oldPC.episodeCount == nil {
+                    oldPC.episodeCount = newPC.episodeCount
+                } else if newPC.episodeCount != nil {
+                    if newPC.episodeCount > oldPC.episodeCount {
+                        oldPC.episodeCount = newPC.episodeCount
+                    }
+                }
+            }
+        }
+    }
+    
     func wipeSubscriptionsAndUpdate(withSubscriptions subs: [Int:PodcastSubscription]) {
         self.subscriptions.removeAll()
         for (collID, podcastSub) in subs {

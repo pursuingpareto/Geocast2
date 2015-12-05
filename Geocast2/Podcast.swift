@@ -29,7 +29,7 @@ class Podcast: NSObject {
     
     class func podcastsWithJSON(allResults: NSArray) -> [Podcast] {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-ddThh:mm:ssZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         var podcasts = [Podcast]()
         if allResults.count>0 {
             for podcastInfo in allResults {
@@ -64,8 +64,12 @@ class Podcast: NSObject {
                         let podcast: Podcast = Podcast(title: name!, collectionId: collectionId, feedUrl: feedUrl)
                         
                         if let releaseDateString = podcastInfo["releaseDate"] as? String {
+                            print("release date is \(releaseDateString)")
                             if let releaseDate = dateFormatter.dateFromString(releaseDateString) {
+                                print("  using release date to create date")
                                 podcast.lastUpdated = releaseDate
+                            } else {
+                                print("  not using release date to create date")
                             }
                         }
                         

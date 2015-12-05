@@ -34,7 +34,6 @@ class PersistenceManager: NSObject {
             return
         }
         if let img = imageCache[url] {
-            print("got image from cache")
             completion(image: img)
         } else {
             print("did not get image from \(url.path)")

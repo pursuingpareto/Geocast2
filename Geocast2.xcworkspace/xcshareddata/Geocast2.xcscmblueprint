@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "EDD6F808D4936088E694A29D5FE504E8CD9CF079",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "EDD6F808D4936088E694A29D5FE504E8CD9CF079" : 0,
+    "209F5690563FD75787152C712E1ED723421DAE27" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "69414938-D3D4-4C6B-AEF3-FE181602CB7D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "EDD6F808D4936088E694A29D5FE504E8CD9CF079" : "Geocast2\/",
+    "209F5690563FD75787152C712E1ED723421DAE27" : "Geocast\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Geocast2",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Geocast2.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/pursuingpareto\/Geocast.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "209F5690563FD75787152C712E1ED723421DAE27"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/pursuingpareto\/Geocast2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EDD6F808D4936088E694A29D5FE504E8CD9CF079"
+    }
+  ]
+}

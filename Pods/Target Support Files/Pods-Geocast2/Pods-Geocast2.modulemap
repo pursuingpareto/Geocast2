@@ -1,0 +1,6 @@
+framework module Pods_Geocast2 {
+  umbrella header "Pods-Geocast2-umbrella.h"
+
+  export *
+  module * { export * }
+}

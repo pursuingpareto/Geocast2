@@ -51,6 +51,7 @@
 		A1A9CBE51C03BD1100628351 /* AddTagVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBE41C03BD1100628351 /* AddTagVC.swift */; };
 		A1A9CBE71C03C3C700628351 /* UserEpisodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBE61C03C3C700628351 /* UserEpisodeData.swift */; };
 		A1A9CBEB1C03DDE700628351 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9CBEA1C03DDE700628351 /* FeedParser.swift */; };
+		EB67FB43A07D7E86EE3679D0 /* Pods_Geocast2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76FA20AAC328C299C1AAD4ED /* Pods_Geocast2.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		76FA20AAC328C299C1AAD4ED /* Pods_Geocast2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Geocast2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A141E27D1C0FB6D800ABE766 /* vertical_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vertical_bar.png; path = ../../Geocast/Geocast/Images.xcassets/vertical_bar.imageset/vertical_bar.png; sourceTree = "<group>"; };
 		A141E27F1C0FE45E00ABE766 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A141E2811C10C5BF00ABE766 /* TagManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 		A1A69DCE1C0E7FFA00CB61C2 /* NoPodcastsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPodcastsCell.swift; sourceTree = "<group>"; };
 		A1A69DD11C0E850E00CB61C2 /* PodcastSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastSearchCell.swift; sourceTree = "<group>"; };
 		A1A69DD31C0E952500CB61C2 /* EpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		A1A8F870B91CFAC25C60969F /* Pods-Geocast2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocast2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Geocast2/Pods-Geocast2.debug.xcconfig"; sourceTree = "<group>"; };
 		A1A9CB9A1C03B94100628351 /* Geocast2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocast2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A9CB9D1C03B94100628351 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1A9CBA21C03B94100628351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 		A1A9CBE41C03BD1100628351 /* AddTagVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagVC.swift; sourceTree = "<group>"; };
 		A1A9CBE61C03C3C700628351 /* UserEpisodeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEpisodeData.swift; sourceTree = "<group>"; };
 		A1A9CBEA1C03DDE700628351 /* FeedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
+		DD9C2A3169BDB0EC0EAF1AA8 /* Pods-Geocast2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocast2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Geocast2/Pods-Geocast2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A141E2B61C11348900ABE766 /* CoreData.framework in Frameworks */,
+				EB67FB43A07D7E86EE3679D0 /* Pods_Geocast2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +154,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CA906F66DFBD2B36D9B2351 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A1A8F870B91CFAC25C60969F /* Pods-Geocast2.debug.xcconfig */,
+				DD9C2A3169BDB0EC0EAF1AA8 /* Pods-Geocast2.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5E2FD1A7B68D6ADDE8BB9B88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				76FA20AAC328C299C1AAD4ED /* Pods_Geocast2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A141E2B21C11267800ABE766 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +228,8 @@
 				A1A9CBB11C03B94100628351 /* Geocast2Tests */,
 				A1A9CBBC1C03B94100628351 /* Geocast2UITests */,
 				A1A9CB9B1C03B94100628351 /* Products */,
+				4CA906F66DFBD2B36D9B2351 /* Pods */,
+				5E2FD1A7B68D6ADDE8BB9B88 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -276,9 +300,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1A9CBC21C03B94100628351 /* Build configuration list for PBXNativeTarget "Geocast2" */;
 			buildPhases = (
+				2426F355BDB297C3689B9E03 /* Check Pods Manifest.lock */,
 				A1A9CB961C03B94100628351 /* Sources */,
 				A1A9CB971C03B94100628351 /* Frameworks */,
 				A1A9CB981C03B94100628351 /* Resources */,
+				074E6841E48BE93B50480583 /* Embed Pods Frameworks */,
+				64FA4AB6ED0B27B7A0405958 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -395,6 +422,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		074E6841E48BE93B50480583 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Geocast2/Pods-Geocast2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2426F355BDB297C3689B9E03 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		64FA4AB6ED0B27B7A0405958 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Geocast2/Pods-Geocast2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A1A9CB961C03B94100628351 /* Sources */ = {
@@ -577,6 +652,7 @@
 		};
 		A1A9CBC31C03B94100628351 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1A8F870B91CFAC25C60969F /* Pods-Geocast2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Geocast2/Info.plist;
@@ -588,6 +664,7 @@
 		};
 		A1A9CBC41C03B94100628351 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD9C2A3169BDB0EC0EAF1AA8 /* Pods-Geocast2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Geocast2/Info.plist;

@@ -208,18 +208,63 @@
                                 </tableViewCellContentView>
                                 <animations/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="subscriptionCell" id="sYE-cJ-8eh" customClass="PodcastCell" customModule="Geocast2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="subscriptionCell" rowHeight="127" id="sYE-cJ-8eh" customClass="PodcastCell" customModule="Geocast2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="136" width="600" height="127"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sYE-cJ-8eh" id="AZP-bg-Dnv">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="126"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U26-7L-3Uk">
+                                            <rect key="frame" x="88" y="33" width="504" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWF-LP-FWf">
+                                            <rect key="frame" x="96" y="62" width="496" height="41"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a7x-t5-z2T">
+                                            <rect key="frame" x="8" y="23" width="80" height="80"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="1R2-i5-Kbl"/>
+                                                <constraint firstAttribute="height" constant="80" id="Xs5-Ql-tNP"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstItem="aWF-LP-FWf" firstAttribute="leading" secondItem="U26-7L-3Uk" secondAttribute="leading" id="6tr-j1-XBs"/>
+                                        <constraint firstItem="U26-7L-3Uk" firstAttribute="top" secondItem="a7x-t5-z2T" secondAttribute="top" constant="10" id="FhC-Zh-Eqh"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="a7x-t5-z2T" secondAttribute="leading" constant="8" id="Ms0-lF-I2Q"/>
+                                        <constraint firstItem="aWF-LP-FWf" firstAttribute="top" secondItem="U26-7L-3Uk" secondAttribute="bottom" constant="8" id="OXc-zw-2kh"/>
+                                        <constraint firstItem="aWF-LP-FWf" firstAttribute="trailing" secondItem="U26-7L-3Uk" secondAttribute="trailing" id="PMp-UI-7Jm"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="a7x-t5-z2T" secondAttribute="leading" id="WbD-OK-CtV"/>
+                                        <constraint firstItem="U26-7L-3Uk" firstAttribute="leading" secondItem="a7x-t5-z2T" secondAttribute="trailing" constant="8" id="u6g-z7-Kmk"/>
+                                        <constraint firstItem="a7x-t5-z2T" firstAttribute="centerY" secondItem="AZP-bg-Dnv" secondAttribute="centerY" id="xMm-EP-w61"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="U26-7L-3Uk" secondAttribute="trailing" id="yU4-9V-uIT"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="Ms0-lF-I2Q"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <outlet property="detailLabel" destination="aWF-LP-FWf" id="aaq-2H-Ohu"/>
+                                    <outlet property="podcastImageView" destination="a7x-t5-z2T" id="f0W-I3-ZIa"/>
+                                    <outlet property="titleLabel" destination="U26-7L-3Uk" id="6r1-vY-Owq"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noSubscriptionsCell" id="WQM-SZ-MzM" customClass="NoPodcastsCell" customModule="Geocast2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="180" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="263" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WQM-SZ-MzM" id="BR2-pP-0mN">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -632,6 +677,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zfI-yK-3hr"/>
+        <segue reference="tde-4H-s1I"/>
     </inferredMetricsTieBreakers>
 </document>

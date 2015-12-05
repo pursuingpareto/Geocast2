@@ -105,11 +105,23 @@ extension EpisodesController: FeedParserDelegate {
     func didParsePodcastSummaryData(data: [String : String]) {
         podcast.summary = data["description"]
         podcast.author = data["itunes:author"]
+        if let lastUpdatedString = data["lastBuildDate"] {
+            var df = NSDateFormatter()
+            df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            if let lastDate = df.dateFromString(lastUpdatedString) {
+                podcast.lastUpdated = lastDate
+            }
+        }
         tableView.reloadData()
     }
     
     func didParseFeedIntoEpisodes(episodes: [Episode]) {
         self.episodes = episodes
+        podcast.episodeCount = episodes.count
+        if podcast.lastUpdated == nil {
+            print("setting pubdate to \(episodes.first?.pubDate)")
+            podcast.lastUpdated = episodes.first?.pubDate
+        }
         tableView.reloadData()
     }
 }
