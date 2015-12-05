@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import DateTools
+import CoreMedia
 
 class EpisodesController : UITableViewController {
     
@@ -72,12 +74,41 @@ class EpisodesController : UITableViewController {
             } else {
                 cell.subscribeButton.addTarget(self, action: "subscribeButtonClicked:", forControlEvents: .TouchUpInside)
             }
+            PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: podcast.thumbnailImageURL, completion: { image -> Void in
+                if let image = image {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        let updateCell = tableView.cellForRowAtIndexPath(indexPath)
+                        if let updateCell = updateCell as? PodcastSummaryCell {
+                            updateCell.podcastImageView.image = image
+                        }
+                    })
+                }
+            })
+
 
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(episodeCellIdentifier, forIndexPath: indexPath) as! EpisodeCell
             let episode = episodeForIndexPath(indexPath)!
-            cell.textLabel?.text = episode.title
+//            cell.textLabel?.text = episode.title
+            
+            cell.episodeTitle.text = episode.title
+            if let duration = episode.duration {
+                let cmDuration = CMTime(seconds: duration, preferredTimescale: 1)
+                cell.duration.text = cmDuration.asString()
+            }
+            cell.progressBar.setProgress(0.0, animated: false)
+            if let subscription = User.sharedInstance.getSubscription(forPodcast: podcast) {
+                if let data = subscription.episodeData[episode.mp3URL] {
+                    cell.progressBar.setProgress(data!.fractionListenedTo, animated: false)
+                }
+            }
+            
+            if let date = episode.pubDate {
+                let formatter = NSDateFormatter()
+                formatter.dateStyle = .MediumStyle
+                cell.publicationDate.text = formatter.stringFromDate(date)
+            }
             return cell
         }
     }

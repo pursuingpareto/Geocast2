@@ -140,7 +140,7 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
             }
             let newEpisode = Episode(podcast: feedParser.podcast, mp3URL: mp3Url, title: title)
             // now try to add other fields
-            if let durationString: String = entry["duration"] {
+            if let durationString: String = entry["itunes:duration"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
                 if let duration = FeedParser.durationFromString(durationString) {
                     newEpisode.duration = duration
                 }
@@ -154,12 +154,15 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
             
             let itunesSummary = entry["itunes:summary"]
             let subtitle = entry["itunes:subtitle"]
+            let pubDateString = entry["pubDate"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            print("pubdatestring is \(pubDateString)")
             let pubDate = FeedParser.dateFromString(entry["pubDate"])
             
             newEpisode.subtitle = subtitle
             newEpisode.iTunesSummary = itunesSummary
             newEpisode.summary = summary
             newEpisode.pubDate = pubDate
+            print("    newEpisode pubdate is \(newEpisode.pubDate)")
             
             episodes.append(newEpisode)
         }
@@ -168,6 +171,7 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
     }
     
     class func durationFromString(string: String) -> NSTimeInterval? {
+        print("trying to get duration from string: \(string)")
         var seconds: Int?
         
         guard string.characters.count > 1 else {
@@ -176,7 +180,9 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
         
         var fractionalTime = string.characters.split { $0 == "." }.map { String($0) }
         let wholeTime = fractionalTime[0]
+        print("wholeTime is \(wholeTime)")
         var splitTime = wholeTime.characters.split { $0 == ":" }.map { String($0) }
+        print("splitTime is \(splitTime)")
         switch splitTime.count {
         case 1:
             seconds = Int(splitTime[0])
@@ -198,15 +204,26 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
             seconds = nil
         }
         if seconds != nil {
+            print("got duration of \(seconds) seconds")
             return NSTimeInterval(seconds!)
+            
         } else {
             return nil
         }
     }
     
     class func dateFromString(string: String?) -> NSDate? {
-        
-        // TODO : implement this
-        return nil
+        guard let string = string else {
+            return nil
+        }
+        let df = NSDateFormatter()
+        df.dateFormat = "E, dd MMM yyyy HH:mm:ss Z"
+        if let date = df.dateFromString(string) {
+            print("  DATE IS \(date)")
+            return date
+        } else {
+            print("  COULDN'T GET DATE........")
+            return nil
+        }
     }
 }

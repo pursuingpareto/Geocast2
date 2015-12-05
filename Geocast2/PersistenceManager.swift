@@ -36,7 +36,7 @@ class PersistenceManager: NSObject {
         if let img = imageCache[url] {
             completion(image: img)
         } else {
-            print("did not get image from \(url.path)")
+
             let session = NSURLSession.sharedSession()
             let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
                 if error == nil {

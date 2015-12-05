@@ -10,4 +10,8 @@ import UIKit
 
 class EpisodeCell : UITableViewCell {
     
+    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var episodeTitle: UILabel!
+    @IBOutlet weak var publicationDate: UILabel!
+    @IBOutlet weak var duration: UILabel!
 }

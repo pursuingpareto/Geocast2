@@ -62,7 +62,7 @@ class PodcastSearchController: UITableViewController {
         cell.titleLabel.text = podcast.title
         
         if let lastDate = podcast.lastUpdated {
-            print("got a last update time")
+
             cell.detailLabel.text = "\(podcast.episodeCount!) Episodes, last \(lastDate.shortTimeAgoSinceNow())"
         } else {
             print("NO UPDATE TIME!")
