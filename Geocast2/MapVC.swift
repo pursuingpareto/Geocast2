@@ -33,6 +33,13 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        var location: CLLocation!
+        if let loc = locationManager.location {
+            location = loc
+        } else {
+            location = defaultLocation
+        }
+        centerMapOnLocation(location)
         updateView()
     }
     
