@@ -20,6 +20,7 @@ class EpisodesController : UITableViewController {
     private var episodes = [Episode]()
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -47,14 +48,35 @@ class EpisodesController : UITableViewController {
         return (indexPath.row == 0) ? nil : episodes[indexPath.row - 1]
     }
     
+    private func updateSubscriptionDataWithCurrentEpisodes() {
+        podcast.episodeCount = episodes.count
+        if podcast.lastUpdated == nil {
+            podcast.lastUpdated = episodes.first?.pubDate
+        }
+        let user = User.sharedInstance
+        let subscription = user.getSubscription(forPodcast: podcast)
+        for episode in episodes {
+            if let userData = user.getUserData(forEpisode: episode) {
+                continue
+            } else {
+                let newEpisodeData = UserEpisodeData(episode: episode)
+                subscription?.episodeData[episode.mp3URL] = newEpisodeData
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        })
+        
+    }
+    
     func subscribeButtonClicked(sender: AnyObject?) {
-        print("subscribing user to \(podcast.title)")
         User.sharedInstance.subscribe(podcast)
         if let button = sender as? UIButton {
             UIView.animateWithDuration(0.1, animations: {
                 button.alpha = 0.0
                 }, completion: { _ in
                     button.hidden = true
+                    self.updateSubscriptionDataWithCurrentEpisodes()
             })
         }
     }
@@ -117,9 +139,9 @@ class EpisodesController : UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let episode = episodeForIndexPath(indexPath) {
             let userEpisodeData: UserEpisodeData? = User.sharedInstance.getUserData(forEpisode: episode)
-            tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
             PodcastPlayer.sharedInstance.loadEpisode(episode, withUserEpisodeData: userEpisodeData, completion: {(item) in
             })
+            tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
         }
     }
     
@@ -149,11 +171,6 @@ extension EpisodesController: FeedParserDelegate {
     
     func didParseFeedIntoEpisodes(episodes: [Episode]) {
         self.episodes = episodes
-        podcast.episodeCount = episodes.count
-        if podcast.lastUpdated == nil {
-            print("setting pubdate to \(episodes.first?.pubDate)")
-            podcast.lastUpdated = episodes.first?.pubDate
-        }
-        tableView.reloadData()
+        updateSubscriptionDataWithCurrentEpisodes()
     }
 }
