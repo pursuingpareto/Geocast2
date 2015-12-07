@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 class Podcast: NSObject {
     let title: String
@@ -26,6 +27,33 @@ class Podcast: NSObject {
         self.feedUrl = feedUrl
     }
     
+    init(pfPodcast: PFObject) {
+        self.title = pfPodcast["title"] as! String
+        if let thumbURL = NSURL(string: (pfPodcast["thumbnailImageURL"] as! String)) {
+            self.thumbnailImageURL = thumbURL
+        }
+        if let largeURL = NSURL(string: (pfPodcast["largeImageURL"] as! String)) {
+            self.largeImageURL = largeURL
+        }
+        self.collectionId = pfPodcast["collectionId"] as! Int
+        self.episodeCount = nil
+        self.feedUrl = NSURL(string: (pfPodcast["feedUrl"] as! String))!
+    }
+    
+    func saveToParse() -> PFObject {
+        let pfPodcast = PFObject(className: "Podcast")
+        pfPodcast["title"] = title
+        pfPodcast["collectionId"]  = collectionId
+        pfPodcast["feedUrl"] = feedUrl.absoluteString
+        if let thumbURL = thumbnailImageURL {
+            pfPodcast["thumbnailImageURL"] = thumbURL.absoluteString
+        }
+        if let largeURL = largeImageURL {
+            pfPodcast["largeImageURL"] = largeURL.absoluteString
+        }
+        pfPodcast.saveInBackground()
+        return pfPodcast
+    }
     
     class func podcastsWithJSON(allResults: NSArray) -> [Podcast] {
         let dateFormatter = NSDateFormatter()

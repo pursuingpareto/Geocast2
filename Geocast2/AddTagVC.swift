@@ -19,6 +19,7 @@ class AddTagViewController : UITableViewController {
     private var descriptionForTag: String?
     private var locationToAdd: CLLocation?
     private let locationManager = CLLocationManager()
+    private var locationRadius: CLLocationDistance?
     
     private let searchLocationCellIdentifier = "searchLocationCell"
     private let locationCellIdentifier = "locationCell"
@@ -140,6 +141,7 @@ class AddTagViewController : UITableViewController {
             let location = locations[indexPath.row]
             nameForLocation = getName(fromPlacemark: location.placemark)
             locationToAdd = location.placemark.location
+            locationRadius = location.placemark.location?.horizontalAccuracy
             print("nameForLocation is \(nameForLocation)")
             addressForLocation = getAddress(fromPlacemark: location.placemark)
             print("addressForLocation is \(addressForLocation)")
@@ -261,7 +263,7 @@ class AddTagViewController : UITableViewController {
         alertController.addAction(cancelAction)
         let confirmAction = UIAlertAction(title: "Add tag", style: .Default, handler: {
             (alert) in
-            self.tagManager.addTag(forEpisode: self.episode, atLocation: self.locationToAdd!, withName: self.nameForLocation!, withDescription: self.descriptionForTag!, withAddress: self.addressForLocation!)
+            self.tagManager.addTag(forEpisode: self.episode, atLocation: self.locationToAdd!, withName: self.nameForLocation!, withDescription: self.descriptionForTag!, withAddress: self.addressForLocation!, withRadius: self.locationRadius!)
             self.dismissViewControllerAnimated(true, completion: nil)
         })
         alertController.addAction(confirmAction)

@@ -198,6 +198,15 @@ class PlayerViewController: UIViewController {
             playedTime.text = "00:00"
         }
         updateToolbar()
+        
+        // put image in the middle
+//        let upper = pubDate.frame.origin.y + pubDate.frame.height
+//        let lower = playbackToolbar.frame.origin.y
+//        
+//        let middle = (upper + lower) / 2.0
+//        
+//        imageView.center.y = middle
+//        summaryTextView.center.y = middle
     }
     
     func playerItemStatusChanged() {

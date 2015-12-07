@@ -4,4 +4,5 @@ use_frameworks!
 
 target 'Geocast2' do
 pod 'DateTools'
+pod 'Parse'
 end
