@@ -188,7 +188,7 @@
             </objects>
             <point key="canvasLocation" x="1532" y="89"/>
         </scene>
-        <!--Subscriptions View Controller-->
+        <!--My Podcasts-->
         <scene sceneID="wWN-pI-IGZ">
             <objects>
                 <tableViewController id="3cY-Fy-59I" customClass="SubscriptionsViewController" customModule="Geocast2" customModuleProvider="target" sceneMemberID="viewController">
@@ -279,7 +279,7 @@
                             <outlet property="delegate" destination="3cY-Fy-59I" id="NoZ-fd-23P"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="EX5-Mq-Q9K"/>
+                    <navigationItem key="navigationItem" title="My Podcasts" id="EX5-Mq-Q9K"/>
                     <connections>
                         <segue destination="k1u-dY-C9h" kind="show" identifier="podcastSearchSegue" id="nu5-2P-kLe"/>
                         <segue destination="Sa8-zV-Vxj" kind="show" identifier="episodesSegue" id="tde-4H-s1I"/>
@@ -330,16 +330,19 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGw-lI-NaX">
-                                            <rect key="frame" x="8" y="8" width="505" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGw-lI-NaX">
+                                            <rect key="frame" x="8" y="8" width="526" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jFM-jA-Lrw">
-                                            <rect key="frame" x="521" y="18" width="71" height="2"/>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jFM-jA-Lrw">
+                                            <rect key="frame" x="542" y="18" width="50" height="2"/>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="n5r-tF-oow"/>
+                                            </constraints>
                                         </progressView>
                                     </subviews>
                                     <animations/>
@@ -658,7 +661,7 @@
             </objects>
             <point key="canvasLocation" x="-84" y="420"/>
         </scene>
-        <!--Podcast Search Controller-->
+        <!--Search-->
         <scene sceneID="i8z-FV-Ga0">
             <objects>
                 <tableViewController id="k1u-dY-C9h" customClass="PodcastSearchController" customModule="Geocast2" customModuleProvider="target" sceneMemberID="viewController">
@@ -739,7 +742,7 @@
                             <outlet property="delegate" destination="k1u-dY-C9h" id="55h-NZ-ti7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="QaE-c5-mqg"/>
+                    <navigationItem key="navigationItem" title="Search" id="QaE-c5-mqg"/>
                     <connections>
                         <segue destination="Sa8-zV-Vxj" kind="show" identifier="episodesSegue" id="zfI-yK-3hr"/>
                     </connections>

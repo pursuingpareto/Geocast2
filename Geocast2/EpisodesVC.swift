@@ -26,6 +26,7 @@ class EpisodesController : UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationItem.title = podcast.title
         FeedParser.parsePodcast(podcast, withFeedParserDelegate: self)
         tableView.reloadData()
     }
