@@ -483,7 +483,7 @@
                             <constraint firstItem="gH3-WY-zew" firstAttribute="top" secondItem="T2G-Eh-skV" secondAttribute="bottom" id="UsI-Ys-9NQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Near Me" id="foC-zi-WvJ"/>
+                    <tabBarItem key="tabBarItem" title="Near Me" image="NearMe.png" id="foC-zi-WvJ"/>
                     <connections>
                         <outlet property="mapView" destination="T2G-Eh-skV" id="wUH-Rl-uzx"/>
                     </connections>
@@ -658,7 +658,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Player" id="5F5-zb-tdC"/>
+                    <tabBarItem key="tabBarItem" title="Player" image="Play.png" id="5F5-zb-tdC"/>
                     <connections>
                         <outlet property="imageView" destination="7LD-ib-P8n" id="QON-Ao-SgI"/>
                         <outlet property="playButton" destination="gPI-d2-kj6" id="fle-JW-BAl"/>
@@ -791,7 +791,7 @@
         <scene sceneID="e8y-sz-Qnm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qHr-NS-RSZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Podcasts" id="sgx-O3-DQU"/>
+                    <tabBarItem key="tabBarItem" title="Podcasts" image="AudioFile.png" id="sgx-O3-DQU"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UwQ-K1-YBz">
@@ -809,6 +809,11 @@
             <point key="canvasLocation" x="736" y="763"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AudioFile.png" width="25" height="25"/>
+        <image name="NearMe.png" width="25" height="25"/>
+        <image name="Play.png" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zfI-yK-3hr"/>
     </inferredMetricsTieBreakers>
