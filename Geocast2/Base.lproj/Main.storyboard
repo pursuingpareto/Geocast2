@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -584,7 +585,7 @@
                                 </items>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htk-C0-sbe">
-                                <rect key="frame" x="438" y="28" width="61" height="21"/>
+                                <rect key="frame" x="458" y="28" width="61" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="61" id="Bmz-a1-9MO"/>
@@ -599,34 +600,67 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LD-ib-P8n">
+                                <rect key="frame" x="8" y="175" width="585" height="297"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7LD-ib-P8n" secondAttribute="height" multiplier="1:1" id="ObK-SR-dfw"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="acf-1p-zYi">
+                                <rect key="frame" x="15" y="188" width="548" height="272"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="0.74733424831081086" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ilu-bT-zIz" firstAttribute="top" secondItem="L5h-eJ-9pj" secondAttribute="bottom" constant="8" id="0gs-sf-PbS"/>
+                            <constraint firstItem="acf-1p-zYi" firstAttribute="width" secondItem="7LD-ib-P8n" secondAttribute="width" constant="-4" id="2d8-Jz-1EU"/>
                             <constraint firstItem="JcL-iZ-xmX" firstAttribute="centerX" secondItem="DaN-XZ-kze" secondAttribute="centerX" id="5NL-06-5fw"/>
                             <constraint firstItem="JcL-iZ-xmX" firstAttribute="top" secondItem="Ilu-bT-zIz" secondAttribute="bottom" constant="8" id="7zF-KU-Q5G"/>
                             <constraint firstItem="hVA-Rw-wd0" firstAttribute="leading" secondItem="DaN-XZ-kze" secondAttribute="leadingMargin" constant="-20" id="AGt-b5-OxO"/>
                             <constraint firstItem="htk-C0-sbe" firstAttribute="centerY" secondItem="nVI-IW-Gc5" secondAttribute="centerY" id="I21-up-z8r"/>
+                            <constraint firstItem="7LD-ib-P8n" firstAttribute="leading" secondItem="DaN-XZ-kze" secondAttribute="leadingMargin" id="M9o-nh-6Xx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hVA-Rw-wd0" secondAttribute="trailing" constant="-20" id="Mbn-GD-89m"/>
                             <constraint firstItem="5c2-4l-DXj" firstAttribute="top" secondItem="hVA-Rw-wd0" secondAttribute="bottom" id="NEP-Ks-kt6"/>
+                            <constraint firstItem="7LD-ib-P8n" firstAttribute="top" secondItem="JcL-iZ-xmX" secondAttribute="bottom" constant="8" id="PLU-HZ-nvd"/>
                             <constraint firstItem="htk-C0-sbe" firstAttribute="trailing" secondItem="ibn-Cn-fm7" secondAttribute="trailing" id="R88-1k-PKC"/>
+                            <constraint firstItem="5c2-4l-DXj" firstAttribute="top" secondItem="7LD-ib-P8n" secondAttribute="bottom" constant="79" id="SUI-Je-uHl"/>
                             <constraint firstItem="L5h-eJ-9pj" firstAttribute="centerX" secondItem="DaN-XZ-kze" secondAttribute="centerX" id="TNf-vA-Vu4"/>
+                            <constraint firstItem="7LD-ib-P8n" firstAttribute="leading" secondItem="DaN-XZ-kze" secondAttribute="leadingMargin" constant="-13" id="TX5-sp-8P2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BYc-zt-m4f" secondAttribute="trailing" constant="5" id="UJJ-on-CGA"/>
+                            <constraint firstItem="7LD-ib-P8n" firstAttribute="centerX" secondItem="DaN-XZ-kze" secondAttribute="centerX" id="UlK-Bn-3sD"/>
                             <constraint firstItem="BjA-Xj-eK1" firstAttribute="leading" secondItem="DaN-XZ-kze" secondAttribute="leadingMargin" constant="7" id="V35-nM-tb7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7LD-ib-P8n" secondAttribute="trailing" constant="-12" id="Zw4-lT-leN"/>
                             <constraint firstItem="nVI-IW-Gc5" firstAttribute="leading" secondItem="ibn-Cn-fm7" secondAttribute="leading" id="apV-dv-4Bj"/>
                             <constraint firstItem="BYc-zt-m4f" firstAttribute="centerY" secondItem="ibn-Cn-fm7" secondAttribute="centerY" id="cOu-nj-T7q"/>
                             <constraint firstItem="ibn-Cn-fm7" firstAttribute="top" secondItem="nVI-IW-Gc5" secondAttribute="bottom" constant="1" id="efr-na-1ND"/>
                             <constraint firstItem="L5h-eJ-9pj" firstAttribute="top" secondItem="ibn-Cn-fm7" secondAttribute="bottom" constant="8" id="gRF-zU-wHH"/>
                             <constraint firstItem="Ilu-bT-zIz" firstAttribute="centerX" secondItem="DaN-XZ-kze" secondAttribute="centerX" id="gcC-3A-dvH"/>
+                            <constraint firstItem="acf-1p-zYi" firstAttribute="height" secondItem="7LD-ib-P8n" secondAttribute="height" constant="-4" id="kfe-Cp-hOE"/>
                             <constraint firstItem="ibn-Cn-fm7" firstAttribute="centerX" secondItem="DaN-XZ-kze" secondAttribute="centerX" id="kjZ-iM-eYA"/>
                             <constraint firstItem="nVI-IW-Gc5" firstAttribute="top" secondItem="sPj-GR-ZZR" secondAttribute="bottom" constant="8" id="oHb-CB-Ghd"/>
+                            <constraint firstItem="acf-1p-zYi" firstAttribute="centerX" secondItem="DaN-XZ-kze" secondAttribute="centerX" id="usP-IK-RIc"/>
+                            <constraint firstItem="acf-1p-zYi" firstAttribute="centerY" secondItem="7LD-ib-P8n" secondAttribute="centerY" id="vXu-pf-jiI"/>
                             <constraint firstItem="BjA-Xj-eK1" firstAttribute="centerY" secondItem="ibn-Cn-fm7" secondAttribute="centerY" id="w2Q-D7-XPy"/>
-                            <constraint firstItem="BYc-zt-m4f" firstAttribute="leading" secondItem="ibn-Cn-fm7" secondAttribute="trailing" constant="40" id="zpv-SY-3Sc"/>
+                            <constraint firstItem="BYc-zt-m4f" firstAttribute="leading" secondItem="ibn-Cn-fm7" secondAttribute="trailing" constant="20" id="zpv-SY-3Sc"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="TX5-sp-8P2"/>
+                                <exclude reference="Zw4-lT-leN"/>
+                                <exclude reference="SUI-Je-uHl"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Player" id="5F5-zb-tdC"/>
                     <connections>
+                        <outlet property="imageView" destination="7LD-ib-P8n" id="QON-Ao-SgI"/>
                         <outlet property="playButton" destination="gPI-d2-kj6" id="fle-JW-BAl"/>
                         <outlet property="playbackToolbar" destination="hVA-Rw-wd0" id="k6V-JS-aBx"/>
                         <outlet property="playedTime" destination="nVI-IW-Gc5" id="ybh-UK-tC8"/>
@@ -634,6 +668,7 @@
                         <outlet property="progressBar" destination="ibn-Cn-fm7" id="JrO-B5-9ko"/>
                         <outlet property="pubDate" destination="JcL-iZ-xmX" id="Zr9-34-PHB"/>
                         <outlet property="remainingTime" destination="htk-C0-sbe" id="Wdh-jZ-e4S"/>
+                        <outlet property="summaryTextView" destination="acf-1p-zYi" id="y3U-kc-iJG"/>
                         <outlet property="trackTitle" destination="L5h-eJ-9pj" id="saQ-Ft-SxZ"/>
                         <segue destination="hxa-e7-AzE" kind="presentation" identifier="addTagSegue" id="Jrr-nu-6FY"/>
                     </connections>

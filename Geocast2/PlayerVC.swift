@@ -25,6 +25,8 @@ class PlayerViewController: UIViewController {
     @IBOutlet private weak var pubDate: UILabel!
     @IBOutlet private weak var playButton: UIBarButtonItem!
     @IBOutlet private weak var playbackToolbar: UIToolbar!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var summaryTextView: UITextView!
     
     private var player = PodcastPlayer.sharedInstance
     
@@ -39,6 +41,41 @@ class PlayerViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         prepareView(forReadinessState: getCurrentReadinessState())
+        assignBackgroundImage()
+        assignSummaryText()
+    }
+    
+    private func assignBackgroundImage() {
+        print("about to try getting podcast...")
+        if let podcast = PodcastPlayer.sharedInstance.getCurrentEpisode()?.podcast {
+            print(" got podcast")
+            PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: podcast.largeImageURL, completion: { image -> Void in
+                print(" assigning image view to \(image)")
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.imageView.image = image
+                })
+            })
+        } else {
+            print("failed to get podcast")
+            dispatch_async(dispatch_get_main_queue(), {
+                self.imageView.image = nil
+            })
+        }
+    }
+    
+    private func assignSummaryText() {
+        guard let episode = PodcastPlayer.sharedInstance.getCurrentEpisode() else {
+            return
+        }
+        if let summary = episode.summary {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.summaryTextView.text = summary
+            })
+        } else if let summary = episode.iTunesSummary {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.summaryTextView.text = summary
+            })
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
