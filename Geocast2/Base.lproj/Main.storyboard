@@ -466,7 +466,16 @@
                             <outlet property="delegate" destination="Sa8-zV-Vxj" id="gjm-hT-cDZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Ove-lO-zxS"/>
+                    <navigationItem key="navigationItem" id="Ove-lO-zxS">
+                        <barButtonItem key="rightBarButtonItem" title="Subscribe" id="KAk-cd-F1y">
+                            <connections>
+                                <action selector="subscribeButtonPressed:" destination="Sa8-zV-Vxj" id="Lwz-KK-QnY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="subscribeButton" destination="KAk-cd-F1y" id="FCf-0S-k1E"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7yM-SV-LsU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

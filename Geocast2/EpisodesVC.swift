@@ -19,6 +19,7 @@ class EpisodesController : UITableViewController {
     private var podcast: Podcast!
     private var episodes = [Episode]()
     
+    @IBOutlet weak var subscribeButton: UIBarButtonItem!
     
     
     override func viewDidLoad() {
@@ -28,6 +29,8 @@ class EpisodesController : UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = podcast.title
+        let attrs = [NSFontAttributeName : UIFont.boldSystemFontOfSize(17)]
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes(attrs, forState: .Normal)
         FeedParser.parsePodcast(podcast, withFeedParserDelegate: self)
         tableView.reloadData()
     }
@@ -81,6 +84,18 @@ class EpisodesController : UITableViewController {
         }
     }
     
+    @IBAction func subscribeButtonPressed(sender: AnyObject) {
+        User.sharedInstance.subscribe(podcast)
+        navigationItem.setRightBarButtonItem(nil , animated: true)
+
+//        UIView.animateWithDuration(0.1, animations: {
+//            self.subscribeButton. = 0.0
+//            }, completion: { _ in
+//                button.hidden = true
+//                self.updateSubscriptionDataWithCurrentEpisodes()
+//        })
+
+    }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return episodes.count + 1
     }
@@ -91,12 +106,14 @@ class EpisodesController : UITableViewController {
             cell.podcastTitle.text = podcast.title
 
             cell.podcastSummary.text = podcast.summary
+            
+            cell.subscribeButton.hidden = true
 
-            if User.sharedInstance.isSubscribedTo(podcast) {
-                cell.subscribeButton.hidden = true
-            } else {
-                cell.subscribeButton.addTarget(self, action: "subscribeButtonClicked:", forControlEvents: .TouchUpInside)
-            }
+//            if User.sharedInstance.isSubscribedTo(podcast) {
+//                cell.subscribeButton.hidden = true
+//            } else {
+//                cell.subscribeButton.addTarget(self, action: "subscribeButtonClicked:", forControlEvents: .TouchUpInside)
+//            }
             PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: podcast.thumbnailImageURL, completion: { image -> Void in
                 if let image = image {
                     dispatch_async(dispatch_get_main_queue(), {
