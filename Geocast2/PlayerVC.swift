@@ -155,14 +155,14 @@ class PlayerViewController: UIViewController {
         remainingTime.hidden = true
         playedTime.hidden = true
         summaryTextView.hidden = true
-        pubDate.hidden = true
-        podcastTitle.hidden = true
         settingsButton.hidden = true
         playbackToolbar.hidden = true
         hideButton.hidden = true
+        trackTitle.hidden = true
+        podcastTitle.hidden = true
         
-        trackTitle.hidden = false
-        trackTitle.text = "Please select an episode to begin playing."
+        pubDate.hidden = false
+        pubDate.text = "Please select an episode to begin playing."
         
         tabBarController?.tabBar.hidden = false
     }

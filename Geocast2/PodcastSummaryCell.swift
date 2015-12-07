@@ -10,7 +10,5 @@ import UIKit
 
 class PodcastSummaryCell: UITableViewCell {
     @IBOutlet weak var podcastImageView: UIImageView!
-    @IBOutlet weak var podcastTitle: UILabel!
-    @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var podcastSummary: UILabel!
 }
