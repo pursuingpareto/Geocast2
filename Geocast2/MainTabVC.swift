@@ -50,9 +50,13 @@ extension MainTabController: UIViewControllerAnimatedTransitioning {
             fromView.transform = CGAffineTransformIdentity
             container.addSubview(fromView)
             container.addSubview(toView)
-            UIView.animateWithDuration(duration, delay: 0.0, options: .CurveEaseInOut, animations: {
+            UIView.animateWithDuration(duration, delay: 0.0, options: .CurveEaseOut, animations: {
                 toView.transform = CGAffineTransformIdentity
-                self.tabBar.alpha = 0
+                if let episode = PodcastPlayer.sharedInstance.getCurrentEpisode() {
+                    self.tabBar.alpha = 0
+                } else {
+                    self.tabBar.alpha = 1
+                }
                 self.navigationController?.navigationBar.alpha = 0.0
                 }, completion: { finished in
                     transitionContext.completeTransition(true)
@@ -64,7 +68,7 @@ extension MainTabController: UIViewControllerAnimatedTransitioning {
             container.addSubview(toView)
             container.addSubview(fromView)
             navigationController?.navigationBar.alpha = 0.0
-            UIView.animateWithDuration(duration, delay: 0.0, options: .CurveEaseInOut, animations: {
+            UIView.animateWithDuration(duration, delay: 0.0, options: .CurveEaseOut, animations: {
                 fromView.transform = offScreenBottom
                 self.tabBar.alpha = 1
                 self.navigationController?.navigationBar.alpha = 1.0
@@ -77,6 +81,6 @@ extension MainTabController: UIViewControllerAnimatedTransitioning {
     }
     
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-        return 0.5
+        return 0.3
     }
 }

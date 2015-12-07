@@ -675,6 +675,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Player" image="Play.png" id="5F5-zb-tdC"/>
                     <connections>
+                        <outlet property="hideButton" destination="BjA-Xj-eK1" id="DEN-RB-xW7"/>
                         <outlet property="imageView" destination="7LD-ib-P8n" id="QON-Ao-SgI"/>
                         <outlet property="playButton" destination="gPI-d2-kj6" id="fle-JW-BAl"/>
                         <outlet property="playbackToolbar" destination="hVA-Rw-wd0" id="k6V-JS-aBx"/>
@@ -683,6 +684,7 @@
                         <outlet property="progressBar" destination="ibn-Cn-fm7" id="JrO-B5-9ko"/>
                         <outlet property="pubDate" destination="JcL-iZ-xmX" id="Zr9-34-PHB"/>
                         <outlet property="remainingTime" destination="htk-C0-sbe" id="Wdh-jZ-e4S"/>
+                        <outlet property="settingsButton" destination="BYc-zt-m4f" id="U5N-el-L4l"/>
                         <outlet property="summaryTextView" destination="acf-1p-zYi" id="y3U-kc-iJG"/>
                         <outlet property="trackTitle" destination="L5h-eJ-9pj" id="saQ-Ft-SxZ"/>
                         <segue destination="hxa-e7-AzE" kind="presentation" identifier="addTagSegue" id="Jrr-nu-6FY"/>

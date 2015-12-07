@@ -27,6 +27,8 @@ class PlayerViewController: UIViewController {
     @IBOutlet private weak var playbackToolbar: UIToolbar!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var summaryTextView: UITextView!
+    @IBOutlet weak var hideButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     
     private var player = PodcastPlayer.sharedInstance
     
@@ -112,10 +114,13 @@ class PlayerViewController: UIViewController {
     
     private func getCurrentReadinessState() -> ReadinessState {
         if player.getCurrentEpisode() == nil {
+            print("no data")
             return .NoData
         } else if player.currentItemStatus != .ReadyToPlay {
+            print("loading")
             return .Loading
         } else {
+            print("normal")
             return .Normal
         }
     }
@@ -144,10 +149,22 @@ class PlayerViewController: UIViewController {
     }
     
     private func prepareNoDataView() {
+        // hide stuff we don't want to see
+        imageView.hidden = true
+        progressBar.hidden = true
+        remainingTime.hidden = true
+        playedTime.hidden = true
+        summaryTextView.hidden = true
+        pubDate.hidden = true
+        podcastTitle.hidden = true
+        settingsButton.hidden = true
+        playbackToolbar.hidden = true
+        hideButton.hidden = true
+        
+        trackTitle.hidden = false
+        trackTitle.text = "Please select an episode to begin playing."
+        
         tabBarController?.tabBar.hidden = false
-        for sv in view.subviews {
-            sv.hidden = true
-        }
     }
     
     private func prepareLoadingView() {
