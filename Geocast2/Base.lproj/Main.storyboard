@@ -264,13 +264,28 @@
                                     <outlet property="titleLabel" destination="U26-7L-3Uk" id="6r1-vY-Owq"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noSubscriptionsCell" id="WQM-SZ-MzM" customClass="NoPodcastsCell" customModule="Geocast2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="263" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noSubscriptionsCell" rowHeight="80" id="WQM-SZ-MzM" customClass="NoPodcastsCell" customModule="Geocast2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="263" width="600" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WQM-SZ-MzM" id="BR2-pP-0mN">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You haven't subscribed to any Podcasts. Tap the + button to add your first podcast." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLa-Vv-9yy">
+                                            <rect key="frame" x="-18" y="8" width="637" height="63"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="FLa-Vv-9yy" secondAttribute="trailing" id="I3O-3I-1q6"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="FLa-Vv-9yy" secondAttribute="bottom" id="Lcn-Gn-ZOC"/>
+                                        <constraint firstAttribute="topMargin" secondItem="FLa-Vv-9yy" secondAttribute="top" id="YXC-q8-3W3"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="FLa-Vv-9yy" secondAttribute="leading" id="oBQ-1V-i2g"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
                             </tableViewCell>
@@ -815,6 +830,6 @@
         <image name="Play.png" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zfI-yK-3hr"/>
+        <segue reference="tde-4H-s1I"/>
     </inferredMetricsTieBreakers>
 </document>
