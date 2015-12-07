@@ -183,6 +183,19 @@ class PlayerViewController: UIViewController {
         }
     }
     
+    @IBAction func scrubbedPlayer(sender: UISlider) {
+        let progress = sender.value
+        if let duration = PodcastPlayer.sharedInstance.duration {
+            let seconds = Int64(progress * Float(duration.seconds))
+            player.seekToTime(CMTimeMake(seconds, 1))
+            if player.isPlaying {
+                player.play()
+            } else {
+                player.pause()
+            }
+        }
+    }
+    
     func updateToolbar() {
         var btn: UIBarButtonItem!
         if player.isPlaying {

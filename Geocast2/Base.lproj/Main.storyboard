@@ -518,6 +518,7 @@
                                 <animations/>
                                 <connections>
                                     <action selector="progressBarScrubbed:" destination="qrE-X5-U4Q" eventType="valueChanged" id="SIj-VB-AO4"/>
+                                    <action selector="scrubbedPlayer:" destination="qrE-X5-U4Q" eventType="valueChanged" id="n5I-yq-qda"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5h-eJ-9pj">
