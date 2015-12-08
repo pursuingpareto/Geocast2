@@ -39,6 +39,10 @@
 		A17EAC611C161CFB0023D191 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = A17EAC541C161CFB0023D191 /* Play.png */; };
 		A17EAC621C161CFB0023D191 /* Play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A17EAC551C161CFB0023D191 /* Play@2x.png */; };
 		A17EAC631C161CFB0023D191 /* Play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A17EAC561C161CFB0023D191 /* Play@3x.png */; };
+		A17EAC651C1654120023D191 /* CalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17EAC641C1654120023D191 /* CalloutView.xib */; };
+		A17EAC671C1654DA0023D191 /* CalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EAC661C1654DA0023D191 /* CalloutView.swift */; };
+		A17EAC691C165BE90023D191 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EAC681C165BE90023D191 /* MapView.swift */; };
+		A17EAC6B1C165F700023D191 /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EAC6A1C165F700023D191 /* MapContainerView.swift */; };
 		A1A69DC91C0E740000CB61C2 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */; };
 		A1A69DCB1C0E749700CB61C2 /* EpisodesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */; };
 		A1A69DCD1C0E7FC500CB61C2 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */; };
@@ -118,6 +122,10 @@
 		A17EAC541C161CFB0023D191 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play.png; sourceTree = "<group>"; };
 		A17EAC551C161CFB0023D191 /* Play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play@2x.png"; sourceTree = "<group>"; };
 		A17EAC561C161CFB0023D191 /* Play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play@3x.png"; sourceTree = "<group>"; };
+		A17EAC641C1654120023D191 /* CalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalloutView.xib; sourceTree = "<group>"; };
+		A17EAC661C1654DA0023D191 /* CalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalloutView.swift; sourceTree = "<group>"; };
+		A17EAC681C165BE90023D191 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		A17EAC6A1C165F700023D191 /* MapContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
 		A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
 		A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesVC.swift; sourceTree = "<group>"; };
 		A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
@@ -252,6 +260,9 @@
 		A1A69DD01C0E802200CB61C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A17EAC641C1654120023D191 /* CalloutView.xib */,
+				A17EAC6A1C165F700023D191 /* MapContainerView.swift */,
+				A17EAC661C1654DA0023D191 /* CalloutView.swift */,
 				A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */,
 				A1A69DCE1C0E7FFA00CB61C2 /* NoPodcastsCell.swift */,
 				A1A69DD11C0E850E00CB61C2 /* PodcastSearchCell.swift */,
@@ -263,6 +274,7 @@
 				A141E28F1C10EB3D00ABE766 /* TagDescriptionCell.swift */,
 				A141E2911C10EB4600ABE766 /* AddTagCell.swift */,
 				A141E2931C10EB5000ABE766 /* TagLocationButtonsCell.swift */,
+				A17EAC681C165BE90023D191 /* MapView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -453,6 +465,7 @@
 				A17EAC5E1C161CFB0023D191 /* NearMe@2x.png in Resources */,
 				A17EAC5B1C161CFB0023D191 /* Default-Portrait-736h@3x.png in Resources */,
 				A17EAC5D1C161CFB0023D191 /* NearMe.png in Resources */,
+				A17EAC651C1654120023D191 /* CalloutView.xib in Resources */,
 				A1A9CBA81C03B94100628351 /* LaunchScreen.storyboard in Resources */,
 				A17EAC571C161CFB0023D191 /* Audio File-100.png in Resources */,
 				A141E27E1C0FB6D800ABE766 /* vertical_bar.png in Resources */,
@@ -541,6 +554,8 @@
 				A1A9CBD21C03BAE400628351 /* PodcastSubscription.swift in Sources */,
 				A1A9CBE71C03C3C700628351 /* UserEpisodeData.swift in Sources */,
 				A1A69DD21C0E850E00CB61C2 /* PodcastSearchCell.swift in Sources */,
+				A17EAC691C165BE90023D191 /* MapView.swift in Sources */,
+				A17EAC6B1C165F700023D191 /* MapContainerView.swift in Sources */,
 				A141E2861C10CE2900ABE766 /* GeotagAnnotationView.swift in Sources */,
 				A141E2B01C11266300ABE766 /* SubscribedPodcast+CoreDataProperties.swift in Sources */,
 				A1A9CBCC1C03BA8800628351 /* PodcastPlayer.swift in Sources */,
@@ -568,6 +583,7 @@
 				A141E2801C0FE45E00ABE766 /* Helpers.swift in Sources */,
 				A1A9CBE11C03BC4D00628351 /* ITunesAPIController.swift in Sources */,
 				A141E2901C10EB3D00ABE766 /* TagDescriptionCell.swift in Sources */,
+				A17EAC671C1654DA0023D191 /* CalloutView.swift in Sources */,
 				A1A9CBDD1C03BC0400628351 /* SubscriptionsVC.swift in Sources */,
 				A141E28C1C10EB2A00ABE766 /* SearchLocationCell.swift in Sources */,
 				A1A69DCD1C0E7FC500CB61C2 /* PodcastCell.swift in Sources */,

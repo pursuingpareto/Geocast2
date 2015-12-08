@@ -462,7 +462,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="T2G-Eh-skV">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8kd-4S-31T" customClass="MapView" customModule="Geocast2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <animations/>
                             </mapView>
@@ -470,15 +470,26 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="T2G-Eh-skV" firstAttribute="top" secondItem="pXB-B5-bZG" secondAttribute="bottom" constant="-20" id="CNO-x4-Bka"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="T2G-Eh-skV" secondAttribute="trailing" constant="-20" id="FM1-Bl-42K"/>
-                            <constraint firstItem="T2G-Eh-skV" firstAttribute="leading" secondItem="MFl-1v-t5m" secondAttribute="leadingMargin" constant="-20" id="IKp-qJ-ghF"/>
-                            <constraint firstItem="gH3-WY-zew" firstAttribute="top" secondItem="T2G-Eh-skV" secondAttribute="bottom" id="UsI-Ys-9NQ"/>
+                            <constraint firstItem="gH3-WY-zew" firstAttribute="top" secondItem="8kd-4S-31T" secondAttribute="bottom" id="464-GQ-1x3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8kd-4S-31T" secondAttribute="trailing" id="9j7-t7-WMP"/>
+                            <constraint firstItem="8kd-4S-31T" firstAttribute="leading" secondItem="MFl-1v-t5m" secondAttribute="leading" id="BHe-IZ-m1x"/>
+                            <constraint firstAttribute="trailing" secondItem="8kd-4S-31T" secondAttribute="trailing" id="RZK-ht-HrV"/>
+                            <constraint firstItem="gH3-WY-zew" firstAttribute="top" secondItem="8kd-4S-31T" secondAttribute="bottom" id="YDO-4L-1Vp"/>
+                            <constraint firstItem="8kd-4S-31T" firstAttribute="leading" secondItem="MFl-1v-t5m" secondAttribute="leadingMargin" constant="-11" id="aC4-vC-0H1"/>
+                            <constraint firstItem="8kd-4S-31T" firstAttribute="top" secondItem="MFl-1v-t5m" secondAttribute="top" id="bL8-qF-0iG"/>
+                            <constraint firstItem="8kd-4S-31T" firstAttribute="top" secondItem="pXB-B5-bZG" secondAttribute="bottom" constant="-13" id="nOX-iA-gK9"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="9j7-t7-WMP"/>
+                                <exclude reference="aC4-vC-0H1"/>
+                                <exclude reference="nOX-iA-gK9"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Near Me" image="NearMe.png" id="foC-zi-WvJ"/>
                     <connections>
-                        <outlet property="mapView" destination="T2G-Eh-skV" id="wUH-Rl-uzx"/>
+                        <outlet property="mapView" destination="8kd-4S-31T" id="iiE-Lp-QmA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgU-ts-wJH" userLabel="First Responder" sceneMemberID="firstResponder"/>

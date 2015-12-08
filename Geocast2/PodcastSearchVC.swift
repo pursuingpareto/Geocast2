@@ -102,8 +102,8 @@ class PodcastSearchController: UITableViewController {
 
 extension PodcastSearchController: ITunesAPIControllerDelegate {
     func didReceivePodcasts(podcasts: [Podcast]) {
+        self.podcastsFound = podcasts
         dispatch_async(dispatch_get_main_queue(), {
-            self.podcastsFound = podcasts
             self.tableView.reloadData()
         })
     }
@@ -111,7 +111,7 @@ extension PodcastSearchController: ITunesAPIControllerDelegate {
 
 extension PodcastSearchController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        podcastsFound.removeAll(keepCapacity: false)
+//        podcastsFound.removeAll(keepCapacity: false)
         iTunesAPI.searchPodcasts(searchController.searchBar.text!)
     }
 }

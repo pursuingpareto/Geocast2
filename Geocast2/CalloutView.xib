@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalloutView" customModule="Geocast2" customModuleProvider="target">
+            <connections>
+                <outlet property="imageView" destination="xJ6-PD-5Ro" id="AiQ-eZ-QNi"/>
+                <outlet property="mainLabel" destination="9Kp-Bp-bG8" id="AGg-jk-AHu"/>
+                <outlet property="playButton" destination="qP0-mv-01x" id="fY8-eZ-CXc"/>
+                <outlet property="secondaryLabel" destination="DrF-TG-zw9" id="0xa-ox-D4K"/>
+                <outlet property="textView" destination="QZf-4x-8r2" id="uR0-Dj-942"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="406"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The White House" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kp-Bp-bG8">
+                    <rect key="frame" x="93" y="43" width="215" height="20"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FmV-XC-2US">
+                    <rect key="frame" x="100" y="362" width="200" height="45"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="XkE-xI-vbn"/>
+                    </constraints>
+                    <segments>
+                        <segment title="Location"/>
+                        <segment title="Episode"/>
+                        <segment title="Podcast"/>
+                    </segments>
+                    <connections>
+                        <action selector="segmentedControlChanged:" destination="-1" eventType="valueChanged" id="Hvg-tG-h7A"/>
+                    </connections>
+                </segmentedControl>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QZf-4x-8r2">
+                    <rect key="frame" x="0.0" y="128" width="300" height="226"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qP0-mv-01x">
+                    <rect key="frame" x="0.0" y="362" width="100" height="44"/>
+                    <animations/>
+                    <state key="normal" image="Play.png"/>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xJ6-PD-5Ro">
+                    <rect key="frame" x="0.0" y="43" width="85" height="85"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="85" id="SQ3-Ly-kCh"/>
+                        <constraint firstAttribute="height" constant="85" id="iVO-Xb-K1i"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1600 Pennsylvania Avenue" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DrF-TG-zw9">
+                    <rect key="frame" x="93" y="71" width="215" height="17"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avi-Ro-W1V">
+                    <rect key="frame" x="86" y="43" width="8" height="85"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="8" id="uTn-bP-XEf"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <animations/>
+            <constraints>
+                <constraint firstItem="9Kp-Bp-bG8" firstAttribute="leading" secondItem="xJ6-PD-5Ro" secondAttribute="trailing" constant="8" id="4gU-Je-Ne6"/>
+                <constraint firstItem="9Kp-Bp-bG8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="70b-vb-2PG"/>
+                <constraint firstItem="xJ6-PD-5Ro" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="D3T-Kb-F8e"/>
+                <constraint firstAttribute="trailing" secondItem="9Kp-Bp-bG8" secondAttribute="trailing" id="EPB-NT-SJf"/>
+                <constraint firstItem="qP0-mv-01x" firstAttribute="bottom" secondItem="FmV-XC-2US" secondAttribute="bottom" id="GZQ-Qy-2hG"/>
+                <constraint firstItem="QZf-4x-8r2" firstAttribute="leading" secondItem="DrF-TG-zw9" secondAttribute="leading" id="JAT-EU-UAH"/>
+                <constraint firstItem="FmV-XC-2US" firstAttribute="top" secondItem="QZf-4x-8r2" secondAttribute="bottom" constant="8" id="KHq-fT-JZ7"/>
+                <constraint firstItem="FmV-XC-2US" firstAttribute="leading" secondItem="9Kp-Bp-bG8" secondAttribute="leading" constant="85" id="Lj4-N0-iWJ"/>
+                <constraint firstItem="FmV-XC-2US" firstAttribute="trailing" secondItem="9Kp-Bp-bG8" secondAttribute="trailing" id="R1p-nU-ytK"/>
+                <constraint firstItem="qP0-mv-01x" firstAttribute="top" secondItem="FmV-XC-2US" secondAttribute="top" id="SAc-me-OH5"/>
+                <constraint firstAttribute="bottom" secondItem="FmV-XC-2US" secondAttribute="bottom" id="SSv-0N-ROr"/>
+                <constraint firstItem="DrF-TG-zw9" firstAttribute="top" secondItem="9Kp-Bp-bG8" secondAttribute="bottom" constant="8" id="XFA-g3-5Yk"/>
+                <constraint firstItem="QZf-4x-8r2" firstAttribute="leading" secondItem="xJ6-PD-5Ro" secondAttribute="leading" id="Ys3-W4-4FK"/>
+                <constraint firstItem="avi-Ro-W1V" firstAttribute="leading" secondItem="xJ6-PD-5Ro" secondAttribute="trailing" constant="1" id="a0u-RH-eUz"/>
+                <constraint firstItem="DrF-TG-zw9" firstAttribute="leading" secondItem="9Kp-Bp-bG8" secondAttribute="leading" id="aAk-3k-bDx"/>
+                <constraint firstItem="xJ6-PD-5Ro" firstAttribute="top" secondItem="9Kp-Bp-bG8" secondAttribute="top" id="aIt-w7-pCn"/>
+                <constraint firstItem="QZf-4x-8r2" firstAttribute="top" secondItem="DrF-TG-zw9" secondAttribute="bottom" id="b1l-f8-x5Z"/>
+                <constraint firstItem="FmV-XC-2US" firstAttribute="leading" secondItem="qP0-mv-01x" secondAttribute="trailing" id="g6S-3y-zok"/>
+                <constraint firstItem="avi-Ro-W1V" firstAttribute="bottom" secondItem="xJ6-PD-5Ro" secondAttribute="bottom" id="gw8-dq-0bN"/>
+                <constraint firstItem="qP0-mv-01x" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="krO-JD-Ndu"/>
+                <constraint firstItem="9Kp-Bp-bG8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-34" id="l5U-UB-3cp"/>
+                <constraint firstItem="xJ6-PD-5Ro" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="muY-1h-Xhg"/>
+                <constraint firstItem="QZf-4x-8r2" firstAttribute="trailing" secondItem="9Kp-Bp-bG8" secondAttribute="trailing" id="sOn-z0-vbP"/>
+                <constraint firstItem="QZf-4x-8r2" firstAttribute="leading" secondItem="9Kp-Bp-bG8" secondAttribute="leading" id="wJ4-pb-o35"/>
+                <constraint firstItem="avi-Ro-W1V" firstAttribute="top" secondItem="xJ6-PD-5Ro" secondAttribute="top" id="xGm-9b-fUx"/>
+                <constraint firstItem="DrF-TG-zw9" firstAttribute="trailing" secondItem="9Kp-Bp-bG8" secondAttribute="trailing" id="yt1-ty-a9a"/>
+                <constraint firstItem="QZf-4x-8r2" firstAttribute="top" secondItem="xJ6-PD-5Ro" secondAttribute="bottom" id="zhk-OE-EBB"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="muY-1h-Xhg"/>
+                    <exclude reference="70b-vb-2PG"/>
+                    <exclude reference="JAT-EU-UAH"/>
+                    <exclude reference="b1l-f8-x5Z"/>
+                    <exclude reference="wJ4-pb-o35"/>
+                    <exclude reference="Lj4-N0-iWJ"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="308" y="278"/>
+        </view>
+        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="2gC-Bi-GT8">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <animations/>
+            <point key="canvasLocation" x="467" y="737"/>
+        </imageView>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bEN-x1-W7f">
+            <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <animations/>
+            <state key="normal" title="Button"/>
+            <point key="canvasLocation" x="179" y="455"/>
+        </button>
+    </objects>
+    <resources>
+        <image name="Play.png" width="25" height="25"/>
+    </resources>
+</document>
