@@ -43,6 +43,7 @@
 		A17EAC671C1654DA0023D191 /* CalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EAC661C1654DA0023D191 /* CalloutView.swift */; };
 		A17EAC691C165BE90023D191 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EAC681C165BE90023D191 /* MapView.swift */; };
 		A17EAC6B1C165F700023D191 /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EAC6A1C165F700023D191 /* MapContainerView.swift */; };
+		A17EAC6D1C175B0E0023D191 /* PlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A17EAC6C1C175B0E0023D191 /* PlayButton.png */; };
 		A1A69DC91C0E740000CB61C2 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */; };
 		A1A69DCB1C0E749700CB61C2 /* EpisodesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */; };
 		A1A69DCD1C0E7FC500CB61C2 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */; };
@@ -126,6 +127,7 @@
 		A17EAC661C1654DA0023D191 /* CalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalloutView.swift; sourceTree = "<group>"; };
 		A17EAC681C165BE90023D191 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		A17EAC6A1C165F700023D191 /* MapContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
+		A17EAC6C1C175B0E0023D191 /* PlayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayButton.png; sourceTree = "<group>"; };
 		A1A69DC81C0E740000CB61C2 /* PlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
 		A1A69DCA1C0E749700CB61C2 /* EpisodesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesVC.swift; sourceTree = "<group>"; };
 		A1A69DCC1C0E7FC500CB61C2 /* PodcastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				A1A69DD01C0E802200CB61C2 /* Views */,
 				A1A9CBA41C03B94100628351 /* Assets.xcassets */,
 				A141E27D1C0FB6D800ABE766 /* vertical_bar.png */,
+				A17EAC6C1C175B0E0023D191 /* PlayButton.png */,
 				A1A9CBA61C03B94100628351 /* LaunchScreen.storyboard */,
 				A1A9CBA91C03B94100628351 /* Info.plist */,
 			);
@@ -462,6 +465,7 @@
 			files = (
 				A17EAC5A1C161CFB0023D191 /* AudioFile@3x.png in Resources */,
 				A17EAC581C161CFB0023D191 /* AudioFile.png in Resources */,
+				A17EAC6D1C175B0E0023D191 /* PlayButton.png in Resources */,
 				A17EAC5E1C161CFB0023D191 /* NearMe@2x.png in Resources */,
 				A17EAC5B1C161CFB0023D191 /* Default-Portrait-736h@3x.png in Resources */,
 				A17EAC5D1C161CFB0023D191 /* NearMe.png in Resources */,

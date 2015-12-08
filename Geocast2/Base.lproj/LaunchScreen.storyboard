@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8150" systemVersion="15A204g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8122"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,8 +17,32 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default-Portrait-736h.png" translatesAutoresizingMaskIntoConstraints="NO" id="tL1-0u-G22">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                            </imageView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="tL1-0u-G22" secondAttribute="bottom" id="5se-vc-eGY"/>
+                            <constraint firstItem="tL1-0u-G22" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="LAb-Iu-kc8"/>
+                            <constraint firstItem="tL1-0u-G22" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="OjE-XP-yEA"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="tL1-0u-G22" secondAttribute="bottom" id="UMF-yK-SwD"/>
+                            <constraint firstAttribute="trailing" secondItem="tL1-0u-G22" secondAttribute="trailing" id="ZV2-OT-wsQ"/>
+                            <constraint firstItem="tL1-0u-G22" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="dzh-HD-GoI"/>
+                            <constraint firstItem="tL1-0u-G22" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="jdT-x1-l8b"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tL1-0u-G22" secondAttribute="trailing" id="uGX-zY-is8"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="LAb-Iu-kc8"/>
+                                <exclude reference="jdT-x1-l8b"/>
+                                <exclude reference="uGX-zY-is8"/>
+                                <exclude reference="5se-vc-eGY"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +50,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Default-Portrait-736h.png" width="414" height="736"/>
+    </resources>
 </document>

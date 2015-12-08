@@ -70,13 +70,19 @@ class AddTagViewController : UITableViewController {
                 if nameForLocation == nil {
                     print("NAME FOR LOCATION IS NILL")
                     cell.locationLabel.text = "Must add location"
+                    cell.locationLabel.textColor = UIColor.lightGrayColor()
                 } else {
                     print("name for location is NOT nil")
                     cell.locationLabel.text = nameForLocation!
+                    cell.locationLabel.textColor = UIColor.blackColor()
                 }
-                //                cell.locationLabel.text = (nameForLocation != nil) ? nameForLocation! : "Must add location"
-                cell.descriptionLabel.text = (descriptionForTag != nil) ? descriptionForTag! : "Must add description"
-                
+                if descriptionForTag == nil {
+                    cell.descriptionLabel.text = "Must add description"
+                    cell.descriptionLabel.textColor = UIColor.lightGrayColor()
+                } else {
+                    cell.descriptionLabel.text = descriptionForTag!
+                    cell.descriptionLabel.textColor = UIColor.blackColor()
+                }                
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("tagLocationButtonsCell", forIndexPath: indexPath) as! TagLocationButtonsCell

@@ -107,7 +107,7 @@
                 <constraint firstItem="QZf-4x-8r2" firstAttribute="leading" secondItem="9Kp-Bp-bG8" secondAttribute="leading" id="wJ4-pb-o35"/>
                 <constraint firstItem="avi-Ro-W1V" firstAttribute="top" secondItem="xJ6-PD-5Ro" secondAttribute="top" id="xGm-9b-fUx"/>
                 <constraint firstItem="DrF-TG-zw9" firstAttribute="trailing" secondItem="9Kp-Bp-bG8" secondAttribute="trailing" id="yt1-ty-a9a"/>
-                <constraint firstItem="QZf-4x-8r2" firstAttribute="top" secondItem="xJ6-PD-5Ro" secondAttribute="bottom" id="zhk-OE-EBB"/>
+                <constraint firstItem="QZf-4x-8r2" firstAttribute="top" secondItem="xJ6-PD-5Ro" secondAttribute="bottom" constant="4" id="zhk-OE-EBB"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
