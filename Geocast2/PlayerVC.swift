@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Kingfisher
 
 class PlayerViewController: UIViewController {
     
@@ -51,15 +52,9 @@ class PlayerViewController: UIViewController {
         print("about to try getting podcast...")
         if let podcast = PodcastPlayer.sharedInstance.getCurrentEpisode()?.podcast {
             print(" got podcast")
-            PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: podcast.largeImageURL, completion: { image -> Void in
-                print(" assigning image view to \(image)")
-                guard let image = image else {
-                    return
-                }
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.imageView.image = image
-                })
-            })
+            if let url = podcast.largeImageURL {
+                imageView.kf_setImageWithURL(url)
+            }
         } else {
             print("failed to get podcast")
             dispatch_async(dispatch_get_main_queue(), {

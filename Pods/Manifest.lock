@@ -1,16 +1,19 @@
 PODS:
   - Bolts/Tasks (1.5.0)
   - DateTools (1.7.0)
+  - Kingfisher (1.8.3)
   - Parse (1.10.0):
     - Bolts/Tasks (~> 1.5)
 
 DEPENDENCIES:
   - DateTools
+  - Kingfisher (~> 1.8)
   - Parse
 
 SPEC CHECKSUMS:
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  Kingfisher: ead91e9dbeb7e5a2e8b7af3bd8a294104cbcc3f9
   Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
 
 COCOAPODS: 0.38.2

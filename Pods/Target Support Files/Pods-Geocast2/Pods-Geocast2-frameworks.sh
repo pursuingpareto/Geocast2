@@ -54,10 +54,12 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-Geocast2/Bolts.framework'
   install_framework 'Pods-Geocast2/DateTools.framework'
+  install_framework 'Pods-Geocast2/Kingfisher.framework'
   install_framework 'Pods-Geocast2/Parse.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-Geocast2/Bolts.framework'
   install_framework 'Pods-Geocast2/DateTools.framework'
+  install_framework 'Pods-Geocast2/Kingfisher.framework'
   install_framework 'Pods-Geocast2/Parse.framework'
 fi

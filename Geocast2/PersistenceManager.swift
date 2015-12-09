@@ -8,49 +8,22 @@
 
 import UIKit
 import CoreData
+import Kingfisher
 
 class PersistenceManager: NSObject {
     
     static let sharedInstance = PersistenceManager()
     
-    private var imageCache = [NSURL : UIImage]()
-    
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     func fetchSubscriptionData() -> [SubscribedPodcast]? {
         let subscriptionRequest = NSFetchRequest(entityName: "SubscribedPodcast")
-//        let subscriptionReq = NSPersistentStoreRequest()
-//        subscriptionReq.affectedStores = managedObjectContext.persistentStoreCoordinator?.persistentStores
         do {
             let fetchResults = try managedObjectContext.executeFetchRequest(subscriptionRequest) as? [SubscribedPodcast]
             return fetchResults
         } catch {
             print("error")
             return nil
-        }
-    }
-    
-    func attemptToGetImageFromCache(withURL url: NSURL?, completion: (image: UIImage?) -> Void) {
-        guard let url = url else {
-            print("invalid URL sent to attemptToGetImageFromCache")
-            return
-        }
-        if let img = imageCache[url] {
-            completion(image: img)
-        } else {
-
-            let session = NSURLSession.sharedSession()
-            let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
-                if error == nil {
-                    var image = UIImage(data: data!)
-                    self.imageCache[url] = image
-                    completion(image: image)
-                } else {
-                    print("error getting image was \(error)\n\ndata is \(data)")
-                    completion(image: nil)
-                }
-            })
-            task.resume()
         }
     }
     

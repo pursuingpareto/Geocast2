@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Kingfisher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>9E5162CFD5E324C9B05DCF0839961400</key>
+		<key>0FF261F6BBF7D772B56A48E53B36F551</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C0D92B92638388527D9E58D673ACFC00</key>
+		<key>7FA6146399B3060EC2162A2918B63DDE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C31C1662249C78D4FBD0603D2AB48283</key>
+		<key>958FD29FF618B85DBBDC700071993528</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C61F99D635615D145DAFC881B1A5D2BB</key>
+		<key>CF3478CF908F151D05F040C5A9C3E84F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EAB83E1322EB2296949D7284C0432393</key>
 		<dict>
 			<key>primary</key>
 			<true/>

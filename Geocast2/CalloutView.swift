@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CalloutView: UIView {
     var view: UIView!
@@ -56,15 +57,12 @@ class CalloutView: UIView {
         
         textView.text = tag.tagDescription
         
-        PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: tag.episode.podcast.largeImageURL, completion: {
-            image in
-            guard let image = image else {
-                return
-            }
-            dispatch_async(dispatch_get_main_queue(), {
-                self.imageView.image = image
-            })
-        })
+        if let url = tag.episode.podcast.largeImageURL {
+            imageView.kf_showIndicatorWhenLoading = true
+            imageView.kf_setImageWithURL(url)
+        } else {
+            // TODO : handle default images
+        }
     }
     
     func setupEpisodeView() {

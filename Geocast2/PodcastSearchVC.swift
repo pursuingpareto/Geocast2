@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PodcastSearchController: UITableViewController {
     
@@ -67,17 +68,10 @@ class PodcastSearchController: UITableViewController {
         } else {
             print("NO UPDATE TIME for \(podcast.title)!")
         }
-        
-        PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: podcast.thumbnailImageURL, completion: { image -> Void in
-            if let image = image {
-                dispatch_async(dispatch_get_main_queue(), {
-                    let updateCell = tableView.cellForRowAtIndexPath(indexPath)
-                    if let updateCell = updateCell as? PodcastCell {
-                        updateCell.podcastImageView.image = image
-                    }
-                })
-            }
-        })
+        if let url = podcast.thumbnailImageURL {
+            cell.podcastImageView.kf_showIndicatorWhenLoading = true
+            cell.podcastImageView.kf_setImageWithURL(url)
+        }
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }

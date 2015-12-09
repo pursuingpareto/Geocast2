@@ -9,6 +9,7 @@
 import UIKit
 import DateTools
 import CoreMedia
+import Kingfisher
 
 class EpisodesController : UITableViewController {
     
@@ -112,18 +113,12 @@ class EpisodesController : UITableViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(summaryCellIdentifier, forIndexPath: indexPath) as! PodcastSummaryCell
             cell.podcastSummary.text = podcast.summary
-            PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: podcast.thumbnailImageURL, completion: { image -> Void in
-                if let image = image {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        let updateCell = tableView.cellForRowAtIndexPath(indexPath)
-                        if let updateCell = updateCell as? PodcastSummaryCell {
-                            updateCell.podcastImageView.image = image
-                        }
-                    })
-                }
-            })
-
-
+            if let url = podcast.thumbnailImageURL {
+                cell.podcastImageView.kf_showIndicatorWhenLoading = true
+                cell.podcastImageView.kf_setImageWithURL(url)
+            } else {
+                // TODO : handle default images
+            }
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(episodeCellIdentifier, forIndexPath: indexPath) as! EpisodeCell

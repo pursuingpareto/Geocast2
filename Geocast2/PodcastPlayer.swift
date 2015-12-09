@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import MediaPlayer
+import Kingfisher
 
 let newEpisodeLoadedNotificationKey = "com.andybrown.newEpisodeLoadedKey"
 let playRateChangedNotificationKey = "com.andybrown.playRateChangedKey"
@@ -104,13 +105,18 @@ class PodcastPlayer: UIResponder {
             MPNowPlayingInfoPropertyPlaybackRate: self.player.rate
         ]
         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
-        PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: episode.podcast.largeImageURL, completion: { image -> Void in
-            guard let image = image else {
-                print("got bad image")
-                return
-            }
-            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
-        })
+        if let url = episode.podcast.largeImageURL {
+            let cache = KingfisherManager.sharedManager.cache
+            cache.retrieveImageForKey(url.absoluteString, options: KingfisherManager.OptionsNone, completionHandler: {
+                (image, cacheType) -> () in
+                if let image = image {
+                    MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
+                } else {
+                    print("error assigning artwork")
+                }
+                
+            })            
+        }
     }
     
     func seekToTime(time: CMTime) {
@@ -187,13 +193,18 @@ class PodcastPlayer: UIResponder {
                 MPNowPlayingInfoPropertyPlaybackRate: self.player.rate
             ]
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
-            PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: episode.podcast.largeImageURL, completion: { image -> Void in
-                guard let image = image else {
-                    print("got bad image")
-                    return
-                }
-                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
-            })
+            
+            if let url = episode.podcast.largeImageURL {
+                let cache = KingfisherManager.sharedManager.cache
+                cache.retrieveImageForKey(url.absoluteString, options: KingfisherManager.OptionsNone, completionHandler: {
+                    (image, cacheType) -> () in
+                    if let image = image {
+                        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
+                    } else {
+                        print("error assigning artwork")
+                    }
+                })
+            }
         }
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         do {
@@ -226,14 +237,6 @@ class PodcastPlayer: UIResponder {
                 return
             }
         }
-//        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
-//        PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: episode.podcast.largeImageURL, completion: { image -> Void in
-//            guard let image = image else {
-//                print("got bad image")
-//                return
-//            }
-//            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = image
-//        })
     }
 
 
