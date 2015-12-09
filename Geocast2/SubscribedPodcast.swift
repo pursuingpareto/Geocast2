@@ -22,6 +22,9 @@ class SubscribedPodcast: NSManagedObject {
         sp.title = pc.title
         sp.collectionId = pc.collectionId
         sp.feedUrl = pc.feedUrl.absoluteString
+        
+        
+        
         if pc.thumbnailImageURL != nil {
             sp.thumbnailImageUrl = pc.thumbnailImageURL!.absoluteString
         } else {
@@ -37,12 +40,38 @@ class SubscribedPodcast: NSManagedObject {
         sp.lastUpdated = pc.lastUpdated
         sp.summary = pc.summary
         sp.author = pc.author
+        
+        let episodeData = sub.episodeData
+        print("episodeData has count \(episodeData.count)")
+        SubscribedPodcast.saveUserEpisodeData(withEpisodeData: episodeData, forSubscribedPodcast: sp, toManagedObjectContext: context)
         do {
             try context.save()
         } catch {
             print(error)
         }
         return sp
+    }
+    
+    class func saveUserEpisodeData(withEpisodeData data: [NSURL : UserEpisodeData?], forSubscribedPodcast sp: SubscribedPodcast, toManagedObjectContext context: NSManagedObjectContext) {
+        for ued in data.values {
+            if ued != nil {
+                let ep = ued!.episode
+                let ews = NSEntityDescription.insertNewObjectForEntityForName("EpisodeWithStats", inManagedObjectContext: context) as! EpisodeWithStats
+                ews.mp3Url = ep.mp3URL.absoluteString
+                ews.title = ep.title
+                ews.totalSeconds = ep.duration
+                ews.summary = ep.summary
+                ews.subtitle = ep.subtitle
+                ews.pubDate = ep.pubDate
+                ews.itunesSummary = ep.iTunesSummary
+                
+                ews.lastPlayedAt = ued!.lastPlayedAt
+                ews.lastPlayedTimestamp = ued!.lastPlayedTimestamp.seconds
+                ews.fractionListenedTo  = ued!.fractionListenedTo
+                
+                ews.podcast = sp
+            }
+        }
     }
     
     func toPodcastSubscription() -> PodcastSubscription {

@@ -62,6 +62,15 @@ class EpisodeWithStats: NSManagedObject {
             podcast.author = auth
         }
         let ep = Episode(podcast: podcast, mp3URL: NSURL(string: mp3Url)!, title: title)
+        ep.pubDate = pubDate
+        ep.subtitle = subtitle
+        ep.summary = summary
+        ep.iTunesSummary = itunesSummary
+        
+        if let seconds = totalSeconds as? Double {
+            ep.duration = NSTimeInterval(seconds)
+        }
+        
         let UED = UserEpisodeData(episode: ep)
         UED.lastPlayedAt = lastPlayedAt
         UED.fractionListenedTo = Float(fractionListenedTo)

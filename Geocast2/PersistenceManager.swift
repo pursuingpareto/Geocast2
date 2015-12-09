@@ -48,6 +48,7 @@ class PersistenceManager: NSObject {
             }
             print("...userSubs has length \(userSubs.count)")
             if let epsWithStats = fetchEpisodeData() {
+                print("...epsWithStats has length \(epsWithStats.count)")
                 for ep in epsWithStats {
                     let userEpisodeData = ep.toUserEpisodeData()
                     let podcastSub = (ep.podcast as! SubscribedPodcast).toPodcastSubscription()
@@ -57,6 +58,7 @@ class PersistenceManager: NSObject {
                         userSubs[collectionId]?.episodeData[userEpisodeData.episode.mp3URL] = userEpisodeData
                     }
                 }
+                print("about to wipe and update!!")
                 User.sharedInstance.wipeSubscriptionsAndUpdate(withSubscriptions: userSubs)
             }
         }
