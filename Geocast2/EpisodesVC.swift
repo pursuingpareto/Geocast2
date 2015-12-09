@@ -114,9 +114,11 @@ class EpisodesController : UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier(summaryCellIdentifier, forIndexPath: indexPath) as! PodcastSummaryCell
             cell.podcastSummary.text = podcast.summary
             if let url = podcast.thumbnailImageURL {
+                print("assigning image to summary cell from url \(url.absoluteString)")
                 cell.podcastImageView.kf_showIndicatorWhenLoading = true
                 cell.podcastImageView.kf_setImageWithURL(url)
             } else {
+                print("no thumbnailImageURL available for \(podcast.title)")
                 // TODO : handle default images
             }
             return cell

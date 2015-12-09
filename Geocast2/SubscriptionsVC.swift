@@ -119,8 +119,11 @@ class SubscriptionsViewController: UITableViewController {
                 print("NO UPDATE TIME!")
             }
             if let url = podcast.thumbnailImageURL {
+                print("found good URL for \(podcast.title) at \(url.absoluteString)")
                 cell.podcastImageView.kf_showIndicatorWhenLoading = true
                 cell.podcastImageView.kf_setImageWithURL(url)
+            } else {
+                print("No thumbnailImageURL for \(podcast.title)")
             }
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             finalCell = cell

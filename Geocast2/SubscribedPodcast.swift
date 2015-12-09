@@ -21,14 +21,14 @@ class SubscribedPodcast: NSManagedObject {
         sp.subscriptionDate = sub.subscriptionDate
         sp.title = pc.title
         sp.collectionId = pc.collectionId
-        sp.feedUrl = "\(pc.feedUrl)"
+        sp.feedUrl = pc.feedUrl.absoluteString
         if pc.thumbnailImageURL != nil {
-            sp.thumbnailImageUrl = "\(pc.thumbnailImageURL)"
+            sp.thumbnailImageUrl = pc.thumbnailImageURL!.absoluteString
         } else {
             sp.thumbnailImageUrl = nil
         }
         if pc.largeImageURL != nil {
-            sp.largeImageUrl = "\(pc.largeImageURL)"
+            sp.largeImageUrl = pc.thumbnailImageURL!.absoluteString
         } else {
             sp.largeImageUrl = nil
         }
@@ -37,11 +37,6 @@ class SubscribedPodcast: NSManagedObject {
         sp.lastUpdated = pc.lastUpdated
         sp.summary = pc.summary
         sp.author = pc.author
-//        do {
-//            try context.save()
-//        } catch {
-//            print(error)
-//        }
         do {
             try context.save()
         } catch {
