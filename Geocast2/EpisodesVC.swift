@@ -126,6 +126,7 @@ class EpisodesController : UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier(episodeCellIdentifier, forIndexPath: indexPath) as! EpisodeCell
             let episode = episodeForIndexPath(indexPath)!
             cell.episodeTitle.text = episode.title
+            cell.episodeTitle.sizeToFit()
             if let duration = episode.duration {
                 let cmDuration = CMTime(seconds: duration, preferredTimescale: 1)
                 cell.duration.text = cmDuration.asString()

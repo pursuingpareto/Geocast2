@@ -77,6 +77,7 @@ class MapViewController: UIViewController {
 
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         if (initialLocationDetermined || locations.count == 0 ) {
             return
         } else {

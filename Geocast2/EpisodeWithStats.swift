@@ -26,6 +26,8 @@ class EpisodeWithStats: NSManagedObject {
         ews.lastPlayedAt = data.lastPlayedAt
         ews.lastPlayedTimestamp = data.lastPlayedTimestamp.seconds
         ews.fractionListenedTo  = data.fractionListenedTo
+        
+        
         if User.sharedInstance.isSubscribedTo(ep.podcast) {
             if let subscription = User.sharedInstance.getSubscription(forPodcast: ep.podcast) {
                 ews.podcast = SubscribedPodcast.fromPodcastSubscription(podcastSubscription: subscription)

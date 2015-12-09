@@ -69,13 +69,35 @@ class PlayerViewController: UIViewController {
         }
         if let summary = episode.summary {
             dispatch_async(dispatch_get_main_queue(), {
-                self.summaryTextView.text = summary
+                self.summaryTextView.text = self.removeHTMLFromString(summary)
             })
         } else if let summary = episode.iTunesSummary {
             dispatch_async(dispatch_get_main_queue(), {
-                self.summaryTextView.text = summary
+                self.summaryTextView.text = self.removeHTMLFromString(summary)
             })
         }
+    }
+    
+    private func removeHTMLFromString(string: String) -> String {
+        var regex: NSRegularExpression? = nil
+        do {
+            regex = try NSRegularExpression(pattern: "<.*?>", options:  NSRegularExpressionOptions.CaseInsensitive)
+        } catch {
+            print("error forming regex \(error)")
+        }
+        let range = NSMakeRange(0, string.characters.count)
+        let noHTMLString = regex?.stringByReplacingMatchesInString(string, options: [], range: range, withTemplate: "")
+        if let str = noHTMLString {
+            return str
+        } else {
+            return string
+        }
+        
+        
+//        let regex:NSRegularExpression  = NSRegularExpression(
+//            pattern: "<.*?>",
+//            options: NSRegularExpressionOptions.CaseInsensitive,
+//            error: nil)!
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

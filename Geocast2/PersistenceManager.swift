@@ -51,12 +51,16 @@ class PersistenceManager: NSObject {
                 print("...epsWithStats has length \(epsWithStats.count)")
                 for ep in epsWithStats {
                     let userEpisodeData = ep.toUserEpisodeData()
-                    let podcastSub = (ep.podcast as! SubscribedPodcast).toPodcastSubscription()
-                    let collectionId = podcastSub.podcast.collectionId
-                    if let sub: PodcastSubscription = userSubs[collectionId] {
-                        // this podcast has already been added to subscriptions
-                        userSubs[collectionId]?.episodeData[userEpisodeData.episode.mp3URL] = userEpisodeData
+//                    let podcastSub = (ep.podcast as! SubscribedPodcast).toPodcastSubscription()
+                    guard let podcastSub: PodcastSubscription = userSubs[userEpisodeData.episode.podcast.collectionId] else {
+                        print("Couldn't find the podcast sub asssociated with user episode data \(userEpisodeData)")
+                        continue
                     }
+//                    let collectionId = podcastSub.podcast.collectionId
+//                    if let sub: PodcastSubscription = userSubs[collectionId] {
+//                        // this podcast has already been added to subscriptions
+                        podcastSub.episodeData[userEpisodeData.episode.mp3URL] = userEpisodeData
+//                    }
                 }
                 print("about to wipe and update!!")
                 User.sharedInstance.wipeSubscriptionsAndUpdate(withSubscriptions: userSubs)

@@ -51,16 +51,19 @@ class User : NSObject {
                     data?.lastPlayedTimestamp = timestamp
                 }
                 guard let duration = player.duration else {
-                    print("couldn't get duration")
+                    print("COULDN'T GET DURATION!")
                     return
                 }
                 guard let fraction = data?.fractionListenedTo else {
+                    print("NO FRACTION!")
                     return
                 }
                 let secondsSoFar = fraction * Float(duration.seconds)
                 let newSeconds = secondsSoFar + Float(player.timerUpdateIncrement)
                 data?.fractionListenedTo = newSeconds / Float(duration.seconds)
+                print("fractionListenedTo is \(data?.fractionListenedTo)")
             } else {
+                print("No data for subscription!")
                 let UED = UserEpisodeData(episode: ep)
                 sub?.episodeData[ep.mp3URL] = UED
             }
