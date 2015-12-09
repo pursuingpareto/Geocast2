@@ -19,6 +19,8 @@ class PersistenceManager: NSObject {
     
     func fetchSubscriptionData() -> [SubscribedPodcast]? {
         let subscriptionRequest = NSFetchRequest(entityName: "SubscribedPodcast")
+//        let subscriptionReq = NSPersistentStoreRequest()
+//        subscriptionReq.affectedStores = managedObjectContext.persistentStoreCoordinator?.persistentStores
         do {
             let fetchResults = try managedObjectContext.executeFetchRequest(subscriptionRequest) as? [SubscribedPodcast]
             return fetchResults
@@ -44,7 +46,7 @@ class PersistenceManager: NSObject {
                     self.imageCache[url] = image
                     completion(image: image)
                 } else {
-                    print("error getting image was \(error)")
+                    print("error getting image was \(error)\n\ndata is \(data)")
                     completion(image: nil)
                 }
             })
@@ -64,12 +66,14 @@ class PersistenceManager: NSObject {
     }
     
     func updateUserWithStoredData() {
+        print("updating user with stored data...")
         if let subscribedPCs = fetchSubscriptionData() {
             var userSubs = [Int: PodcastSubscription]()
             for subscribedPC in subscribedPCs {
                 let pcSub = subscribedPC.toPodcastSubscription()
                 userSubs[pcSub.podcast.collectionId] = pcSub
             }
+            print("...userSubs has length \(userSubs.count)")
             if let epsWithStats = fetchEpisodeData() {
                 for ep in epsWithStats {
                     let userEpisodeData = ep.toUserEpisodeData()
@@ -112,7 +116,27 @@ class PersistenceManager: NSObject {
         do {
             try managedObjectContext.save()
         } catch {
-            print(error)
+            print("error saving user data: \(error)")
         }
+        
+        // TODO : Remove this for production
+        
+        if let subs = fetchSubscriptionData() {
+            print("SubscribedPodcasts count is \(subs.count)")
+        } else {
+            print("subscribedPodcasts is nil...")
+        }
+        
+        if let epsWithStats = fetchEpisodeData() {
+            print("epsWithStats count is \(epsWithStats.count)")
+        } else {
+            print("eps with stats is nil...")
+        }
+//        do {
+//            let saveCount = try managedObjectContext.persistentStoreCoordinator?.executeRequest(fetchRequest, withContext: managedObjectContext).count
+//            print("savecount is \(saveCount)")
+//        } catch {
+//            print("error with test fetch: \(error)")
+//        }
     }
 }

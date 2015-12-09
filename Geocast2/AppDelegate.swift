@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFUser.currentUser()!.saveInBackground()
         
 //        print("Application did finish launching with options")
-//        PersistenceManager.sharedInstance.updateUserWithStoredData()
+        PersistenceManager.sharedInstance.updateUserWithStoredData()
         
         return true
     }
@@ -106,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }
-        
+        print("SUCCESSFULLY MADE PERSISTENT STORE COORDINATOR")
         return coordinator
     }()
     

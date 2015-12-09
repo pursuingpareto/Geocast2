@@ -154,6 +154,7 @@ class PodcastPlayer: UIResponder {
     }
     
     deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         player.currentItem?.removeObserver(self, forKeyPath: "status", context: &playerItemStatusContext)
     }
     
@@ -161,6 +162,7 @@ class PodcastPlayer: UIResponder {
         player.currentItem?.removeObserver(self, forKeyPath: "status", context: &playerItemStatusContext)
         player.replaceCurrentItemWithPlayerItem(playerItem)
         player.currentItem?.addObserver(self, forKeyPath: "status", options: .New, context: &playerItemStatusContext)
+        
     }
     
     func setupRemoteControl(withItem item: AVPlayerItem?) {

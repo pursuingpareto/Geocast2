@@ -27,7 +27,7 @@ class ITunesAPIController {
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
             if(error != nil) {
                 // If there is an error in the web request, print it to the console
-                print(error!.localizedDescription)
+                print("error getting stuff from iTunes: \(error!.localizedDescription)")
             }
             else {
                 if let data = data {

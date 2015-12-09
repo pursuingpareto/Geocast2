@@ -15,7 +15,7 @@ class EpisodeWithStats: NSManagedObject {
     class func fromUserEpisodeData(data: UserEpisodeData) -> EpisodeWithStats {
         let ep = data.episode
         let ews = EpisodeWithStats()
-        ews.mp3Url = ep.mp3URL.path
+        ews.mp3Url = ep.mp3URL.absoluteString
         ews.title = ep.title
         ews.totalSeconds = ep.duration
         ews.summary = ep.summary

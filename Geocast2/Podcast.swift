@@ -79,7 +79,7 @@ class Podcast: NSObject {
                             continue
                         }
                         
-                        guard let feedUrlString = podcastInfo["feedUrl"] as? String else {
+                        guard let feedUrlString = (podcastInfo["feedUrl"] as? String) else {
                             print("no feed URL string, continuing...")
                             continue
                         }
@@ -92,20 +92,18 @@ class Podcast: NSObject {
                         let podcast: Podcast = Podcast(title: name!, collectionId: collectionId, feedUrl: feedUrl)
                         
                         if let releaseDateString = podcastInfo["releaseDate"] as? String {
-                            print("release date is \(releaseDateString)")
                             if let releaseDate = dateFormatter.dateFromString(releaseDateString) {
-                                print("  using release date to create date")
                                 podcast.lastUpdated = releaseDate
                             } else {
                                 print("  not using release date to create date")
                             }
                         }
                         
-                        if let thumbnailURLString = podcastInfo["artworkUrl100"] as? String {
+                        if let thumbnailURLString = (podcastInfo["artworkUrl100"] as? String) {
                             podcast.thumbnailImageURL = NSURL(string: thumbnailURLString)
                         }
                         
-                        if let imageURLString = podcastInfo["artworkUrl600"] as? String {
+                        if let imageURLString = (podcastInfo["artworkUrl600"] as? String) {
                             podcast.largeImageURL = NSURL(string: imageURLString)
                         }
                         

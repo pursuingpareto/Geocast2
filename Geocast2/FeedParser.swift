@@ -63,7 +63,7 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(feedUrl, completionHandler: {data, response, error -> Void in
             if (error != nil) {
-                print("oops, error")
+                print("oops, error is \(error)")
             }
             else {
                 if let data = data {

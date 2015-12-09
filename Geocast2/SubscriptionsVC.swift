@@ -38,7 +38,9 @@ class SubscriptionsViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         subscriptions = User.sharedInstance.getSubscriptions()
-        tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        })
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -165,6 +167,9 @@ extension SubscriptionsViewController: ITunesAPIControllerDelegate {
     func didReceivePodcasts(podcasts: [Podcast]) {
         print("got podcasts")
         User.sharedInstance.updateSubscriptionsWithNewPodcasts(podcasts)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        })
         // TODO - implement
     }
 }

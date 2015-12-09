@@ -58,6 +58,9 @@ class CalloutView: UIView {
         
         PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: tag.episode.podcast.largeImageURL, completion: {
             image in
+            guard let image = image else {
+                return
+            }
             dispatch_async(dispatch_get_main_queue(), {
                 self.imageView.image = image
             })

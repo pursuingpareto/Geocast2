@@ -144,9 +144,13 @@ class User : NSObject {
     }
     
     func wipeSubscriptionsAndUpdate(withSubscriptions subs: [Int:PodcastSubscription]) {
+        print("about to Wipe subscriptions and update...")
         self.subscriptions.removeAll()
         for (collID, podcastSub) in subs {
+            print("...adding \(podcastSub.podcast.title) to dict with id \(collID)")
             self.subscriptions[collID] = podcastSub
         }
+        print("user subscriptions has length \(subscriptions.count)")
+        
     }
 }

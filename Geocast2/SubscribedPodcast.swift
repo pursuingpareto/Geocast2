@@ -21,9 +21,18 @@ class SubscribedPodcast: NSManagedObject {
         sp.subscriptionDate = sub.subscriptionDate
         sp.title = pc.title
         sp.collectionId = pc.collectionId
-        sp.feedUrl = pc.feedUrl.path
-        sp.thumbnailImageUrl = pc.thumbnailImageURL?.path
-        sp.largeImageUrl = pc.largeImageURL?.path
+        sp.feedUrl = "\(pc.feedUrl)"
+        if pc.thumbnailImageURL != nil {
+            sp.thumbnailImageUrl = "\(pc.thumbnailImageURL)"
+        } else {
+            sp.thumbnailImageUrl = nil
+        }
+        if pc.largeImageURL != nil {
+            sp.largeImageUrl = "\(pc.largeImageURL)"
+        } else {
+            sp.largeImageUrl = nil
+        }
+        
         sp.episodeCount = pc.episodeCount
         sp.lastUpdated = pc.lastUpdated
         sp.summary = pc.summary

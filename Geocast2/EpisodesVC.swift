@@ -33,10 +33,35 @@ class EpisodesController : UITableViewController {
             let attrs = [NSFontAttributeName : UIFont.boldSystemFontOfSize(17)]
             navigationItem.rightBarButtonItem?.setTitleTextAttributes(attrs, forState: .Normal)
         }
+        if User.sharedInstance.isSubscribedTo(podcast) {
+            let subscription = User.sharedInstance.getSubscription(forPodcast: podcast)
+            var eps: [Episode] = []
+            for ued in (subscription?.episodeData.values)! {
+                if let newEp = ued?.episode {
+                    let index = eps.insertionIndexOf(newEp, isOrderedBefore: {
+                        ep1, ep2 -> Bool in
+                        if let d1 = ep1.pubDate {
+                            if let d2 = ep2.pubDate {
+                                return (d1.compare(d2) == NSComparisonResult.OrderedDescending)
+                            } else {
+                                print("no pubDate for \(ep2.title)")
+                            }
+                        } else {
+                            print("no pubDate for \(ep1.title)")
+                        }
+                        return true
+                    })
+                    eps.insert(newEp, atIndex: index)
+                }
+            }
+            episodes = eps
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+        }
         
-        
+        // TODO : Check if this is really necessary
         FeedParser.parsePodcast(podcast, withFeedParserDelegate: self)
-        tableView.reloadData()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -70,9 +95,7 @@ class EpisodesController : UITableViewController {
                 subscription?.episodeData[episode.mp3URL] = newEpisodeData
             }
         }
-        dispatch_async(dispatch_get_main_queue(), {
-            self.tableView.reloadData()
-        })
+        
         
     }
     
@@ -156,11 +179,17 @@ extension EpisodesController: FeedParserDelegate {
                 podcast.lastUpdated = lastDate
             }
         }
-        tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        })
+        
     }
     
     func didParseFeedIntoEpisodes(episodes: [Episode]) {
         self.episodes = episodes
         updateSubscriptionDataWithCurrentEpisodes()
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+        })
     }
 }

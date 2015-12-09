@@ -65,7 +65,7 @@ class PodcastSearchController: UITableViewController {
 
             cell.detailLabel.text = "\(podcast.episodeCount!) Episodes, last \(lastDate.shortTimeAgoSinceNow())"
         } else {
-            print("NO UPDATE TIME!")
+            print("NO UPDATE TIME for \(podcast.title)!")
         }
         
         PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: podcast.thumbnailImageURL, completion: { image -> Void in

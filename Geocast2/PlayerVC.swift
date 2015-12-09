@@ -53,6 +53,9 @@ class PlayerViewController: UIViewController {
             print(" got podcast")
             PersistenceManager.sharedInstance.attemptToGetImageFromCache(withURL: podcast.largeImageURL, completion: { image -> Void in
                 print(" assigning image view to \(image)")
+                guard let image = image else {
+                    return
+                }
                 dispatch_async(dispatch_get_main_queue(), {
                     self.imageView.image = image
                 })
