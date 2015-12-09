@@ -18,14 +18,19 @@ class MapViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private var mapViewRadius: CLLocationDistance = 5000
     private var defaultLocation = CLLocation(latitude: 34.1561, longitude: -118.1319)
+    private var initialLocationDetermined = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("about to request authorization")
         self.locationManager.requestWhenInUseAuthorization()
+        print("got authorization")
         if CLLocationManager.locationServicesEnabled() {
+            print("location services enabled!")
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startMonitoringSignificantLocationChanges()
+        } else {
+            print("location services not enabled")
         }
         mapView.delegate = self
         mapView.showsUserLocation = true
@@ -33,21 +38,22 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        var location: CLLocation!
-        if let loc = locationManager.location {
-            location = loc
-        } else {
-            location = defaultLocation
+        switch CLLocationManager.authorizationStatus() {
+        case .AuthorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+        default:
+            break
         }
-        centerMapOnLocation(location)
         updateView()
+        centerMapOnLocation(CLLocation(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude))
     }
     
     private func addTagsToMapView() {
         mapView.addAnnotations(currentTags)
     }
     
-    private func centerMapOnLocation(location: CLLocation) {
+    func centerMapOnLocation(location: CLLocation) {
+        print("centering map on location")
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
             mapViewRadius * 2.0, mapViewRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
@@ -71,7 +77,29 @@ class MapViewController: UIViewController {
 
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        centerMapOnLocation(manager.location!)
+        if (initialLocationDetermined || locations.count == 0 ) {
+            return
+        } else {
+            initialLocationDetermined = true
+            centerMapOnLocation(locations.first!)
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        print("authorization status changed to \(status)")
+        switch status {
+        case .AuthorizedWhenInUse:
+            manager.startMonitoringSignificantLocationChanges()
+            manager.startUpdatingLocation()
+            if let loc = manager.location {
+                print("...got location")
+                centerMapOnLocation(loc)
+            } else {
+                print("...did not get location")
+            }
+        default:
+            return
+        }
     }
 }
 
@@ -120,16 +148,6 @@ extension MapViewController: MKMapViewDelegate {
         tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
 
     }
-    
-//    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-//        var viewC = CalloutView(frame: CGRectMake(0, 0, 150, 150))
-//        viewC.backgroundColor = UIColor.blackColor()
-//        
-//        view.addSubview(viewC)
-//        viewC.center = CGPointMake(viewC.bounds.size.width*0.1, -viewC.bounds.size.height*0.5)
-//        view.sizeToFit()
-//        mapView.bringSubviewToFront(view)
-//    }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         mapView.selectedAnnotations = [view.annotation as! Geotag]
