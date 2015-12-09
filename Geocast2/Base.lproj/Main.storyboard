@@ -252,8 +252,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="126"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U26-7L-3Uk">
-                                            <rect key="frame" x="88" y="33" width="504" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U26-7L-3Uk">
+                                            <rect key="frame" x="88" y="33" width="504" height="42"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -278,7 +278,7 @@
                                     <animations/>
                                     <constraints>
                                         <constraint firstItem="aWF-LP-FWf" firstAttribute="leading" secondItem="U26-7L-3Uk" secondAttribute="leading" id="6tr-j1-XBs"/>
-                                        <constraint firstItem="U26-7L-3Uk" firstAttribute="top" secondItem="a7x-t5-z2T" secondAttribute="top" constant="10" id="FhC-Zh-Eqh"/>
+                                        <constraint firstItem="U26-7L-3Uk" firstAttribute="top" secondItem="a7x-t5-z2T" secondAttribute="top" id="FhC-Zh-Eqh"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="a7x-t5-z2T" secondAttribute="leading" constant="8" id="Ms0-lF-I2Q"/>
                                         <constraint firstItem="aWF-LP-FWf" firstAttribute="top" secondItem="U26-7L-3Uk" secondAttribute="bottom" constant="8" id="OXc-zw-2kh"/>
                                         <constraint firstItem="aWF-LP-FWf" firstAttribute="trailing" secondItem="U26-7L-3Uk" secondAttribute="trailing" id="PMp-UI-7Jm"/>
@@ -434,7 +434,7 @@
                                                 <constraint firstAttribute="height" constant="90" id="N6L-CR-vbF"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Or5-8L-LqO">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Or5-8L-LqO">
                                             <rect key="frame" x="106" y="8" width="486" height="90"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
@@ -458,6 +458,7 @@
                                         <mask key="constraints">
                                             <exclude reference="VEn-8N-B8L"/>
                                             <exclude reference="xCl-io-xkV"/>
+                                            <exclude reference="0BV-18-wA1"/>
                                             <exclude reference="hXE-Rm-0og"/>
                                         </mask>
                                     </variation>
@@ -768,7 +769,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="126"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Duw-1m-VX9">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Duw-1m-VX9">
                                             <rect key="frame" x="88" y="33" width="504" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -796,7 +797,7 @@
                                         <constraint firstItem="fQL-yz-lGZ" firstAttribute="centerY" secondItem="tSd-uk-Kcs" secondAttribute="centerY" id="6To-iK-Qvc"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="fQL-yz-lGZ" secondAttribute="leading" id="7lS-MH-gp1"/>
                                         <constraint firstItem="fQ8-XW-ZRL" firstAttribute="top" secondItem="Duw-1m-VX9" secondAttribute="bottom" constant="8" id="G6C-S6-WaF"/>
-                                        <constraint firstItem="Duw-1m-VX9" firstAttribute="top" secondItem="fQL-yz-lGZ" secondAttribute="top" constant="10" id="HW6-1T-W4M"/>
+                                        <constraint firstItem="Duw-1m-VX9" firstAttribute="top" secondItem="fQL-yz-lGZ" secondAttribute="top" id="HW6-1T-W4M"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Duw-1m-VX9" secondAttribute="trailing" id="Nme-KZ-gnM"/>
                                         <constraint firstItem="Duw-1m-VX9" firstAttribute="leading" secondItem="fQL-yz-lGZ" secondAttribute="trailing" constant="8" id="VGG-wb-iUo"/>
                                         <constraint firstItem="fQ8-XW-ZRL" firstAttribute="trailing" secondItem="Duw-1m-VX9" secondAttribute="trailing" id="feA-Xd-HqM"/>
