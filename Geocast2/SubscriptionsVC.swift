@@ -23,6 +23,15 @@ class SubscriptionsViewController: UITableViewController {
     private var customRefreshControl = UIRefreshControl()
     private var iTunesAPI : ITunesAPIController!
     
+    private var successfulUpdates = 0
+    private var failingUpdates = 0
+//    private var totalUpdates: Int = {
+//        return self.subscriptions.count
+//    }
+    private var refreshLabel = UILabel()
+    private var lastRefreshDate:NSDate? = nil
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO - listen for subscription changes
@@ -31,6 +40,7 @@ class SubscriptionsViewController: UITableViewController {
         iTunesAPI = ITunesAPIController(delegate: self)
         subscriptions = User.sharedInstance.getSubscriptions()
         lookupSubscriptionsFromITunes()
+//        customRefreshControl.beginRefreshing()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -39,6 +49,16 @@ class SubscriptionsViewController: UITableViewController {
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView.reloadData()
         })
+    }
+    
+    private func updateAllSubscriptionsInBackground() {
+        print("updating all subscriptions in background")
+        successfulUpdates = 0
+        failingUpdates = 0
+        for subscription in subscriptions {
+            let podcast = subscription.podcast
+            FeedParser.parsePodcast(podcast, withFeedParserDelegate: self)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -77,14 +97,51 @@ class SubscriptionsViewController: UITableViewController {
     }
     
     private func setupRefreshControl() {
-        customRefreshControl.tintColor = UIColor.whiteColor()
-        customRefreshControl.backgroundColor = UIColor.whiteColor()
+//        customRefreshControl.tintColor = UIColor.whiteColor()
+//        customRefreshControl.backgroundColor = UIColor.whiteColor()
         customRefreshControl.addTarget(self, action: "refreshPodcasts", forControlEvents: UIControlEvents.ValueChanged)
+        customRefreshControl.bounds = CGRect(x: 0, y: 0, width: customRefreshControl.bounds.width, height: 1.4 * customRefreshControl.bounds.height)
+        
+        refreshLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        customRefreshControl.addSubview(refreshLabel)
         tableView.addSubview(customRefreshControl)
+        
+        let leftConstraint = NSLayoutConstraint(item: refreshLabel, attribute: .Leading, relatedBy: .Equal, toItem: customRefreshControl, attribute: .Leading, multiplier: 1, constant: 0)
+        view.addConstraint(leftConstraint)
+        
+        let rightConstraint = NSLayoutConstraint(item: refreshLabel, attribute: .Trailing, relatedBy: .Equal, toItem: customRefreshControl, attribute: .Trailing, multiplier: 1, constant: 0)
+        view.addConstraint(rightConstraint)
+        
+        let bottomConstraint = NSLayoutConstraint(item: refreshLabel, attribute: .Bottom, relatedBy: .Equal, toItem: customRefreshControl, attribute: .Bottom, multiplier: 1, constant: 4)
+        view.addConstraint(bottomConstraint)
+        
+//        let topConstraint = NSLayoutConstraint(item: refreshLabel, attribute: .Top, relatedBy: .Equal, toItem: customRefreshControl, attribute: .CenterY , multiplier: 1, constant: 0)
+//        view.addConstraint(topConstraint)
+        
+        let heightConstraint = NSLayoutConstraint(item: refreshLabel, attribute: .Height, relatedBy: .Equal, toItem: nil , attribute: .NotAnAttribute, multiplier: 1, constant: 20)
+        view.addConstraint(heightConstraint)
+        
+        refreshLabel.textAlignment = .Center
+        refreshLabel.textColor = UIColor.lightGrayColor()
+        refreshLabel.font = UIFont(name: refreshLabel.font.fontName, size : 14)
+    }
+    
+    private func stringForRefreshControl() -> String {
+        if let lastDate = lastRefreshDate {
+            return "\(successfulUpdates) of \(self.subscriptions.count) podcasts updated, last \(lastDate.shortTimeAgoSinceNow())"
+        } else {
+            return "\(successfulUpdates) of \(self.subscriptions.count) podcasts updated"
+        }
     }
     
     func refreshPodcasts() {
-        // TODO : Implement
+        dispatch_async(dispatch_get_main_queue(), {
+            self.refreshLabel.text = self.stringForRefreshControl()
+//            self.refreshLabel.sizeToFit()
+        })
+        
+        updateAllSubscriptionsInBackground()
     }
     
     func addPodcast() {
@@ -114,7 +171,7 @@ class SubscriptionsViewController: UITableViewController {
 
             if let lastDate = podcast.lastUpdated {
 
-                cell.detailLabel.text = "\(podcast.episodeCount!) Episodes, last \(lastDate.shortTimeAgoSinceNow())"
+                cell.detailLabel.text = "\(podcast.episodeCount!) Episodes, last \(lastDate.shortTimeAgoSinceNow()) ago"
             } else {
                 print("NO UPDATE TIME!")
             }
@@ -155,6 +212,7 @@ class SubscriptionsViewController: UITableViewController {
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return subscriptions.count > 0
     }
+    
 }
 
 extension SubscriptionsViewController: ITunesAPIControllerDelegate {
@@ -165,5 +223,35 @@ extension SubscriptionsViewController: ITunesAPIControllerDelegate {
             self.tableView.reloadData()
         })
         // TODO - implement
+    }
+}
+
+extension SubscriptionsViewController: FeedParserDelegate {
+    func didParseFeedIntoEpisodes(episodes: [Episode]) {
+        guard let podcast = episodes.first?.podcast else {
+            return
+        }
+        successfulUpdates += 1
+        print("successful updates is now \(successfulUpdates)")
+        dispatch_async(dispatch_get_main_queue(), {
+            self.refreshLabel.text = self.stringForRefreshControl()
+        })
+        
+        User.sharedInstance.updateSubscriptionData(forPodcast: podcast, withEpisodes: episodes)
+//        User.sharedInstance.updateSubscriptionsWithNewPodcasts([podcast])
+        // TODO : reassign subscriptions and reload data!
+        
+        if (successfulUpdates + failingUpdates) == self.subscriptions.count {
+            customRefreshControl.endRefreshing()
+            successfulUpdates = 0
+            failingUpdates = 0
+            subscriptions = User.sharedInstance.getSubscriptions()
+            lastRefreshDate = NSDate()
+            refreshLabel.text = stringForRefreshControl()
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+        }
+        
     }
 }

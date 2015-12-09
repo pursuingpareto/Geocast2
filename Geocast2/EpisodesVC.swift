@@ -81,6 +81,7 @@ class EpisodesController : UITableViewController {
         return (indexPath.row == 0) ? nil : episodes[indexPath.row - 1]
     }
     
+    // TODO : delete this and switch to implementation in User.swift
     private func updateSubscriptionDataWithCurrentEpisodes() {
         podcast.episodeCount = episodes.count
         if podcast.lastUpdated == nil {
@@ -96,8 +97,6 @@ class EpisodesController : UITableViewController {
                 subscription?.episodeData[episode.mp3URL] = newEpisodeData
             }
         }
-        
-        
     }
     
     @IBAction func subscribeButtonPressed(sender: AnyObject) {

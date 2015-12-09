@@ -92,12 +92,6 @@ class PlayerViewController: UIViewController {
         } else {
             return string
         }
-        
-        
-//        let regex:NSRegularExpression  = NSRegularExpression(
-//            pattern: "<.*?>",
-//            options: NSRegularExpressionOptions.CaseInsensitive,
-//            error: nil)!
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

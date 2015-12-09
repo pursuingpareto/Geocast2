@@ -146,6 +146,23 @@ class User : NSObject {
         }
     }
     
+    func updateSubscriptionData(forPodcast podcast: Podcast, withEpisodes episodes: [Episode]) {
+        podcast.episodeCount = episodes.count
+        if podcast.lastUpdated == nil {
+            podcast.lastUpdated = episodes.first?.pubDate
+        }
+        let user = User.sharedInstance
+        let subscription = user.getSubscription(forPodcast: podcast)
+        for episode in episodes {
+            if let userData = user.getUserData(forEpisode: episode) {
+                continue
+            } else {
+                let newEpisodeData = UserEpisodeData(episode: episode)
+                subscription?.episodeData[episode.mp3URL] = newEpisodeData
+            }
+        }
+    }
+    
     func wipeSubscriptionsAndUpdate(withSubscriptions subs: [Int:PodcastSubscription]) {
         print("about to Wipe subscriptions and update...")
         self.subscriptions.removeAll()
