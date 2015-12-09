@@ -51,6 +51,7 @@ class PodcastSearchController: UITableViewController {
         controller.searchBar.sizeToFit()
         controller.searchBar.placeholder = "Search for Podcasts"
         controller.hidesNavigationBarDuringPresentation = false
+        controller.searchBar.delegate = self
         tableView.tableHeaderView = controller.searchBar
         searchController = controller
         searchController.delegate = self
@@ -113,5 +114,13 @@ extension PodcastSearchController: UISearchResultsUpdating {
 extension PodcastSearchController: UISearchControllerDelegate {
     func didPresentSearchController(searchController: UISearchController) {
         searchController.searchBar.becomeFirstResponder()
+    }
+}
+
+extension PodcastSearchController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        if let text = searchBar.text {
+            iTunesAPI.searchPodcasts(text)
+        }
     }
 }
