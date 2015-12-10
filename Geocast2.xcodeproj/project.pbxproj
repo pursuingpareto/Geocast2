@@ -26,6 +26,7 @@
 		A141E2B11C11266300ABE766 /* SubscribedPodcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2AD1C11266300ABE766 /* SubscribedPodcast.swift */; };
 		A141E2B41C1126D700ABE766 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2B31C1126D700ABE766 /* PersistenceManager.swift */; };
 		A141E2B61C11348900ABE766 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A141E2B51C11348900ABE766 /* CoreData.framework */; };
+		A1477C241C18EFD50074729C /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1477C231C18EFD50074729C /* LoadingCell.swift */; };
 		A17EAC571C161CFB0023D191 /* Audio File-100.png in Resources */ = {isa = PBXBuildFile; fileRef = A17EAC4A1C161CFB0023D191 /* Audio File-100.png */; };
 		A17EAC581C161CFB0023D191 /* AudioFile.png in Resources */ = {isa = PBXBuildFile; fileRef = A17EAC4B1C161CFB0023D191 /* AudioFile.png */; };
 		A17EAC591C161CFB0023D191 /* AudioFile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A17EAC4C1C161CFB0023D191 /* AudioFile@2x.png */; };
@@ -110,6 +111,7 @@
 		A141E2AD1C11266300ABE766 /* SubscribedPodcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribedPodcast.swift; sourceTree = "<group>"; };
 		A141E2B31C1126D700ABE766 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		A141E2B51C11348900ABE766 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A1477C231C18EFD50074729C /* LoadingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		A17EAC4A1C161CFB0023D191 /* Audio File-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Audio File-100.png"; sourceTree = "<group>"; };
 		A17EAC4B1C161CFB0023D191 /* AudioFile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AudioFile.png; sourceTree = "<group>"; };
 		A17EAC4C1C161CFB0023D191 /* AudioFile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AudioFile@2x.png"; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				A141E2911C10EB4600ABE766 /* AddTagCell.swift */,
 				A141E2931C10EB5000ABE766 /* TagLocationButtonsCell.swift */,
 				A17EAC681C165BE90023D191 /* MapView.swift */,
+				A1477C231C18EFD50074729C /* LoadingCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1477C241C18EFD50074729C /* LoadingCell.swift in Sources */,
 				A141E2921C10EB4600ABE766 /* AddTagCell.swift in Sources */,
 				A1A9CBD21C03BAE400628351 /* PodcastSubscription.swift in Sources */,
 				A1A9CBE71C03C3C700628351 /* UserEpisodeData.swift in Sources */,

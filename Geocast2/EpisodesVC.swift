@@ -16,10 +16,11 @@ class EpisodesController : UITableViewController {
     private let playerSegueIdentifier = "playerSegue"
     private let summaryCellIdentifier = "podcastSummaryCell"
     private let episodeCellIdentifier = "episodeCell"
+    private let loadingCellIdentifier = "loadingCell"
     
-    private var podcast: Podcast!
+    var podcast: Podcast!
+    
     private var episodes = [Episode]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,8 @@ class EpisodesController : UITableViewController {
             dispatch_async(dispatch_get_main_queue(), {
                 self.tableView.reloadData()
             })
+        } else {
+//            tableView.hidden = true
         }
         
         // TODO : Check if this is really necessary
@@ -69,9 +72,9 @@ class EpisodesController : UITableViewController {
         super.viewDidAppear(animated)
     }
     
-    func setPodcast(podcast: Podcast) {
-        self.podcast = podcast
-    }
+//    func setPodcast(podcast: Podcast) {
+//        self.podcast = podcast
+//    }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -109,6 +112,11 @@ class EpisodesController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if episodes.count == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(loadingCellIdentifier, forIndexPath: indexPath) as! LoadingCell
+            cell.activityIndicator.startAnimating()
+            return cell
+        }
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(summaryCellIdentifier, forIndexPath: indexPath) as! PodcastSummaryCell
             cell.podcastSummary.text = podcast.summary
@@ -160,7 +168,13 @@ class EpisodesController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return (indexPath.row == 0) ? 110 : 90
+        if episodes.count > 0 {
+            return (indexPath.row == 0) ? 110 : 90
+        } else {
+//            tableView.layoutIfNeeded()
+            return tabBarController!.tabBar.frame.origin.y - navigationController!.navigationBar.frame.origin.y
+        }
+        
     }
 }
 
@@ -185,6 +199,9 @@ extension EpisodesController: FeedParserDelegate {
     func didParseFeedIntoEpisodes(episodes: [Episode]) {
         self.episodes = episodes
         updateSubscriptionDataWithCurrentEpisodes()
+        if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as? LoadingCell {
+            cell.activityIndicator.stopAnimating()
+        }
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView.reloadData()
         })

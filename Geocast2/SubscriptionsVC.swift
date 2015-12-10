@@ -38,8 +38,8 @@ class SubscriptionsViewController: UITableViewController {
         setupNavBar()
         setupRefreshControl()
         iTunesAPI = ITunesAPIController(delegate: self)
-        subscriptions = User.sharedInstance.getSubscriptions()
-        lookupSubscriptionsFromITunes()
+//        subscriptions = User.sharedInstance.getSubscriptions()
+//        lookupSubscriptionsFromITunes()
 //        customRefreshControl.beginRefreshing()
     }
     
@@ -62,13 +62,18 @@ class SubscriptionsViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("preparing for segue \(segue.identifier)")
         if let segueIdentifier = segue.identifier {
             switch segueIdentifier {
             case episodesSegueIdentifier:
                 // TODO : Implement
                 let destinationVC = segue.destinationViewController as! EpisodesController
                 let podcast = subscriptions[tableView.indexPathForSelectedRow!.row].podcast
-                destinationVC.setPodcast(podcast)
+//                dispatch_async(dispatch_get_main_queue(), {
+                    print("about to assign episodesVC to podcast \(podcast.title)")
+                    destinationVC.podcast = podcast
+                    print("assigned episodes vc to podcast \(destinationVC.podcast)")
+//                })
             case podcastSearchSegueIdentifier:
                 // TODO : Implement
                 print("preparing for podcactSearchSegue")
@@ -176,7 +181,6 @@ class SubscriptionsViewController: UITableViewController {
                 print("NO UPDATE TIME!")
             }
             if let url = podcast.thumbnailImageURL {
-                print("found good URL for \(podcast.title) at \(url.absoluteString)")
                 cell.podcastImageView.kf_showIndicatorWhenLoading = true
                 cell.podcastImageView.kf_setImageWithURL(url)
             } else {
@@ -205,7 +209,11 @@ class SubscriptionsViewController: UITableViewController {
         if editingStyle == .Delete {
             let pc = subscriptions[indexPath.row].podcast
             User.sharedInstance.unsubscribe(pc)
-//            userSubscriptionsUpdated()
+            subscriptions = User.sharedInstance.getSubscriptions()
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+//            dispatch_async(dispatch_get_main_queue(), {
+//                self.tableView.reloadData()
+//            })
         }
     }
     
@@ -246,8 +254,9 @@ extension SubscriptionsViewController: FeedParserDelegate {
             successfulUpdates = 0
             failingUpdates = 0
             subscriptions = User.sharedInstance.getSubscriptions()
-            lastRefreshDate = NSDate()
+            lastRefreshDate = nil
             refreshLabel.text = stringForRefreshControl()
+            lastRefreshDate = NSDate()
             dispatch_async(dispatch_get_main_queue(), {
                 self.tableView.reloadData()
             })

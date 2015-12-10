@@ -39,7 +39,9 @@ class PodcastSearchController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let episodesController = segue.destinationViewController as? EpisodesController {
             let podcast = podcastsFound[tableView.indexPathForSelectedRow!.row]
-            episodesController.setPodcast(podcast)
+//            dispatch_sync(dispatch_get_main_queue(), {
+                episodesController.podcast = podcast
+//            })
         }
         super.prepareForSegue(segue, sender: sender)
     }
