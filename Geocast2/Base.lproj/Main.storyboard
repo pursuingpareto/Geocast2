@@ -7,6 +7,66 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--iOS8 Tag View Controller-->
+        <scene sceneID="fjW-nT-QcF">
+            <objects>
+                <viewController id="94M-Ev-gLA" customClass="iOS8TagViewController" customModule="Geocast2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KVI-jD-7xR"/>
+                        <viewControllerLayoutGuide type="bottom" id="OXB-Kh-Rwr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9rc-Ny-L2h">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGc-Mi-k2T" customClass="CalloutView" customModule="Geocast2" customModuleProvider="target">
+                                <rect key="frame" x="20" y="116" width="560" height="350"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rux-I9-dSW">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="btx-JP-w5C"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Title" id="Fqn-3F-qOX">
+                                        <barButtonItem key="leftBarButtonItem" title="Map" id="nmf-yg-7hA">
+                                            <connections>
+                                                <action selector="backToMap:" destination="94M-Ev-gLA" id="hD2-bC-2zC"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="YGc-Mi-k2T" secondAttribute="trailing" id="CO1-I8-u5s"/>
+                            <constraint firstItem="OXB-Kh-Rwr" firstAttribute="top" secondItem="YGc-Mi-k2T" secondAttribute="bottom" constant="134" id="J7L-aY-LvL"/>
+                            <constraint firstItem="YGc-Mi-k2T" firstAttribute="leading" secondItem="9rc-Ny-L2h" secondAttribute="leadingMargin" id="S2d-tY-jcR"/>
+                            <constraint firstItem="YGc-Mi-k2T" firstAttribute="top" secondItem="KVI-jD-7xR" secondAttribute="bottom" constant="96" id="U7q-cS-WMj"/>
+                            <constraint firstAttribute="trailing" secondItem="Rux-I9-dSW" secondAttribute="trailing" id="Uv9-wI-ALx"/>
+                            <constraint firstItem="Rux-I9-dSW" firstAttribute="leading" secondItem="9rc-Ny-L2h" secondAttribute="leading" id="vMU-yA-2eh"/>
+                            <constraint firstItem="Rux-I9-dSW" firstAttribute="top" secondItem="9rc-Ny-L2h" secondAttribute="top" id="zSV-8J-T66"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="WX0-Zv-zB0">
+                        <barButtonItem key="backBarButtonItem" title="Map" id="jow-rL-avK"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backButton" destination="nmf-yg-7hA" id="L1K-Vh-d1f"/>
+                        <outlet property="calloutView" destination="YGc-Mi-k2T" id="ZYu-b8-H6w"/>
+                        <outlet property="navBar" destination="Rux-I9-dSW" id="O6a-kA-o5V"/>
+                        <outlet property="navItem" destination="Fqn-3F-qOX" id="lez-dW-9bK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mNO-zP-GYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1379" y="-544"/>
+        </scene>
         <!--Add Tag View Controller-->
         <scene sceneID="pkx-sE-bHw">
             <objects>
@@ -573,6 +633,7 @@
                     <tabBarItem key="tabBarItem" title="Near Me" image="NearMe.png" id="foC-zi-WvJ"/>
                     <connections>
                         <outlet property="mapView" destination="8kd-4S-31T" id="iiE-Lp-QmA"/>
+                        <segue destination="94M-Ev-gLA" kind="presentation" identifier="iOS8TagSegueIdentifier" id="Kne-CQ-gyB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgU-ts-wJH" userLabel="First Responder" sceneMemberID="firstResponder"/>

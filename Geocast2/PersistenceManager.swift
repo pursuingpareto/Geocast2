@@ -79,22 +79,47 @@ class PersistenceManager: NSObject {
     
     func saveAllUserData() {
         var fetchRequest = NSFetchRequest(entityName: "SubscribedPodcast")
-        var deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try managedObjectContext.persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: managedObjectContext)
-        } catch let error as NSError {
-            print("error saving user data: \(error)")
+        if #available(iOS 9.0, *) {
+            var deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            do {
+                try managedObjectContext.persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: managedObjectContext)
+            } catch let error as NSError {
+                print("error saving user data: \(error)")
+            }
+        } else {
+            do {
+                let objects = try managedObjectContext.executeFetchRequest(fetchRequest) as! [SubscribedPodcast]
+                for obj in objects {
+                    managedObjectContext.deleteObject(obj)
+                }
+            } catch {
+                print("iOS8 error \(error)")
+            }
         }
+        
+        
         
         fetchRequest = NSFetchRequest(entityName: "EpisodeWithStats")
-        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try managedObjectContext.persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: managedObjectContext)
-        } catch let error as NSError {
-            print("error saving user data: \(error)")
+        if #available(iOS 9.0, *) {
+            var deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            do {
+                try managedObjectContext.persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: managedObjectContext)
+            } catch let error as NSError {
+                print("error saving user data: \(error)")
+            }
+        } else {
+            do {
+                let objects = try managedObjectContext.executeFetchRequest(fetchRequest) as! [EpisodeWithStats]
+                for obj in objects {
+                    managedObjectContext.deleteObject(obj)
+                }
+            } catch {
+                print("iOS8 error \(error)")
+            }
         }
+
+        
+        
         
         let subs = User.sharedInstance.getSubscriptions()
         print("subs has length \(subs.count)")
@@ -106,25 +131,5 @@ class PersistenceManager: NSObject {
         } catch {
             print("error saving user data: \(error)")
         }
-        
-        // TODO : Remove this for production
-        
-        if let subs = fetchSubscriptionData() {
-            print("SubscribedPodcasts count is \(subs.count)")
-        } else {
-            print("subscribedPodcasts is nil...")
-        }
-        
-        if let epsWithStats = fetchEpisodeData() {
-            print("epsWithStats count is \(epsWithStats.count)")
-        } else {
-            print("eps with stats is nil...")
-        }
-//        do {
-//            let saveCount = try managedObjectContext.persistentStoreCoordinator?.executeRequest(fetchRequest, withContext: managedObjectContext).count
-//            print("savecount is \(saveCount)")
-//        } catch {
-//            print("error with test fetch: \(error)")
-//        }
     }
 }

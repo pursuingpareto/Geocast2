@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class CalloutView: UIView {
+@IBDesignable class CalloutView: UIView {
     var view: UIView!
 
     @IBOutlet weak var playButton: UIButton!

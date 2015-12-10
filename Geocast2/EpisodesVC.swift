@@ -28,6 +28,7 @@ class EpisodesController : UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        print("view will appear with podcast: \(podcast.title)")
         self.navigationItem.title = podcast.title
         if User.sharedInstance.isSubscribedTo(podcast) {
             navigationItem.setRightBarButtonItem(nil, animated: false)
@@ -65,6 +66,7 @@ class EpisodesController : UITableViewController {
         }
         
         // TODO : Check if this is really necessary
+        print("about to parse the podcast")
         FeedParser.parsePodcast(podcast, withFeedParserDelegate: self)
     }
     
@@ -116,41 +118,42 @@ class EpisodesController : UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier(loadingCellIdentifier, forIndexPath: indexPath) as! LoadingCell
             cell.activityIndicator.startAnimating()
             return cell
-        }
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(summaryCellIdentifier, forIndexPath: indexPath) as! PodcastSummaryCell
-            cell.podcastSummary.text = podcast.summary
-            if let url = podcast.thumbnailImageURL {
-                print("assigning image to summary cell from url \(url.absoluteString)")
-                cell.podcastImageView.kf_showIndicatorWhenLoading = true
-                cell.podcastImageView.kf_setImageWithURL(url)
-            } else {
-                print("no thumbnailImageURL available for \(podcast.title)")
-                // TODO : handle default images
-            }
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(episodeCellIdentifier, forIndexPath: indexPath) as! EpisodeCell
-            let episode = episodeForIndexPath(indexPath)!
-            cell.episodeTitle.text = episode.title
-            cell.episodeTitle.sizeToFit()
-            if let duration = episode.duration {
-                let cmDuration = CMTime(seconds: duration, preferredTimescale: 1)
-                cell.duration.text = cmDuration.asString()
-            }
-            cell.progressBar.setProgress(0.0, animated: false)
-            if let subscription = User.sharedInstance.getSubscription(forPodcast: podcast) {
-                if let data = subscription.episodeData[episode.mp3URL] {
-                    cell.progressBar.setProgress(data!.fractionListenedTo, animated: false)
+        } else  {
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier(summaryCellIdentifier, forIndexPath: indexPath) as! PodcastSummaryCell
+                cell.podcastSummary.text = podcast.summary
+                if let url = podcast.thumbnailImageURL {
+                    print("assigning image to summary cell from url \(url.absoluteString)")
+                    cell.podcastImageView.kf_showIndicatorWhenLoading = true
+                    cell.podcastImageView.kf_setImageWithURL(url)
+                } else {
+                    print("no thumbnailImageURL available for \(podcast.title)")
+                    // TODO : handle default images
                 }
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier(episodeCellIdentifier, forIndexPath: indexPath) as! EpisodeCell
+                let episode = episodeForIndexPath(indexPath)!
+                cell.episodeTitle.text = episode.title
+                cell.episodeTitle.sizeToFit()
+                if let duration = episode.duration {
+                    let cmDuration = CMTime(seconds: duration, preferredTimescale: 1)
+                    cell.duration.text = cmDuration.asString()
+                }
+                cell.progressBar.setProgress(0.0, animated: false)
+                if let subscription = User.sharedInstance.getSubscription(forPodcast: podcast) {
+                    if let data = subscription.episodeData[episode.mp3URL] {
+                        cell.progressBar.setProgress(data!.fractionListenedTo, animated: false)
+                    }
+                }
+                
+                if let date = episode.pubDate {
+                    let formatter = NSDateFormatter()
+                    formatter.dateStyle = .MediumStyle
+                    cell.publicationDate.text = formatter.stringFromDate(date)
+                }
+                return cell
             }
-            
-            if let date = episode.pubDate {
-                let formatter = NSDateFormatter()
-                formatter.dateStyle = .MediumStyle
-                cell.publicationDate.text = formatter.stringFromDate(date)
-            }
-            return cell
         }
     }
     

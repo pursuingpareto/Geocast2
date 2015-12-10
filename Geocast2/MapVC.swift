@@ -13,6 +13,8 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MapView!
     
+    private let iOS8TagSegueIdentifier = "iOS8TagSegueIdentifier"
+    
     let tagManager = TagManager.sharedInstance
     private var currentTags: [Geotag] = []
     private let locationManager = CLLocationManager()
@@ -46,6 +48,17 @@ class MapViewController: UIViewController {
         }
         updateView()
         centerMapOnLocation(CLLocation(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude))
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("preparing for segue with identifier \(segue.identifier)")
+        if segue.identifier! == iOS8TagSegueIdentifier {
+            let destVC = segue.destinationViewController as! iOS8TagViewController
+            let geotag = mapView.selectedAnnotations.first! as! Geotag
+            print("assigning geotag to destVC \(geotag)")
+            destVC.geotag = geotag
+        }
+        super.prepareForSegue(segue, sender: sender)
     }
     
     private func addTagsToMapView() {
@@ -114,21 +127,26 @@ extension MapViewController: MKMapViewDelegate {
             } else {
                 view = GeotagAnnotationView(annotation: geotag, reuseIdentifier: identifier)
             }
-            view.canShowCallout = true
-//            view.enabled = true
-            let calloutView = CalloutView(frame: CGRectMake(0, 0, 300, 240))
-            calloutView.setup(withGeotag: geotag)
             
-            calloutView.playButton.addTarget(self, action: "playButtonPressed:", forControlEvents: .TouchUpInside)
-            
-            let widthConstraint = NSLayoutConstraint(item: calloutView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 300)
-            calloutView.addConstraint(widthConstraint)
-            
-            let heightConstraint = NSLayoutConstraint(item: calloutView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 240)
-            calloutView.addConstraint(heightConstraint)
-            
-            view.detailCalloutAccessoryView = calloutView
-            return view
+            if #available(iOS 9, *) {
+                view.canShowCallout = true
+                //            view.enabled = true
+                let calloutView = CalloutView(frame: CGRectMake(0, 0, 300, 240))
+                calloutView.setup(withGeotag: geotag)
+                
+                calloutView.playButton.addTarget(self, action: "playButtonPressed:", forControlEvents: .TouchUpInside)
+                
+                let widthConstraint = NSLayoutConstraint(item: calloutView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 300)
+                calloutView.addConstraint(widthConstraint)
+                
+                let heightConstraint = NSLayoutConstraint(item: calloutView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 240)
+                calloutView.addConstraint(heightConstraint)
+                
+                view.detailCalloutAccessoryView = calloutView
+                return view
+            } else {
+                return view
+            }
         } else {
             return nil
         }
@@ -152,6 +170,11 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         mapView.selectedAnnotations = [view.annotation as! Geotag]
+        if #available(iOS 9, *) {
+            
+        } else {
+            performSegueWithIdentifier(iOS8TagSegueIdentifier, sender: self)
+        }
     }
     
 }
