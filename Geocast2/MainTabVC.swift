@@ -15,6 +15,7 @@ class MainTabController : UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
+        selectedIndex = TabIndex.podcastIndex.rawValue
     }
     
     enum TabIndex: Int {

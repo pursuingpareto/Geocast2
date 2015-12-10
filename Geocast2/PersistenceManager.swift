@@ -14,6 +14,15 @@ class PersistenceManager: NSObject {
     
     static let sharedInstance = PersistenceManager()
     
+    private let maxDiskCacheMB: UInt = 300
+    private let maxCachePeriodDays: Double = 30
+    
+    override init() {
+        super.init()
+        KingfisherManager.sharedManager.cache.maxDiskCacheSize = maxDiskCacheMB * 1024 * 1024
+        KingfisherManager.sharedManager.cache.maxCachePeriodInSecond = maxCachePeriodDays * 24 * 60 * 60
+    }
+    
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     func fetchSubscriptionData() -> [SubscribedPodcast]? {
