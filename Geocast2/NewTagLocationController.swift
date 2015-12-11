@@ -243,51 +243,7 @@ extension NewTagLocationController: UITableViewDelegate {
                 mapView.selectAnnotation(annotation, animated: true)
             }
         }
-//        tableView.setEditing(true, animated: true)
     }
-    
-//    func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath) {
-//        let cell = tableView.dataSource!.tableView(tableView, cellForRowAtIndexPath: indexPath)
-//        print("cell editing style is \(cell.editingStyle.rawValue)")
-//        tableView.setEditing(true, animated: true)
-//    }
-    
-//    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        print("can edit?")
-//        print("...yes")
-//        if ( locationsFound.count > 0 && selectedIndexPath != nil ){
-//            print("indexPath for selected row: \(selectedIndexPath)")
-//            print("indexPath to compare is   : \(indexPath)")
-//            if indexPath == selectedIndexPath {
-//                print("...yes")
-//                selectedIndexPath = nil
-//                return true
-//            } else {
-//                print("...no")
-//                return false
-//            }
-//        } else {
-//            print("...no")
-//            return false
-//        }
-//    }
-    
-//    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-//        print("editing style: \(UITableViewCellEditingStyle.Insert)")
-////        return UITableViewCellEditingStyle.Insert
-//        return UITableViewCellEditingStyle.None
-//    }
-    
-//    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        print("trying to commit editing style!")
-//        let location = locationsFound[indexPath.row]
-//        let coord = location.placemark.coordinate
-//        let name = getName(fromPlacemark: location.placemark)
-//        let address = getAddress(fromPlacemark: location.placemark)
-//        dismissKeyboard()
-//        delegate?.receivedLocationInformation(self, coordinate: coord, address: address, name: name)
-//    }
-
 }
 
 extension NewTagLocationController: MKMapViewDelegate {
@@ -326,8 +282,6 @@ extension NewTagLocationController: MKMapViewDelegate {
             if (location.placemark.coordinate.latitude == coord.latitude &&  location.placemark.coordinate.longitude == coord.longitude) {
                 selectedIndexPath = NSIndexPath(forRow: i, inSection: 0)
                 tableView.selectRowAtIndexPath(selectedIndexPath, animated: true, scrollPosition: .Top)
-//                tableView.delegate!.tableView!(tableView, didSelectRowAtIndexPath: selectedIndexPath!)
-
             }
         }
     }
@@ -341,6 +295,20 @@ extension NewTagLocationController: MKMapViewDelegate {
             let address = getAddress(fromPlacemark: placemark)
             dismissKeyboard()
             delegate?.receivedLocationInformation(self, coordinate: coord, address: address, name: name)
+        }
+    }
+    
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
+        selectedIndexPath = nil
+        guard let annotation = view.annotation as? LocationAnnotation else {
+            return
+        }
+        let coord = annotation.coordinate
+        for (i, location) in self.locationsFound.enumerate() {
+            if (location.placemark.coordinate.latitude == coord.latitude &&  location.placemark.coordinate.longitude == coord.longitude) {
+                let indexPath = NSIndexPath(forRow: i, inSection: 0)
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            }
         }
     }
     
