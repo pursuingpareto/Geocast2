@@ -26,7 +26,9 @@ class NewTagLocationController: UIViewController {
     
     var delegate: LocationInformationUpdating?
     
+    private var hasReceivedUserLocation = false
     private let zoomWidth: CLLocationDistance = 2000
+    private let unzoomWidth: CLLocationDistance = 20000
 
     private var locationsFound = [MKMapItem]()
     
@@ -64,6 +66,10 @@ class NewTagLocationController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let coord  = mapView.userLocation.coordinate
+        let region = MKCoordinateRegionMakeWithDistance(coord, unzoomWidth, unzoomWidth)
+        mapView.setRegion(region, animated: true)
+        
     }
     
     func getAddress(fromPlacemark pm: MKPlacemark) -> String {
@@ -223,8 +229,10 @@ extension NewTagLocationController: UITableViewDelegate {
         selectedIndexPath = indexPath
         let location = locationsFound[indexPath.row]
         
-        let span = MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0)
-        mapView.setRegion(MKCoordinateRegion(center: location.placemark.coordinate, span: span), animated: true)
+//        let span = MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0)
+        let region = MKCoordinateRegionMakeWithDistance(location.placemark.coordinate, zoomWidth, zoomWidth)
+        mapView.setRegion(region, animated: true)
+//        mapView.setRegion(MKCoordinateRegion(center: location.placemark.coordinate, span: span), animated: true)
         
         tableView.setEditing(true, animated: true)
     }
@@ -303,6 +311,15 @@ extension NewTagLocationController: MKMapViewDelegate {
                 tableView.delegate!.tableView!(tableView, didSelectRowAtIndexPath: selectedIndexPath!)
 
             }
+        }
+    }
+    
+    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+        if !hasReceivedUserLocation {
+            let coord = mapView.userLocation.coordinate
+            let region = MKCoordinateRegionMakeWithDistance(coord, unzoomWidth, unzoomWidth)
+            mapView.setRegion(region, animated: true)
+            hasReceivedUserLocation = true
         }
     }
 }
