@@ -23,6 +23,8 @@ class SubscriptionsViewController: UITableViewController {
     private var customRefreshControl = UIRefreshControl()
     private var iTunesAPI : ITunesAPIController!
     
+    private var secondsSinceLastUpdateRequiredToTriggerUpdate: Int = 1 * 60 * 60
+    
     private var successfulUpdates = 0
     private var failingUpdates = 0
 //    private var totalUpdates: Int = {
@@ -46,6 +48,25 @@ class SubscriptionsViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         subscriptions = User.sharedInstance.getSubscriptions()
+        
+        if let lastUpdate = lastRefreshDate {
+            print("programattically refreshing")
+            let timeSinceLastUpdate = NSDate().timeIntervalSinceDate(lastUpdate)
+            let seconds = Int(timeSinceLastUpdate)
+            if seconds > secondsSinceLastUpdateRequiredToTriggerUpdate {
+                customRefreshControl.beginRefreshing()
+                tableView.setContentOffset(CGPoint(x: 0, y: -self.customRefreshControl.frame.size.height) , animated: true)
+                
+                refreshPodcasts()
+            }
+        } else {
+            print("programattically refreshing")
+            customRefreshControl.beginRefreshing()
+            tableView.setContentOffset(CGPoint(x: 0, y: -self.customRefreshControl.frame.size.height) , animated: true)
+            
+            refreshPodcasts()
+        }
+        
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView.reloadData()
         })

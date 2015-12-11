@@ -232,6 +232,19 @@ extension NewTagLocationController: UITableViewDelegate {
 //        let span = MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0)
         let region = MKCoordinateRegionMakeWithDistance(location.placemark.coordinate, zoomWidth, zoomWidth)
         mapView.setRegion(region, animated: true)
+        
+        let lat = location.placemark.coordinate.latitude
+        let long = location.placemark.coordinate.longitude
+        
+        for annotation in mapView.annotations {
+            let c = annotation.coordinate
+            if (c.latitude == lat && c.longitude == long) {
+                mapView.selectAnnotation(annotation, animated: true)
+//                if let anView = mapView.delegate!.mapView!(mapView, viewForAnnotation: annotation) {
+//                    anView.selected = true
+//                }
+            }
+        }
 //        mapView.setRegion(MKCoordinateRegion(center: location.placemark.coordinate, span: span), animated: true)
         
         tableView.setEditing(true, animated: true)
@@ -294,6 +307,13 @@ extension NewTagLocationController: MKMapViewDelegate {
         } else {
             view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         }
+        view.canShowCallout = true
+        
+        let addButton = UIButton(type: UIButtonType.RoundedRect)
+        addButton.setTitle("Add Location", forState: .Normal)
+        addButton.sizeToFit()
+        view.rightCalloutAccessoryView = addButton
+        
         return view
     }
     
@@ -311,6 +331,18 @@ extension NewTagLocationController: MKMapViewDelegate {
                 tableView.delegate!.tableView!(tableView, didSelectRowAtIndexPath: selectedIndexPath!)
 
             }
+        }
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("tapped accessory")
+        if let annotation = view.annotation as? LocationAnnotation {
+            let coord = annotation.coordinate
+            let placemark = annotation.placemark
+            let name = getName(fromPlacemark: placemark)
+            let address = getAddress(fromPlacemark: placemark)
+            dismissKeyboard()
+            delegate?.receivedLocationInformation(self, coordinate: coord, address: address, name: name)
         }
     }
     
