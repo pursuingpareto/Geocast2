@@ -57,6 +57,8 @@ class MapViewController: UIViewController {
             let geotag = mapView.selectedAnnotations.first! as! Geotag
             print("assigning geotag to destVC \(geotag)")
             destVC.geotag = geotag
+        } else if let vc = segue.destinationViewController as? PlayerViewController {
+            vc.shouldPlay = true
         }
         super.prepareForSegue(segue, sender: sender)
     }
@@ -152,6 +154,15 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
     
+    private func switchToPlayer(withEpisode episode: Episode) {
+        let vc = tabBarController!.viewControllers![MainTabController.TabIndex.playerIndex.rawValue] as! PlayerViewController
+        vc.shouldPlay = true
+        let userEpisodeData: UserEpisodeData? = User.sharedInstance.getUserData(forEpisode: episode)
+        PodcastPlayer.sharedInstance.loadEpisode(episode, withUserEpisodeData: userEpisodeData, completion: {(item) in
+        })
+        tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
+    }
+    
     func playButtonPressed(sender: UIButton!) {
         print("Play button pressed")
         print("sender superview is \(sender.superview)")
@@ -160,12 +171,7 @@ extension MapViewController: MKMapViewDelegate {
             return
         }
         let episode = selected.episode
-        let userData = User.sharedInstance.getUserData(forEpisode: episode)
-        PodcastPlayer.sharedInstance.loadEpisode(episode, withUserEpisodeData: userData, completion: {
-            item in
-        })
-        tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
-
+        switchToPlayer(withEpisode: episode)
     }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {

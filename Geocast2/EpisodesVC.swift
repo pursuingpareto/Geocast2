@@ -70,6 +70,30 @@ class EpisodesController : UITableViewController {
         FeedParser.parsePodcast(podcast, withFeedParserDelegate: self)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("preparing for segue to \(segue.destinationViewController)")
+        if let vc = segue.destinationViewController as? PlayerViewController {
+            print("setting shouldPlay to true")
+            guard let indexPath = tableView.indexPathForSelectedRow else {
+                return
+            }
+            guard let episode = episodeForIndexPath(indexPath) else {
+                return
+            }
+            
+        }
+        super.prepareForSegue(segue, sender: sender)
+    }
+    
+    private func switchToPlayer(withEpisode episode: Episode) {
+        let vc = tabBarController!.viewControllers![MainTabController.TabIndex.playerIndex.rawValue] as! PlayerViewController
+        vc.shouldPlay = true
+        let userEpisodeData: UserEpisodeData? = User.sharedInstance.getUserData(forEpisode: episode)
+        PodcastPlayer.sharedInstance.loadEpisode(episode, withUserEpisodeData: userEpisodeData, completion: {(item) in
+        })
+        tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     }
@@ -159,10 +183,7 @@ class EpisodesController : UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let episode = episodeForIndexPath(indexPath) {
-            let userEpisodeData: UserEpisodeData? = User.sharedInstance.getUserData(forEpisode: episode)
-            PodcastPlayer.sharedInstance.loadEpisode(episode, withUserEpisodeData: userEpisodeData, completion: {(item) in
-            })
-            tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
+            switchToPlayer(withEpisode: episode )
         }
     }
     

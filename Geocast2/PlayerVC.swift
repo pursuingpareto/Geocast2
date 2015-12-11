@@ -18,6 +18,8 @@ class PlayerViewController: UIViewController {
         case Normal = 2
     }
     
+    var shouldPlay: Bool = false
+    
     @IBOutlet private weak var playedTime: UILabel!
     @IBOutlet private weak var remainingTime: UILabel!
     @IBOutlet private weak var progressBar: UISlider!
@@ -215,20 +217,14 @@ class PlayerViewController: UIViewController {
         }
         print("about to update toolbar")
         updateToolbar()
-        
-        // put image in the middle
-//        let upper = pubDate.frame.origin.y + pubDate.frame.height
-//        let lower = playbackToolbar.frame.origin.y
-//        
-//        let middle = (upper + lower) / 2.0
-//        
-//        imageView.center.y = middle
-//        summaryTextView.center.y = middle
     }
     
     func playerItemStatusChanged() {
         if getCurrentReadinessState() == .Normal {
-            player.play()
+            if shouldPlay {
+                player.play()
+                shouldPlay = false
+            }
         }
         updateEnabledStatesOfView()
     }
