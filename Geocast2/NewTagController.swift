@@ -89,6 +89,8 @@ class NewTagController: UITableViewController {
         addLocationCell.backgroundColor = (coordinate == nil) ? incompleteCellColor : completedCellColor
         nameLocationCell.backgroundColor = (nameForLocation == nil) ? incompleteCellColor : completedCellColor
         addDescriptionCell.backgroundColor = (descriptionForTag == nil) ? incompleteCellColor : completedCellColor
+        
+        self.title = "Add Tag for \(episode.title)"
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

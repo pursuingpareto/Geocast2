@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+
 protocol LocationInformationUpdating {
     func receivedLocationInformation(fromViewController: UIViewController, coordinate: CLLocationCoordinate2D, address: String?, name: String?) -> Void
 
@@ -31,6 +32,7 @@ class NewTagLocationController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Add Location"
         definesPresentationContext = false
         searchBar.placeholder = "Search for location or address"
         searchBar.delegate = self
@@ -131,7 +133,15 @@ class NewTagLocationController: UIViewController {
 }
 
 extension NewTagLocationController: UISearchBarDelegate {
+    
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        
+        let fadeAnimation = CATransition()
+        fadeAnimation.duration = 0.25
+        fadeAnimation.type = kCATransitionFade
+        
+//        self.navigationItem.title = ""
+        
         UIView.animateWithDuration(0.25, delay: 0.0, options: .CurveEaseInOut, animations: {
             self.transformHeight = self.navigationController!.navigationBar.bounds.height
             let transform = CGAffineTransformMakeTranslation(0, -self.transformHeight)
@@ -146,6 +156,12 @@ extension NewTagLocationController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
         print("Search Bar text did end editing")
         setNavVisibile(true)
+        
+        let fadeAnimation = CATransition()
+        fadeAnimation.duration = 0.25
+        fadeAnimation.type = kCATransitionFade
+//        self.navigationItem.title = "Add Location"
+        
         UIView.animateWithDuration(0.25, delay: 0.0, options: .CurveEaseInOut, animations: {
             self.navigationController!.navigationBar.frame.origin.y += self.transformHeight
             self.view.frame.origin.y += self.transformHeight
@@ -170,23 +186,8 @@ extension NewTagLocationController: UISearchBarDelegate {
     func setNavVisibile(visible:Bool) {
         print("setting nav visible: \(visible)")
         let alpha: CGFloat = visible ? 1.0 : 0.0
-        var c : UIColor
-        if let left = navigationController?.navigationItem.leftBarButtonItem {
-            if left.tintColor != nil {
-                left.tintColor = left.tintColor?.colorWithAlphaComponent(alpha)             }
-        }
-        if let backItem = navigationController?.navigationItem.backBarButtonItem {
-            if backItem.tintColor != nil {
-                backItem.tintColor = backItem.tintColor?.colorWithAlphaComponent(alpha)
-            }
-        }
-        if let item = navigationController?.navigationItem {
-            item.hidesBackButton = !visible
-        }
-        if let x = navigationController?.navigationBar.backItem {
-            x.hidesBackButton = !visible
-        }
-
+        navigationController?.navigationBar.layer.opacity = Float(alpha)
+        navigationItem.titleView?.alpha = alpha
         navigationItem.hidesBackButton = !visible
 
     }
