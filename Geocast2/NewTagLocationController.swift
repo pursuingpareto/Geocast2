@@ -134,35 +134,23 @@ extension NewTagLocationController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         UIView.animateWithDuration(0.25, delay: 0.0, options: .CurveEaseInOut, animations: {
             self.transformHeight = self.navigationController!.navigationBar.bounds.height
-            
             let transform = CGAffineTransformMakeTranslation(0, -self.transformHeight)
-            searchBar.transform = transform
-//            self.navigationController!.navigationBar.alpha = 0.0
+            self.view.frame.origin.y -= self.transformHeight
+            self.navigationController!.navigationBar.frame.origin.y -= self.transformHeight
             self.setNavVisibile(false)
-            self.navigationController!.navigationBar.transform = transform
             }, completion: {
                 completed in
-//                self.navigationController!.navigationBar.hidden = true
-//                searchBar.transform = CGAffineTransformIdentity
-//                searchBar.transform = CGAffineTransformTranslate(searchBar.transform, 0, self.transformHeight)
         })
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
         print("Search Bar text did end editing")
-        
-//        searchBar.transform = CGAffineTransformMakeTranslation(0, -self.transformHeight)
         setNavVisibile(true)
-//        navigationController?.navigationBar.hidden = false
         UIView.animateWithDuration(0.25, delay: 0.0, options: .CurveEaseInOut, animations: {
-            let transform = CGAffineTransformIdentity
-            self.searchBar.transform = transform
-            self.navigationController!.navigationBar.alpha = 1.0
-            self.navigationController!.navigationBar.transform = transform
+            self.navigationController!.navigationBar.frame.origin.y += self.transformHeight
+            self.view.frame.origin.y += self.transformHeight
             }, completion: {
                 completed in
-                self.navigationController?.navigationBar.transform = CGAffineTransformIdentity
-                self.searchBar.transform = CGAffineTransformIdentity
         })
     }
     

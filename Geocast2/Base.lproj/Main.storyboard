@@ -1146,7 +1146,7 @@
                                     <constraint firstAttribute="height" constant="216" id="Fi4-JC-Ytz"/>
                                 </constraints>
                             </mapView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="73" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xkp-VT-YnL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="73" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xkp-VT-YnL">
                                 <rect key="frame" x="0.0" y="324" width="600" height="276"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1210,6 +1210,7 @@
                             <constraint firstItem="VL9-tp-Z6n" firstAttribute="top" secondItem="9LH-bh-Fx1" secondAttribute="bottom" constant="44" id="CoS-43-3fH"/>
                             <constraint firstItem="VL9-tp-Z6n" firstAttribute="leading" secondItem="6Ma-5e-YTH" secondAttribute="leading" id="GaI-it-feb"/>
                             <constraint firstItem="Xkp-VT-YnL" firstAttribute="leading" secondItem="6Ma-5e-YTH" secondAttribute="leading" id="Gmb-Nd-G80"/>
+                            <constraint firstItem="VL9-tp-Z6n" firstAttribute="top" secondItem="9LH-bh-Fx1" secondAttribute="bottom" constant="44" id="NeF-F1-wZT"/>
                             <constraint firstAttribute="trailing" secondItem="Xkp-VT-YnL" secondAttribute="trailing" id="Vb0-Is-KWm"/>
                             <constraint firstItem="VL9-tp-Z6n" firstAttribute="top" secondItem="Hi5-vs-4kA" secondAttribute="bottom" id="aah-so-h57"/>
                             <constraint firstAttribute="trailing" secondItem="Hi5-vs-4kA" secondAttribute="trailing" id="nUS-sO-Efn"/>
@@ -1218,6 +1219,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="CoS-43-3fH"/>
+                                <exclude reference="aah-so-h57"/>
                             </mask>
                         </variation>
                     </view>
