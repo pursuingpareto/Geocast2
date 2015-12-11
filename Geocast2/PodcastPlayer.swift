@@ -15,9 +15,11 @@ let newEpisodeLoadedNotificationKey = "com.andybrown.newEpisodeLoadedKey"
 let playRateChangedNotificationKey = "com.andybrown.playRateChangedKey"
 let playerItemStatusChangedNotificationKey = "com.andybrown.playerItemStatusChangedKey"
 let playTimerUpdateNotificationKey = "com.andybrown.playTimerUpdateKey"
+let applicationBecameActiveNotificationKey = "com.andybrown.applicationBecameActiveKey"
+
 
 class PodcastPlayer: UIResponder {
-    
+    private var albumArt: MPMediaItemArtwork? = nil
     var fastForwardAmount = CMTimeMake(15, 1)
     var rewindAmount = CMTimeMake(15, 1)
     
@@ -28,7 +30,7 @@ class PodcastPlayer: UIResponder {
         return player.currentTime()
     }
     var duration: CMTime?
-    var isPlaying: Bool { return (player.rate > 0) }
+    var isPlaying: Bool { return (player.rate > 0.01 && (player.error == nil)) }
     
     private var currentEpisode: Episode? = nil
     private var player: AVPlayer = AVPlayer()
@@ -77,6 +79,7 @@ class PodcastPlayer: UIResponder {
         player.play()
         NSNotificationCenter.defaultCenter().postNotificationName(playRateChangedNotificationKey, object: self)
         playTimer = NSTimer.scheduledTimerWithTimeInterval(timerUpdateIncrement, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+        updateNowPlaying()
     }
     
     func pause() {
@@ -86,6 +89,7 @@ class PodcastPlayer: UIResponder {
         }
         player.pause()
         playTimer?.invalidate()
+        updateNowPlaying()
     }
     
     func updateTime() {
@@ -96,43 +100,75 @@ class PodcastPlayer: UIResponder {
         guard let totalSeconds = player.currentItem?.duration.seconds else {
             return
         }
-        let songInfo: [String: AnyObject] = [
-            MPMediaItemPropertyArtist: episode.podcast.title,
-            MPMediaItemPropertyTitle: episode.title,
-            MPMediaItemPropertyPlaybackDuration: totalSeconds,
-            //                MPMediaItemPropertyArtwork: podcastArt,
-            MPNowPlayingInfoPropertyElapsedPlaybackTime: player.currentTime().seconds,
-            MPNowPlayingInfoPropertyPlaybackRate: self.player.rate
-        ]
-        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
-        if let url = episode.podcast.largeImageURL {
-            let cache = KingfisherManager.sharedManager.cache
-            cache.retrieveImageForKey(url.absoluteString, options: KingfisherManager.OptionsNone, completionHandler: {
-                (image, cacheType) -> () in
-                if let image = image {
-                    MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
-                } else {
-                    print("error assigning artwork")
-                }
-                
-            })            
+        guard let elapsedSeconds = player.currentItem?.currentTime().seconds else {
+            return
         }
+        
+        if let info = MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo {
+            let lockedRate = MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyPlaybackRate] as! Float
+            if player.rate != lockedRate {
+                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = elapsedSeconds
+                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyPlaybackRate] = player.rate
+            }
+        }
+    }
+    
+    private func updateNowPlaying() {
+        guard let episode = getCurrentEpisode() else {
+            return
+        }
+        guard let totalSeconds = player.currentItem?.duration.seconds else {
+            return
+        }
+        guard let elapsedSeconds = player.currentItem?.currentTime().seconds else {
+            return
+        }
+        
+        if let info = MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo {
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = elapsedSeconds
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyPlaybackRate] = player.rate
+            if MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPMediaItemPropertyArtwork] == nil {
+                if albumArt != nil {
+                    MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPMediaItemPropertyArtwork] = albumArt
+                } else {
+                    if let url = episode.podcast.largeImageURL {
+                        print("got largeImageURL")
+                        let cache = KingfisherManager.sharedManager.cache
+                        cache.retrieveImageForKey(url.absoluteString, options: KingfisherManager.OptionsNone, completionHandler: {
+                            (image, cacheType) -> () in
+                            if let image = image {
+                                print("assigning artwork")
+                                self.albumArt = MPMediaItemArtwork(image: image)
+                                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = self.albumArt
+                            } else {
+                                print("error assigning artwork")
+                            }
+                        })
+                    }
+                }
+            }
+        }
+        
+        
     }
     
     func seekToTime(time: CMTime) {
         if readyToPlay() {
             player.seekToTime(time, completionHandler: {_ in 
                 self.updateTime()
+                self.updateNowPlaying()
             })
         }
     }
     
     func fastForwardBy(time: CMTime) {
         seekToTime(player.currentTime() + time)
+        updateNowPlaying()
     }
     
     func rewindBy(time: CMTime) {
         seekToTime(player.currentTime() - time)
+        updateNowPlaying()
     }
     
     private func readyToPlay() -> Bool {
@@ -172,34 +208,38 @@ class PodcastPlayer: UIResponder {
     }
     
     func setupRemoteControl(withItem item: AVPlayerItem?) {
-//        UIApplication.sharedApplication().endReceivingRemoteControlEvents()
+        print("setting up remoteControl with item \(item)")
         if item == nil || item?.status != .ReadyToPlay {
             return
         }
         if NSClassFromString("MPNowPlayingInfoCenter") != nil {
-//            let podcastArt = MPMediaItemArtwork(image: image!)
             guard let episode = getCurrentEpisode() else {
                 return
             }
             guard let totalSeconds = item?.duration.seconds else {
                 return
             }
+            guard let elapsedSeconds = item?.currentTime().seconds else {
+                return
+            }
             let songInfo: [String: AnyObject] = [
                 MPMediaItemPropertyArtist: episode.podcast.title,
                 MPMediaItemPropertyTitle: episode.title,
                 MPMediaItemPropertyPlaybackDuration: totalSeconds,
-//                MPMediaItemPropertyArtwork: podcastArt,
-                MPNowPlayingInfoPropertyElapsedPlaybackTime: player.currentTime().seconds,
+                MPNowPlayingInfoPropertyElapsedPlaybackTime: elapsedSeconds,
                 MPNowPlayingInfoPropertyPlaybackRate: self.player.rate
             ]
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
             
             if let url = episode.podcast.largeImageURL {
+                print("got largeImageURL")
                 let cache = KingfisherManager.sharedManager.cache
                 cache.retrieveImageForKey(url.absoluteString, options: KingfisherManager.OptionsNone, completionHandler: {
                     (image, cacheType) -> () in
                     if let image = image {
-                        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(image: image)
+                        print("assigning artwork")
+                        self.albumArt = MPMediaItemArtwork(image: image)
+                        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = self.albumArt
                     } else {
                         print("error assigning artwork")
                     }

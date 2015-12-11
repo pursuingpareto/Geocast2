@@ -145,6 +145,7 @@ class PlayerViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateToolbar", name: playRateChangedNotificationKey, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemStatusChanged", name: playerItemStatusChangedNotificationKey, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTime", name: playTimerUpdateNotificationKey, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateToolbar", name: applicationBecameActiveNotificationKey, object: nil)
     }
     
     deinit {
@@ -212,6 +213,7 @@ class PlayerViewController: UIViewController {
             remainingTime.text = "00:00"
             playedTime.text = "00:00"
         }
+        print("about to update toolbar")
         updateToolbar()
         
         // put image in the middle
@@ -277,8 +279,10 @@ class PlayerViewController: UIViewController {
     func updateToolbar() {
         var btn: UIBarButtonItem!
         if player.isPlaying {
+            print("player is playing.")
             btn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Pause, target: self, action: "playPausePressed:")
         } else {
+            print("player is not playing")
             btn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Play, target: self, action: "playPausePressed:")
         }
         var items = playbackToolbar.items!

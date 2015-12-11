@@ -61,7 +61,6 @@ class User : NSObject {
                 let secondsSoFar = fraction * Float(duration.seconds)
                 let newSeconds = secondsSoFar + Float(player.timerUpdateIncrement)
                 data?.fractionListenedTo = newSeconds / Float(duration.seconds)
-                print("fractionListenedTo is \(data?.fractionListenedTo)")
             } else {
                 print("No data for subscription!")
                 let UED = UserEpisodeData(episode: ep)
