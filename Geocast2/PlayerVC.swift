@@ -96,7 +96,8 @@ class PlayerViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == addTagSegueIdentifier {
-            let tagVC = segue.destinationViewController as! AddTagViewController
+            let navController = segue.destinationViewController as! UINavigationController
+            let tagVC = navController.childViewControllers.last as! NewTagController
             if let episode = player.getCurrentEpisode() {
                 tagVC.episode = episode
             } else {

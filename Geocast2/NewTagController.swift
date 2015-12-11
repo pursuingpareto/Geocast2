@@ -13,17 +13,21 @@ class NewTagController: UITableViewController {
     
     var episode: Episode!
     var coordinate: CLLocationCoordinate2D?
-    var potentialName: String?
-    var nameForLocation: String?
-    var addressForLocation: String?
-    var descriptionForTag: String?
+    var potentialName: String? = nil
+    var nameForLocation: String? = nil
+    var addressForLocation: String? = nil
+    var descriptionForTag: String? = nil
     
     private var completedCellColor = UIColor(red: 169/255, green: 255/255, blue: 142/255, alpha: 0.35)
+    private let incompleteCellColor = UIColor(red: 246/255, green: 236/255, blue: 5/255, alpha: 0.14)
     
+    private var tagManager = TagManager.sharedInstance
+    private var defaultRadius: CLLocationDistance = 0
     
     @IBOutlet weak var introTextView: UITextView!
     
     
+    @IBOutlet weak var introTextLabel: UILabel!
     @IBOutlet weak var addLocationCell: UITableViewCell!
     @IBOutlet weak var addLocationLabel: UILabel!
     
@@ -37,8 +41,22 @@ class NewTagController: UITableViewController {
     
     
     @IBOutlet weak var addTagButton: UIButton!
+    
     @IBAction func addTagPressed(sender: UIButton) {
-        
+        let message = "This will tag \(episode.podcast.title): \(episode.title) with the location \(nameForLocation!)"
+        let alertController = UIAlertController(title: "Confirm Location Tag", message: message, preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert) in
+        })
+        alertController.addAction(cancelAction)
+        let confirmAction = UIAlertAction(title: "Add tag", style: .Default, handler: {
+            (alert) in
+            let locationToAdd = CLLocation(latitude: (self.coordinate?.latitude)!, longitude: (self.coordinate?.longitude)!)
+            self.tagManager.addTag(forEpisode: self.episode, atLocation: locationToAdd, withName: self.nameForLocation!, withDescription: self.descriptionForTag!, withAddress: self.addressForLocation!, withRadius: self.defaultRadius)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        alertController.addAction(confirmAction)
+        self.presentViewController(alertController, animated: true, completion: {})
     }
     
     override func viewDidLoad() {
@@ -52,6 +70,8 @@ class NewTagController: UITableViewController {
         addDescriptionTextView.layer.borderWidth = 0.5
         addDescriptionTextView.layer.cornerRadius = 5
         addDescriptionTextView.clipsToBounds = true
+        let back = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain , target: self, action: "backButtonPressed:")
+        navigationItem.setLeftBarButtonItem(back, animated: false)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -60,8 +80,15 @@ class NewTagController: UITableViewController {
         setupViewForEpisode()
     }
     
+    func backButtonPressed(sender: AnyObject?) {
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
     func setupViewForEpisode() {
-        
+        introTextLabel.text = "Four steps to make your contribution"
+        addLocationCell.backgroundColor = (coordinate == nil) ? incompleteCellColor : completedCellColor
+        nameLocationCell.backgroundColor = (nameForLocation == nil) ? incompleteCellColor : completedCellColor
+        addDescriptionCell.backgroundColor = (descriptionForTag == nil) ? incompleteCellColor : completedCellColor
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -109,6 +136,16 @@ class NewTagController: UITableViewController {
         }
 //        super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
         
+    }
+    
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.section == 2 {
+            return false
+        } else if indexPath.section == 0 {
+            return false
+        } else {
+            return true
+        }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
