@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A11BABCF1C1B8B1A003A5A76 /* TagNearMeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11BABCE1C1B8B1A003A5A76 /* TagNearMeCell.swift */; };
+		A11BABD11C1BA728003A5A76 /* TagNearMeDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11BABD01C1BA728003A5A76 /* TagNearMeDetailCell.swift */; };
 		A141E27E1C0FB6D800ABE766 /* vertical_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A141E27D1C0FB6D800ABE766 /* vertical_bar.png */; };
 		A141E2801C0FE45E00ABE766 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E27F1C0FE45E00ABE766 /* Helpers.swift */; };
 		A141E2821C10C5BF00ABE766 /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2811C10C5BF00ABE766 /* TagManager.swift */; };
@@ -96,6 +98,8 @@
 
 /* Begin PBXFileReference section */
 		76FA20AAC328C299C1AAD4ED /* Pods_Geocast2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Geocast2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A11BABCE1C1B8B1A003A5A76 /* TagNearMeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagNearMeCell.swift; sourceTree = "<group>"; };
+		A11BABD01C1BA728003A5A76 /* TagNearMeDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagNearMeDetailCell.swift; sourceTree = "<group>"; };
 		A141E27D1C0FB6D800ABE766 /* vertical_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vertical_bar.png; path = ../../Geocast/Geocast/Images.xcassets/vertical_bar.imageset/vertical_bar.png; sourceTree = "<group>"; };
 		A141E27F1C0FE45E00ABE766 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A141E2811C10C5BF00ABE766 /* TagManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
@@ -291,6 +295,8 @@
 				A141E2931C10EB5000ABE766 /* TagLocationButtonsCell.swift */,
 				A17EAC681C165BE90023D191 /* MapView.swift */,
 				A1477C231C18EFD50074729C /* LoadingCell.swift */,
+				A11BABCE1C1B8B1A003A5A76 /* TagNearMeCell.swift */,
+				A11BABD01C1BA728003A5A76 /* TagNearMeDetailCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -583,8 +589,10 @@
 				A141E2971C11224C00ABE766 /* CoreDataModel.xcdatamodeld in Sources */,
 				A1477C2C1C19F9B80074729C /* NewTagLocationController.swift in Sources */,
 				A141E2B41C1126D700ABE766 /* PersistenceManager.swift in Sources */,
+				A11BABCF1C1B8B1A003A5A76 /* TagNearMeCell.swift in Sources */,
 				A1477C2E1C1A1D520074729C /* LocationAnnotation.swift in Sources */,
 				A1A9CBD51C03BB5400628351 /* MainTabVC.swift in Sources */,
+				A11BABD11C1BA728003A5A76 /* TagNearMeDetailCell.swift in Sources */,
 				A1A9CBCE1C03BAC200628351 /* Episode.swift in Sources */,
 				A141E2B11C11266300ABE766 /* SubscribedPodcast.swift in Sources */,
 				A141E2821C10C5BF00ABE766 /* TagManager.swift in Sources */,

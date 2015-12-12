@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import MapKit
 
 extension CMTime {
     func asString() -> String {
@@ -38,5 +39,37 @@ extension Array {
             }
         }
         return lo // not found, would be inserted at position lo
+    }
+}
+
+extension CLLocationDistance {
+    func toShortString() -> String {
+        let miles = 0.000621371 * self
+        let feet = self * 3.28084
+        if feet < 1000 {
+            return "\(Int(feet)) ft"
+        } else if miles < 10 {
+            return String(format: "%.1f mi", miles)
+        } else {
+            return String(format: "%.0f mi", miles)
+        }
+    }
+}
+
+extension String {
+    func removeHTML() -> String {
+        var regex: NSRegularExpression? = nil
+        do {
+            regex = try NSRegularExpression(pattern: "<.*?>", options:  NSRegularExpressionOptions.CaseInsensitive)
+        } catch {
+            print("error forming regex \(error)")
+        }
+        let range = NSMakeRange(0, self.characters.count)
+        let noHTMLString = regex?.stringByReplacingMatchesInString(self, options: [], range: range, withTemplate: "")
+        if let str = noHTMLString {
+            return str
+        } else {
+            return self
+        }
     }
 }

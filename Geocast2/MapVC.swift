@@ -8,10 +8,14 @@
 
 import UIKit
 import MapKit
+import CoreMedia
+import Kingfisher
 
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MapView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     private let iOS8TagSegueIdentifier = "iOS8TagSegueIdentifier"
     
@@ -21,6 +25,8 @@ class MapViewController: UIViewController {
     private var mapViewRadius: CLLocationDistance = 5000
     private var defaultLocation = CLLocation(latitude: 34.1561, longitude: -118.1319)
     private var initialLocationDetermined = false
+    
+    private var selectedIndexPath: NSIndexPath? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +40,13 @@ class MapViewController: UIViewController {
         } else {
             print("location services not enabled")
         }
+        
+
+        
         mapView.delegate = self
         mapView.showsUserLocation = true
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -74,6 +85,21 @@ class MapViewController: UIViewController {
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
+    @IBAction func segmentedControlChanged(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            mapView.hidden = false
+            tableView.hidden = true
+        case 1:
+            mapView.hidden = true
+            tableView.hidden = false
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+        default:
+            break
+        }
+    }
     private func updateView() {
         var location: CLLocation!
         if let loc = locationManager.location {
@@ -85,6 +111,7 @@ class MapViewController: UIViewController {
             self.currentTags = self.tagManager.getTags(nearLocation: location)
             dispatch_async(dispatch_get_main_queue(), {
                 self.addTagsToMapView()
+                self.tableView.reloadData()
             })
         })
     }
@@ -154,6 +181,13 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
     
+    func detailCellPlayButtonPressed(sender: UIButton) {
+        if let ip = selectedIndexPath {
+            let geotag = currentTags[ip.row]
+            switchToPlayer(withEpisode: geotag.episode)
+        }
+    }
+    
     private func switchToPlayer(withEpisode episode: Episode) {
         let vc = tabBarController!.viewControllers![MainTabController.TabIndex.playerIndex.rawValue] as! PlayerViewController
         vc.shouldPlay = true
@@ -182,5 +216,116 @@ extension MapViewController: MKMapViewDelegate {
             performSegueWithIdentifier(iOS8TagSegueIdentifier, sender: self)
         }
     }
+}
+
+extension MapViewController: UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return currentTags.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let geotag = currentTags[indexPath.row]
+        let episode = geotag.episode
+        let coordinate = geotag.coordinate
+        let coord = mapView.userLocation.coordinate
+        let currentPosition = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
+        let podcastTitle = episode.podcast.title
+        let episodeTitle = episode.title
+        
+        let distance = currentPosition.distanceFromLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
+        
+        if let ip = selectedIndexPath {
+            if indexPath.compare(ip) == NSComparisonResult.OrderedSame {
+                let cell = tableView.dequeueReusableCellWithIdentifier("tagDetailCell", forIndexPath: indexPath) as! TagNearMeDetailCell
+                cell.geotag = geotag
+                cell.podEpLabel.text = "\(podcastTitle) - \(episodeTitle)"
+                cell.textView.text = geotag.tagDescription
+                if let duration = episode.duration {
+                    let cmDuration = CMTime(seconds: episode.duration!, preferredTimescale: 1)
+                    cell.durationLabel.text = cmDuration.asString()
+                }
+                cell.locationLabel.text = geotag.locationName
+                cell.distanceLabel.text = distance.toShortString()
+                if let url = episode.podcast.thumbnailImageURL {
+                    cell.podcastImageView.kf_showIndicatorWhenLoading = true
+                    cell.podcastImageView.kf_setImageWithURL(url)
+                }
+                
+                cell.playButton.addTarget(self, action: "detailCellPlayButtonPressed:", forControlEvents: .TouchUpInside)
+                
+                return cell
+            }
+        }
+      
+        let cell = tableView.dequeueReusableCellWithIdentifier("tagCell", forIndexPath: indexPath) as! TagNearMeCell
+
+        cell.addressLabel.text = "\(podcastTitle) - \(episodeTitle)"
+        
+        cell.textView.text = geotag.tagDescription
+        
+        cell.durationLabel.text = distance.toShortString()
+        cell.podEpLabel.text = geotag.locationName
+        
+        if let duration = episode.duration {
+            let cmDuration = CMTime(seconds: episode.duration!, preferredTimescale: 1)
+            cell.distanceLabel.text = cmDuration.asString()
+        }
+        
+        if let url = episode.podcast.thumbnailImageURL {
+            cell.podcastImageView.kf_showIndicatorWhenLoading = true
+            cell.podcastImageView.kf_setImageWithURL(url)
+        }
+        
+        return cell
+    }
+}
+
+extension MapViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if let ip = selectedIndexPath {
+            if ip == indexPath {
+                return 240
+            }
+        }
+        return 116
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if selectedIndexPath == indexPath {
+            selectedIndexPath = nil
+            tableView.reloadRowsAtIndexPaths(
+                [indexPath],
+                withRowAnimation:UITableViewRowAnimation.Fade)
+            
+            tableView.deselectRowAtIndexPath(indexPath, animated:false)
+            return
+        }
+        
+        if selectedIndexPath != nil {
+            let pleaseRedrawMe = selectedIndexPath!
+            // (note that it will be drawn un-selected
+            // since we're chaging the 'selectedIndexPath' global)
+            selectedIndexPath = indexPath
+            tableView.reloadRowsAtIndexPaths(
+                [pleaseRedrawMe, indexPath],
+                withRowAnimation:UITableViewRowAnimation.Fade)
+            return
+        }
+        
+        selectedIndexPath = indexPath
+//        tableView.beginUpdates()
+        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+//        tableView.endUpdates()
+    }
+    
+//    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+//        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+//    }
     
 }

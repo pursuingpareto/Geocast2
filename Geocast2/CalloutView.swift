@@ -70,11 +70,11 @@ import Kingfisher
         secondaryLabel.hidden = false
         mainLabel.text = geotag.episode.title
         secondaryLabel.text = geotag.episode.podcast.title
-        if let summary = geotag.episode.summary {
+        if let summary = geotag.episode.summary?.removeHTML() {
             textView.text = summary
-        } else if let summary = geotag.episode.iTunesSummary {
+        } else if let summary = geotag.episode.iTunesSummary?.removeHTML() {
             textView.text = summary
-        } else if let summary = geotag.episode.subtitle {
+        } else if let summary = geotag.episode.subtitle?.removeHTML() {
             textView.text = summary
         } else {
             textView.text = "No summary for this episode, but I bet it's a good one 👍"
@@ -87,7 +87,7 @@ import Kingfisher
         mainLabel.text = geotag.episode.title
         secondaryLabel.text = geotag.episode.podcast.title
         let podcast = geotag.episode.podcast
-        if let summary = podcast.summary {
+        if let summary = podcast.summary?.removeHTML() {
             textView.text = summary
         } else {
             textView.text = "No summary information for \(podcast.title) 😧. I'm sure it's a great Podcast though!"
