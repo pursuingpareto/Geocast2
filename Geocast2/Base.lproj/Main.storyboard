@@ -879,12 +879,12 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="9j7-t7-WMP"/>
-                                <exclude reference="aC4-vC-0H1"/>
-                                <exclude reference="nOX-iA-gK9"/>
                                 <exclude reference="asp-N2-t9D"/>
                                 <exclude reference="cRX-lJ-KXo"/>
                                 <exclude reference="oFc-Ez-JFe"/>
+                                <exclude reference="9j7-t7-WMP"/>
+                                <exclude reference="aC4-vC-0H1"/>
+                                <exclude reference="nOX-iA-gK9"/>
                                 <exclude reference="1ph-Sg-Sbc"/>
                             </mask>
                         </variation>
