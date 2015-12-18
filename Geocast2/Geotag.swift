@@ -19,12 +19,12 @@ class Geotag: NSObject, MKAnnotation {
     
     let episode: Episode!
     let location: CLLocation!
-    let tagDescription: String!
-    let locationName: String?
+    let tagDescription: String?
+    let locationName: String!
     let address: String?
     let locationRadius: CLLocationDistance!
     
-    init(episode: Episode, location: CLLocation, description: String, locationName: String?, address: String?, tagRadius:CLLocationDistance = Geotag.defaultLocationRadius) {
+    init(episode: Episode, location: CLLocation, description: String?, locationName: String!, address: String?, tagRadius:CLLocationDistance = Geotag.defaultLocationRadius) {
         self.episode = episode
         self.location = location
         self.tagDescription = description

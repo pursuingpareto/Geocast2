@@ -66,8 +66,8 @@ class TagManager : NSObject {
                 let pfPodcast = tagObject["podcast"] as! PFObject
                 let pfEpisode = tagObject["episode"] as! PFObject
                 let pfLocation = tagObject["location"] as! PFGeoPoint
-                let pfAddress = tagObject["address"] as! String
-                let pfDescription = tagObject["tagDescription"] as! String
+                let pfAddress = tagObject["address"] as? String
+                let pfDescription = tagObject["tagDescription"] as? String
                 let pfLocationName = tagObject["locationName"] as! String
                 let pfLocationRadius = tagObject["locationRadius"] as! CLLocationDistance
                 let episode = Episode(pfEpisode: pfEpisode)
