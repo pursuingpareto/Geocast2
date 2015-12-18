@@ -16,12 +16,17 @@ import Kingfisher
     
     var geotag: Geotag!
     
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var textView: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var mainLabel: UILabel!
     
+    @IBOutlet weak var podcastLabel: UILabel!
+    @IBOutlet weak var episodeLabel: UILabel!
+    @IBOutlet weak var locationDescriptionLabel: UILabel!
     @IBOutlet weak var secondaryLabel: UILabel!
     
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBAction func segmentedControlChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -38,6 +43,7 @@ import Kingfisher
     
     func setup(withGeotag tag: Geotag) {
         self.geotag = tag
+        scrollView.alwaysBounceVertical = true
         
         mainLabel.hidden = false
         mainLabel.numberOfLines = 2
@@ -55,7 +61,23 @@ import Kingfisher
             secondaryLabel.hidden = true
         }
         
-        textView.text = tag.tagDescription
+        episodeLabel.text = geotag.episode.title
+        
+        if let description = tag.tagDescription {
+            locationDescriptionLabel.text = description
+        } else {
+            locationDescriptionLabel.hidden = true
+        }
+        
+        if let summary = geotag.episode.summary?.removeHTML().stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
+            textView.text = summary
+        } else if let summary = geotag.episode.iTunesSummary?.removeHTML().stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
+            textView.text = summary
+        } else if let summary = geotag.episode.subtitle?.removeHTML().stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
+            textView.text = summary
+        } else {
+            textView.text = "No summary for this episode, but I bet it's a good one 👍"
+        }
         
         if let url = tag.episode.podcast.largeImageURL {
             imageView.kf_showIndicatorWhenLoading = true
@@ -63,18 +85,30 @@ import Kingfisher
         } else {
             // TODO : handle default images
         }
+        
+        textView.sizeToFit()
+        contentView.sizeToFit()
+        
+        let scrollHeight = textView.frame.origin.y + textView.frame.height
+        
+        scrollView.contentSize = scrollView.bounds.size
+        scrollView.contentSize.height = scrollHeight
+        scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollView.contentOffset.y), animated: true)
+
+        print("scrollView has size \(scrollView.bounds.size)")
+        print("scrollView has contentSize \(scrollView.contentSize)")
     }
     
     func setupEpisodeView() {
-        mainLabel.hidden = false
-        secondaryLabel.hidden = false
-        mainLabel.text = geotag.episode.title
-        secondaryLabel.text = geotag.episode.podcast.title
-        if let summary = geotag.episode.summary?.removeHTML() {
+//        mainLabel.hidden = false
+//        secondaryLabel.hidden = false
+//        mainLabel.text = geotag.episode.title
+//        secondaryLabel.text = geotag.episode.podcast.title
+        if let summary = geotag.episode.summary?.removeHTML().stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
             textView.text = summary
-        } else if let summary = geotag.episode.iTunesSummary?.removeHTML() {
+        } else if let summary = geotag.episode.iTunesSummary?.removeHTML().stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
             textView.text = summary
-        } else if let summary = geotag.episode.subtitle?.removeHTML() {
+        } else if let summary = geotag.episode.subtitle?.removeHTML().stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
             textView.text = summary
         } else {
             textView.text = "No summary for this episode, but I bet it's a good one 👍"
@@ -82,12 +116,12 @@ import Kingfisher
     }
     
     func setupPodcastView() {
-        mainLabel.hidden = false
-        secondaryLabel.hidden = false
-        mainLabel.text = geotag.episode.title
-        secondaryLabel.text = geotag.episode.podcast.title
+//        mainLabel.hidden = false
+//        secondaryLabel.hidden = false
+//        mainLabel.text = geotag.episode.title
+//        secondaryLabel.text = geotag.episode.podcast.title
         let podcast = geotag.episode.podcast
-        if let summary = podcast.summary?.removeHTML() {
+        if let summary = podcast.summary?.removeHTML().stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
             textView.text = summary
         } else {
             textView.text = "No summary information for \(podcast.title) 😧. I'm sure it's a great Podcast though!"

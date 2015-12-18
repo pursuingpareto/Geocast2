@@ -148,6 +148,7 @@ extension MapViewController: CLLocationManagerDelegate {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        print("trying to get viewForAnnotation")
         if let geotag = annotation as? Geotag {
             let identifier = GeotagAnnotationView.reuseIdentifier
             var view: GeotagAnnotationView!
