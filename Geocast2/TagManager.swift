@@ -14,8 +14,10 @@ class TagManager : NSObject {
     
     static let sharedInstance = TagManager()
     
-    func addTag(forEpisode episode: Episode, atLocation location: CLLocation, withName name: String, withDescription description: String, withAddress address: String, withRadius radius: CLLocationDistance) {
+    func addTag(forEpisode episode: Episode, atLocation location: CLLocation, withName name: String, withDescription description: String?, withAddress address: String, withRadius radius: CLLocationDistance) {
+        print("description is \(description)")
         let annotation = Geotag(episode: episode, location: location, description: description, locationName: name, address: address, tagRadius: radius)
+        print("annotation is \(annotation)")
         var query = PFQuery(className: "Podcast")
         query.whereKey("collectionId", equalTo: episode.podcast.collectionId)
         query.findObjectsInBackgroundWithBlock({
@@ -44,7 +46,9 @@ class TagManager : NSObject {
                 let point = PFGeoPoint(location: location)
                 pfTag["location"] = point
                 pfTag["locationName"] = name
-                pfTag["tagDescription"] = description
+                if description != nil {
+                    pfTag["tagDescription"] = description
+                }
                 pfTag["address"] = address
                 pfTag["locationRadius"] = radius
                 print("about to save tag")

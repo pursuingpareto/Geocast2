@@ -52,7 +52,7 @@ class NewTagController: UITableViewController {
         let confirmAction = UIAlertAction(title: "Add tag", style: .Default, handler: {
             (alert) in
             let locationToAdd = CLLocation(latitude: (self.coordinate?.latitude)!, longitude: (self.coordinate?.longitude)!)
-            self.tagManager.addTag(forEpisode: self.episode, atLocation: locationToAdd, withName: self.nameForLocation!, withDescription: self.descriptionForTag!, withAddress: self.addressForLocation!, withRadius: self.defaultRadius)
+            self.tagManager.addTag(forEpisode: self.episode, atLocation: locationToAdd, withName: self.nameForLocation!, withDescription: self.descriptionForTag, withAddress: self.addressForLocation!, withRadius: self.defaultRadius)
             self.dismissViewControllerAnimated(true, completion: nil)
         })
         alertController.addAction(confirmAction)
@@ -176,10 +176,10 @@ class NewTagController: UITableViewController {
             addTagButton.enabled = false
             return
         }
-        guard descriptionForTag != nil else {
-            addTagButton.enabled = false
-            return
-        }
+//        guard descriptionForTag != nil else {
+//            addTagButton.enabled = false
+//            return
+//        }
         guard nameForLocation != nil else {
             addTagButton.enabled = false
             return
