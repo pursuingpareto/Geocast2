@@ -18,6 +18,9 @@ class NewTagController: UITableViewController {
     var addressForLocation: String? = nil
     var descriptionForTag: String? = nil
     
+    private let maxCharactersForLocationName = 50
+    private let maxCharactersForDescription = 150
+    
     private var completedCellColor = UIColor(red: 169/255, green: 255/255, blue: 142/255, alpha: 0.35)
     private let incompleteCellColor = UIColor(red: 246/255, green: 236/255, blue: 5/255, alpha: 0.14)
     
@@ -211,7 +214,14 @@ extension NewTagController: UITextViewDelegate {
                 updateAddTagButton()
                 return false
             }
+            
+            guard let prevText = textView.text else { return true }
+            let newLength = prevText.characters.count + text.characters.count - range.length
+            return newLength <= maxCharactersForDescription
+            
         }
+        
+        
         return true
         
     }
@@ -228,6 +238,10 @@ extension NewTagController: UITextFieldDelegate {
                 updateAddTagButton()
                 return false
             }
+            
+            guard let prevText = textField.text else { return true }
+            let newLength = prevText.characters.count + string.characters.count - range.length
+            return newLength <= maxCharactersForLocationName
         }
         return true
     }
