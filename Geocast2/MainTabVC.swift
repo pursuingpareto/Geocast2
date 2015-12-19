@@ -12,6 +12,17 @@ class MainTabController : UITabBarController {
     
     var shouldDismissPlayer: Bool = false
     
+    var lastSelectedIndex: Int = 0
+    
+    override var selectedIndex: Int {
+//        get {
+//            return super.selectedIndex
+//        }
+        didSet {
+            lastSelectedIndex = oldValue
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self

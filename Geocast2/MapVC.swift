@@ -161,15 +161,15 @@ extension MapViewController: MKMapViewDelegate {
             if #available(iOS 9, *) {
                 view.canShowCallout = true
                 //            view.enabled = true
-                let calloutView = CalloutView(frame: CGRectMake(0, 0, 300, 240))
+                let calloutView = CalloutView(frame: CGRectMake(0, 0, 320, 290))
                 calloutView.setup(withGeotag: geotag)
                 
                 calloutView.playButton.addTarget(self, action: "playButtonPressed:", forControlEvents: .TouchUpInside)
                 
-                let widthConstraint = NSLayoutConstraint(item: calloutView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 300)
+                let widthConstraint = NSLayoutConstraint(item: calloutView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 320)
                 calloutView.addConstraint(widthConstraint)
                 
-                let heightConstraint = NSLayoutConstraint(item: calloutView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 240)
+                let heightConstraint = NSLayoutConstraint(item: calloutView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 290)
                 calloutView.addConstraint(heightConstraint)
                 
                 view.detailCalloutAccessoryView = calloutView

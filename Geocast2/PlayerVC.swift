@@ -46,6 +46,9 @@ class PlayerViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         prepareView(forReadinessState: getCurrentReadinessState())
+        if let mainTabVC = self.tabBarController as? MainTabController {
+            self.tabBarController?.selectedIndex = mainTabVC.lastSelectedIndex
+        }
         assignBackgroundImage()
         assignSummaryText()
     }
@@ -308,7 +311,10 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func hideButtonPressed(sender: AnyObject) {
-        self.tabBarController?.selectedIndex = MainTabController.TabIndex.podcastIndex.rawValue
+//        self.tabBarController?.selectedIndex = MainTabController.TabIndex.podcastIndex.rawValue
+        if let mainTabVC = self.tabBarController as? MainTabController {
+            self.tabBarController?.selectedIndex = mainTabVC.lastSelectedIndex
+        }
         self.tabBarController?.tabBar.hidden = false
     }
     
