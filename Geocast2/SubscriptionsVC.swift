@@ -162,12 +162,17 @@ class SubscriptionsViewController: UITableViewController {
     }
     
     func refreshPodcasts() {
-        dispatch_async(dispatch_get_main_queue(), {
-            self.refreshLabel.text = self.stringForRefreshControl()
-//            self.refreshLabel.sizeToFit()
-        })
+        if subscriptions.count > 0 {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.refreshLabel.text = self.stringForRefreshControl()
+                //            self.refreshLabel.sizeToFit()
+            })
+            
+            updateAllSubscriptionsInBackground()
+        } else {
+            customRefreshControl.endRefreshing()
+        }
         
-        updateAllSubscriptionsInBackground()
     }
     
     func addPodcast() {
