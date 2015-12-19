@@ -262,6 +262,10 @@ extension NewTagLocationController: MKMapViewDelegate {
         }
         view.canShowCallout = true
         
+        if #available(iOS 9, *) {
+            view.pinTintColor = UIColor.blackColor()
+        }
+        
         let addButton = UIButton(type: UIButtonType.RoundedRect)
         addButton.setTitle("Add Location", forState: .Normal)
         addButton.sizeToFit()
