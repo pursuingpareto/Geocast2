@@ -159,6 +159,7 @@ extension MapViewController: MKMapViewDelegate {
             }
             
             if #available(iOS 9, *) {
+                view.pinTintColor = UIColor.blackColor()
                 view.canShowCallout = true
                 //            view.enabled = true
                 let calloutView = CalloutView(frame: CGRectMake(0, 0, 320, 290))
