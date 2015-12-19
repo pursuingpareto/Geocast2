@@ -116,6 +116,10 @@ class PlayerViewController: UIViewController {
         }
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     func prepareView(forReadinessState readinessState: ReadinessState) {
         switch readinessState {
         case .NoData:
@@ -155,14 +159,16 @@ class PlayerViewController: UIViewController {
     }
     
     private func setupProgressBar() {
-        let verticalBar = UIImage(named: "vertical_bar")
-        let size = CGSizeApplyAffineTransform((verticalBar!.size), CGAffineTransformMakeScale(0.08, 0.05))
+        let verticalBar = UIImage(named: "white_vertical_bar")
+        let size = CGSizeApplyAffineTransform((verticalBar!.size), CGAffineTransformMakeScale(0.05, 0.03))
         let hasAlpha = false
         let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
         UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
         verticalBar!.drawInRect(CGRect(origin: CGPointZero, size: size))
         let scaledBar = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
+        
         progressBar.setThumbImage(scaledBar, forState: .Normal)
     }
     
@@ -181,6 +187,7 @@ class PlayerViewController: UIViewController {
         
         pubDate.hidden = false
         pubDate.text = "Please select an episode to begin playing."
+        pubDate.textColor = UIColor.whiteColor()
         
         tabBarController?.tabBar.hidden = false
     }

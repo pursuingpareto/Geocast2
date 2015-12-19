@@ -129,10 +129,10 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
             newEpisode = nil
             
             // try to make an episode
-            guard let title:String = entry["title"] else {
+            guard let title:String = entry["title"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) else {
                 continue
             }
-            guard let mp3UrlString:String = entry["mp3Url"] else {
+            guard let mp3UrlString:String = entry["mp3Url"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) else {
                 continue
             }
             guard let mp3Url = NSURL(string: mp3UrlString) else {
@@ -146,16 +146,16 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
                 }
             }
             
-            var summary = entry["description"]
+            var summary = entry["description"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             
             if summary == nil {
-                summary = entry["itunes:summary"]
+                summary = entry["itunes:summary"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             }
             
-            let itunesSummary = entry["itunes:summary"]
-            let subtitle = entry["itunes:subtitle"]
+            let itunesSummary = entry["itunes:summary"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let subtitle = entry["itunes:subtitle"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let pubDateString = entry["pubDate"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            let pubDate = FeedParser.dateFromString(entry["pubDate"])
+            let pubDate = FeedParser.dateFromString(entry["pubDate"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
             
             newEpisode.subtitle = subtitle
             newEpisode.iTunesSummary = itunesSummary

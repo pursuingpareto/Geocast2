@@ -65,9 +65,9 @@ class Podcast: NSObject {
                 if let kind = podcastInfo["kind"] as? String {
                     
                     if kind == "podcast" {
-                        var name = podcastInfo["trackName"] as? String
+                        var name = (podcastInfo["trackName"] as? String)?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                         if name == nil {
-                            name = podcastInfo["collectionName"] as? String
+                            name = (podcastInfo["collectionName"] as? String)?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                         }
                         if name == nil {
                             print("no name for podcast, continuing...")
@@ -79,7 +79,7 @@ class Podcast: NSObject {
                             continue
                         }
                         
-                        guard let feedUrlString = (podcastInfo["feedUrl"] as? String) else {
+                        guard let feedUrlString = (podcastInfo["feedUrl"] as? String)?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) else {
                             print("no feed URL string, continuing...")
                             continue
                         }
@@ -91,7 +91,7 @@ class Podcast: NSObject {
                         
                         let podcast: Podcast = Podcast(title: name!, collectionId: collectionId, feedUrl: feedUrl)
                         
-                        if let releaseDateString = podcastInfo["releaseDate"] as? String {
+                        if let releaseDateString = (podcastInfo["releaseDate"] as? String)?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
                             if let releaseDate = dateFormatter.dateFromString(releaseDateString) {
                                 podcast.lastUpdated = releaseDate
                             } else {
@@ -99,11 +99,11 @@ class Podcast: NSObject {
                             }
                         }
                         
-                        if let thumbnailURLString = (podcastInfo["artworkUrl100"] as? String) {
+                        if let thumbnailURLString = (podcastInfo["artworkUrl100"] as? String)?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
                             podcast.thumbnailImageURL = NSURL(string: thumbnailURLString)
                         }
                         
-                        if let imageURLString = (podcastInfo["artworkUrl600"] as? String) {
+                        if let imageURLString = (podcastInfo["artworkUrl600"] as? String)?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
                             podcast.largeImageURL = NSURL(string: imageURLString)
                         }
                         
