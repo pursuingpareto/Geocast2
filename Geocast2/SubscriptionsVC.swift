@@ -247,6 +247,20 @@ class SubscriptionsViewController: UITableViewController {
         return subscriptions.count > 0
     }
     
+    // TODO : allow reordering by implementing the following two methods
+    
+//    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+//        return subscriptions.count > 0
+//    }
+//    
+//    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+//        let podcastToMove = subscriptions[sourceIndexPath.row]
+//        subscriptions.removeAtIndex(sourceIndexPath.row)
+//        subscriptions.insert(podcastToMove, atIndex: destinationIndexPath.row)
+//        if sourceIndexPath != destinationIndexPath {
+//            User.sharedInstance.podcastOrderingOption = .Custom
+//        }
+//    }
 }
 
 extension SubscriptionsViewController: ITunesAPIControllerDelegate {
@@ -287,6 +301,5 @@ extension SubscriptionsViewController: FeedParserDelegate {
                 self.tableView.reloadData()
             })
         }
-        
     }
 }

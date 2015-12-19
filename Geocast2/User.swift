@@ -8,12 +8,16 @@
 
 import Foundation
 
-enum PodcastOrderingOption {
-    case SubscriptionDateDescending
-    case SubscriptionDateAscending
+enum PodcastOrderingOption: Int {
+    case SubscriptionDateDescending = 0
+    case SubscriptionDateAscending = 1
+    case Custom = 2
 }
 
 class User : NSObject {
+    
+    var podcastOrderingOption: PodcastOrderingOption = PodcastOrderingOption.SubscriptionDateDescending
+    
     static let sharedInstance = User()
     override init() {
         super.init()
@@ -80,18 +84,23 @@ class User : NSObject {
         }
     }
     
-    func getSubscriptions(orderedBy order: PodcastOrderingOption = .SubscriptionDateDescending) -> [PodcastSubscription] {
+    func getSubscriptions() -> [PodcastSubscription] {
         var subs: [PodcastSubscription] = []
         for sub in subscriptions.values {
             if sub != nil {
                 subs.append(sub!)
             }
         }
+        
+        let order = self.podcastOrderingOption
+        
         switch order {
         case PodcastOrderingOption.SubscriptionDateDescending:
             return subs.sort({$0.subscriptionDate.compare($1.subscriptionDate) == NSComparisonResult.OrderedDescending})
         case PodcastOrderingOption.SubscriptionDateAscending:
             return subs.sort({$0.subscriptionDate.compare($1.subscriptionDate) == NSComparisonResult.OrderedAscending})
+        case PodcastOrderingOption.Custom:
+            return subs
         }
     }
     
