@@ -153,8 +153,10 @@ class PodcastPlayer: UIResponder {
     }
     
     func seekToTime(time: CMTime) {
+        let oldRate = player.rate
         if readyToPlay() {
-            player.seekToTime(time, completionHandler: {_ in 
+            player.seekToTime(time, completionHandler: {_ in
+                self.player.rate = oldRate
                 self.updateTime()
                 self.updateNowPlaying()
             })

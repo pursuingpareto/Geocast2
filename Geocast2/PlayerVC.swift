@@ -156,7 +156,7 @@ class PlayerViewController: UIViewController {
     
     private func setupProgressBar() {
         let verticalBar = UIImage(named: "vertical_bar")
-        let size = CGSizeApplyAffineTransform((verticalBar?.size)!, CGAffineTransformMakeScale(0.15, 0.15))
+        let size = CGSizeApplyAffineTransform((verticalBar!.size), CGAffineTransformMakeScale(0.08, 0.05))
         let hasAlpha = false
         let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
         UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
@@ -264,11 +264,11 @@ class PlayerViewController: UIViewController {
         if let duration = PodcastPlayer.sharedInstance.duration {
             let seconds = Int64(progress * Float(duration.seconds))
             player.seekToTime(CMTimeMake(seconds, 1))
-            if player.isPlaying {
-                player.play()
-            } else {
-                player.pause()
-            }
+//            if player.isPlaying {
+//                player.play()
+//            } else {
+//                player.pause()
+//            }
         }
     }
     
