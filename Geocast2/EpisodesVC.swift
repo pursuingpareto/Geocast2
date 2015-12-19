@@ -193,12 +193,16 @@ class EpisodesController : UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if episodes.count > 0 {
-            return (indexPath.row == 0) ? 110 : 90
+            return (indexPath.row == 0) ? UITableViewAutomaticDimension : 90
         } else {
 //            tableView.layoutIfNeeded()
             return tabBarController!.tabBar.frame.origin.y - navigationController!.navigationBar.frame.origin.y
         }
         
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 90
     }
 }
 

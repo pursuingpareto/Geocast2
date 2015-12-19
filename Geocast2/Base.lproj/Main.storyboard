@@ -502,8 +502,8 @@
                                                 <constraint firstAttribute="height" constant="90" id="N6L-CR-vbF"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Or5-8L-LqO">
-                                            <rect key="frame" x="106" y="8" width="486" height="90"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Or5-8L-LqO">
+                                            <rect key="frame" x="106" y="8" width="486" height="18"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -515,10 +515,12 @@
                                         <constraint firstItem="Or5-8L-LqO" firstAttribute="height" secondItem="ela-Ad-SyB" secondAttribute="height" id="0BV-18-wA1"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Or5-8L-LqO" secondAttribute="trailing" id="1ag-0b-YWh"/>
                                         <constraint firstItem="ela-Ad-SyB" firstAttribute="top" secondItem="gAB-F1-V9T" secondAttribute="topMargin" id="5bj-gC-W72"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Or5-8L-LqO" secondAttribute="bottom" constant="3" id="LgN-oA-ngn"/>
                                         <constraint firstItem="Or5-8L-LqO" firstAttribute="top" secondItem="ela-Ad-SyB" secondAttribute="top" id="TPL-3r-cWb"/>
                                         <constraint firstAttribute="topMargin" secondItem="ela-Ad-SyB" secondAttribute="top" constant="10" id="VEn-8N-B8L"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Or5-8L-LqO" secondAttribute="bottom" constant="-3" id="hXE-Rm-0og"/>
                                         <constraint firstItem="Or5-8L-LqO" firstAttribute="leading" secondItem="ela-Ad-SyB" secondAttribute="trailing" constant="8" id="j9R-2L-cTi"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="ela-Ad-SyB" secondAttribute="bottom" constant="3" id="qKD-NI-iT1"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="ela-Ad-SyB" secondAttribute="leading" id="qkK-Lb-1mo"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="ela-Ad-SyB" secondAttribute="leading" constant="10" id="xCl-io-xkV"/>
                                     </constraints>
