@@ -35,7 +35,11 @@ class PodcastPlayer: UIResponder {
     private var currentEpisode: Episode? = nil
     private var player: AVPlayer = AVPlayer()
     private var onItemReady: () -> Void = {}
-    private var playTimer: NSTimer?
+    private var playTimer: NSTimer? {
+        willSet {
+            playTimer?.invalidate()
+        }
+    }
     
     var timerUpdateIncrement = NSTimeInterval(1.0)
     
@@ -57,16 +61,23 @@ class PodcastPlayer: UIResponder {
         NSNotificationCenter.defaultCenter().postNotificationName(newEpisodeLoadedNotificationKey, object: self)
         print("currentEpisode is \(currentEpisode!.title)")
         let url = currentEpisode!.mp3URL
+        player.actionAtItemEnd = .None
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
             let playerItem = AVPlayerItem(URL: url)
             self.loadItem(playerItem)
             self.onItemReady = completion
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
             dispatch_async(dispatch_get_main_queue(), {
                 if let data = data {
                     self.player.seekToTime(data.lastPlayedTimestamp)
                 }
             })
         }
+    }
+    
+    func playerItemDidReachEnd(notification: NSNotification) {
+        print("playerItemDidReachEnd!")
+        self.pause()
     }
     
     func getCurrentEpisode() -> Episode? { return currentEpisode }
@@ -89,6 +100,8 @@ class PodcastPlayer: UIResponder {
         }
         player.pause()
         playTimer?.invalidate()
+        NSNotificationCenter.defaultCenter().postNotificationName(playRateChangedNotificationKey, object: self)
+        
         updateNowPlaying()
     }
     

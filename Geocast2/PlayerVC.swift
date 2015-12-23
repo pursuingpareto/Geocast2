@@ -240,12 +240,15 @@ class PlayerViewController: UIViewController {
     }
     
     private func updateEnabledStatesOfView() {
-        if getCurrentReadinessState() == .Normal {
+        let readinessState = getCurrentReadinessState()
+        print("readinessState is \(readinessState)")
+        switch readinessState {
+        case .Normal:
             progressBar.userInteractionEnabled = true
             for btn in playbackToolbar.items! {
                 btn.enabled = true
             }
-        } else {
+        default:
             progressBar.userInteractionEnabled = false
             for btn in playbackToolbar.items! {
                 btn.enabled = false
@@ -270,6 +273,7 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func scrubbedPlayer(sender: UISlider) {
+        print("Scrubbed!")
         let progress = sender.value
         if let duration = PodcastPlayer.sharedInstance.duration {
             let seconds = Int64(progress * Float(duration.seconds))
