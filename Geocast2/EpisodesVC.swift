@@ -18,6 +18,7 @@ class EpisodesController : UITableViewController {
     private let episodeCellIdentifier = "episodeCell"
     private let loadingCellIdentifier = "loadingCell"
     
+    private var summaryCellExpanded: Bool = false
     var podcast: Podcast!
     
     private var episodes = [Episode]()
@@ -148,6 +149,8 @@ class EpisodesController : UITableViewController {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier(summaryCellIdentifier, forIndexPath: indexPath) as! PodcastSummaryCell
                 cell.podcastSummary.text = podcast.summary
+                cell.podcastSummary.numberOfLines = summaryCellExpanded ? 0 : 4
+                cell.podcastSummary.lineBreakMode = summaryCellExpanded ? NSLineBreakMode.ByWordWrapping : NSLineBreakMode.ByTruncatingTail
                 if let url = podcast.thumbnailImageURL {
                     cell.podcastImageView.kf_showIndicatorWhenLoading = true
                     cell.podcastImageView.kf_setImageWithURL(url)
@@ -183,13 +186,18 @@ class EpisodesController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == 0 {
+            summaryCellExpanded = !summaryCellExpanded
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
         if let episode = episodeForIndexPath(indexPath) {
             switchToPlayer(withEpisode: episode )
         }
     }
     
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return (indexPath.row == 0) ? false : true
+//        return (indexPath.row == 0) ? false : true
+        return true
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
