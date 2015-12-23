@@ -20,6 +20,12 @@ class MainTabController : UITabBarController {
 //        }
         didSet {
             lastSelectedIndex = oldValue
+            switch selectedIndex {
+            case MainTabController.TabIndex.playerIndex.rawValue:
+                self.tabBar.hidden = true
+            default:
+                self.tabBar.hidden = false
+            }
         }
     }
     
