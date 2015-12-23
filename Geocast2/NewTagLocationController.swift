@@ -160,6 +160,7 @@ extension NewTagLocationController: UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
         setNavVisibile(true)
+        print("Search Bar Text Did End Editing!")
         let fadeAnimation = CATransition()
         fadeAnimation.duration = 0.25
         fadeAnimation.type = kCATransitionFade
@@ -181,7 +182,7 @@ extension NewTagLocationController: UISearchBarDelegate {
         if let text = searchBar.text {
             search(forString: text)
         }
-        searchBar.delegate!.searchBarTextDidEndEditing!(searchBar)
+        print("search button clicked. delegate is \(searchBar.delegate)")
         searchBar.resignFirstResponder()
     }
     
