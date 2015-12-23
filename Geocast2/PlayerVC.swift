@@ -315,7 +315,12 @@ class PlayerViewController: UIViewController {
     @IBAction func hideButtonPressed(sender: AnyObject) {
 //        self.tabBarController?.selectedIndex = MainTabController.TabIndex.podcastIndex.rawValue
         if let mainTabVC = self.tabBarController as? MainTabController {
-            self.tabBarController?.selectedIndex = mainTabVC.lastSelectedIndex
+            if mainTabVC.lastSelectedIndex != MainTabController.TabIndex.playerIndex.rawValue {
+                self.tabBarController?.selectedIndex = mainTabVC.lastSelectedIndex
+            } else {
+                self.tabBarController?.selectedIndex = MainTabController.TabIndex.podcastIndex.rawValue
+            }
+            
         }
         self.tabBarController?.tabBar.hidden = false
     }
