@@ -62,9 +62,13 @@ class User : NSObject {
                     print("NO FRACTION!")
                     return
                 }
+                print("fraction is \(fraction)")
                 let secondsSoFar = fraction * Float(duration.seconds)
                 let newSeconds = secondsSoFar + Float(player.timerUpdateIncrement)
                 data?.fractionListenedTo = newSeconds / Float(duration.seconds)
+                print("  NEW fraction listened to is \(data?.fractionListenedTo)")
+                print("  fractionListenedTo for episode is \(sub?.episodeData[ep.mp3URL]!!.fractionListenedTo)")
+                
             } else {
                 print("No data for subscription!")
                 let UED = UserEpisodeData(episode: ep)
