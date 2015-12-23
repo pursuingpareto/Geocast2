@@ -22,12 +22,12 @@ class TagNearMeDetailCell: UITableViewCell {
     
     @IBOutlet weak var playButton: UIButton!
     
-    func setup(withTagNearMeCell cell: TagNearMeCell) {
-        podcastImageView.image = cell.podcastImageView.image
-        distanceLabel.text = cell.durationLabel.text
-        podEpLabel.text = cell.addressLabel.text
-        locationLabel.text = cell.podEpLabel.text
-    }
+//    func setup(withTagNearMeCell cell: TagNearMeCell) {
+//        podcastImageView.image = cell.podcastImageView.image
+//        distanceLabel.text = cell.durationLabel.text
+//        podEpLabel.text = cell.addressLabel.text
+//        locationLabel.text = cell.podEpLabel.text
+//    }
     
     @IBAction func segmentedControlSelected(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {

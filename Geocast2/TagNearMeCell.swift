@@ -10,12 +10,16 @@ import UIKit
 
 class TagNearMeCell: UITableViewCell {
     
-    @IBOutlet weak var podEpLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
-
-
+    @IBOutlet weak var locationDescriptionLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var podcastImageView: UIImageView!
+    @IBOutlet weak var podcastLabel: UILabel!
+    
+    @IBOutlet weak var episodeLabel: UILabel!
+    @IBOutlet weak var textView: UILabel!
+    
+    @IBOutlet weak var playButton: UIButton?
+    
 }

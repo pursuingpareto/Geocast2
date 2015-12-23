@@ -241,93 +241,94 @@ extension MapViewController: UITableViewDataSource {
         
         let distance = currentPosition.distanceFromLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
         
-        if let ip = selectedIndexPath {
-            if indexPath.compare(ip) == NSComparisonResult.OrderedSame {
-                let cell = tableView.dequeueReusableCellWithIdentifier("tagDetailCell", forIndexPath: indexPath) as! TagNearMeDetailCell
-                cell.geotag = geotag
-                cell.podEpLabel.text = "\(podcastTitle) - \(episodeTitle)"
-                cell.textView.text = geotag.tagDescription
-                if let duration = episode.duration {
-                    let cmDuration = CMTime(seconds: episode.duration!, preferredTimescale: 1)
-                    cell.durationLabel.text = cmDuration.asString()
-                }
-                cell.locationLabel.text = geotag.locationName
-                cell.distanceLabel.text = distance.toShortString()
-                if let url = episode.podcast.thumbnailImageURL {
-                    cell.podcastImageView.kf_showIndicatorWhenLoading = true
-                    cell.podcastImageView.kf_setImageWithURL(url)
-                }
-                
-                cell.playButton.addTarget(self, action: "detailCellPlayButtonPressed:", forControlEvents: .TouchUpInside)
-                
-                return cell
-            }
-        }
+//        if let ip = selectedIndexPath {
+//            if indexPath.compare(ip) == NSComparisonResult.OrderedSame {
+//                let cell = tableView.dequeueReusableCellWithIdentifier("tagDetailCell", forIndexPath: indexPath) as! TagNearMeDetailCell
+//                cell.geotag = geotag
+//                cell.podEpLabel.text = "\(podcastTitle) - \(episodeTitle)"
+//                cell.textView.text = geotag.tagDescription
+//                if let duration = episode.duration {
+//                    let cmDuration = CMTime(seconds: episode.duration!, preferredTimescale: 1)
+//                    cell.durationLabel.text = cmDuration.asString()
+//                }
+//                cell.locationLabel.text = geotag.locationName
+//                cell.distanceLabel.text = distance.toShortString()
+//                if let url = episode.podcast.thumbnailImageURL {
+//                    cell.podcastImageView.kf_showIndicatorWhenLoading = true
+//                    cell.podcastImageView.kf_setImageWithURL(url)
+//                }
+//                
+//                cell.playButton.addTarget(self, action: "detailCellPlayButtonPressed:", forControlEvents: .TouchUpInside)
+//                
+//                return cell
+//            }
+//        }
       
         let cell = tableView.dequeueReusableCellWithIdentifier("tagCell", forIndexPath: indexPath) as! TagNearMeCell
-
-        cell.addressLabel.text = "\(podcastTitle) - \(episodeTitle)"
         
-        cell.textView.text = geotag.tagDescription
+        cell.locationNameLabel.text = geotag.locationName
+        cell.addressLabel.text = geotag.address
+        cell.distanceLabel.text = distance.toShortString()
+        cell.podcastLabel.text = podcastTitle
+        cell.episodeLabel.text = episodeTitle
+        cell.textView.text = episode.summary
+        cell.playButton?.addTarget(self, action: "detailCellPlayButtonPressed:", forControlEvents: .TouchUpInside)
         
-        cell.durationLabel.text = distance.toShortString()
-        cell.podEpLabel.text = geotag.locationName
-        
-        if let duration = episode.duration {
-            let cmDuration = CMTime(seconds: episode.duration!, preferredTimescale: 1)
-            cell.distanceLabel.text = cmDuration.asString()
+        if selectedIndexPath == indexPath {
+            cell.textView.numberOfLines = 0
+            cell.textView.lineBreakMode = NSLineBreakMode.ByWordWrapping
+//            let playButton = UIButton(type: .System)
+//            playButton.hidden = false
+//            cell.playButton?.hidden = false
+//            playButton.setImage(UIImage(named: "Play"), forState: .Normal)
+//            playButton.addTarget(self, action: "detailCellPlayButtonPressed:", forControlEvents: .TouchUpInside)
+//            cell.playButton = playButton
+//            cell.playButton!.hidden = false
+//            cell.playButton!.sizeToFit()
+//            cell.playButton!.hidden = false
+        } else {
+            cell.textView.numberOfLines = 1
+            cell.textView.lineBreakMode = NSLineBreakMode.ByTruncatingTail
+//            cell.playButton?.removeFromSuperview()
+//            cell.playButton?.hidden = true
         }
         
         if let url = episode.podcast.thumbnailImageURL {
             cell.podcastImageView.kf_showIndicatorWhenLoading = true
             cell.podcastImageView.kf_setImageWithURL(url)
         }
-        
         return cell
     }
 }
 
 extension MapViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if let ip = selectedIndexPath {
-            if ip == indexPath {
-                return 240
-            }
-        }
-        return 116
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 172.0
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        print("selected row at \(indexPath.row)")
         if selectedIndexPath == indexPath {
             selectedIndexPath = nil
             tableView.reloadRowsAtIndexPaths(
                 [indexPath],
                 withRowAnimation:UITableViewRowAnimation.Fade)
-            
             tableView.deselectRowAtIndexPath(indexPath, animated:false)
             return
         }
-        
         if selectedIndexPath != nil {
             let pleaseRedrawMe = selectedIndexPath!
-            // (note that it will be drawn un-selected
-            // since we're chaging the 'selectedIndexPath' global)
             selectedIndexPath = indexPath
             tableView.reloadRowsAtIndexPaths(
                 [pleaseRedrawMe, indexPath],
                 withRowAnimation:UITableViewRowAnimation.Fade)
             return
         }
-        
         selectedIndexPath = indexPath
-//        tableView.beginUpdates()
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
-//        tableView.endUpdates()
     }
-    
-//    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-//        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-//    }
-    
 }
