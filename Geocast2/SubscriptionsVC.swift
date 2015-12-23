@@ -27,6 +27,7 @@ class SubscriptionsViewController: UITableViewController {
     
     private var successfulUpdates = 0
     private var failingUpdates = 0
+    private var errorUpdates = 0
 //    private var totalUpdates: Int = {
 //        return self.subscriptions.count
 //    }
@@ -76,6 +77,7 @@ class SubscriptionsViewController: UITableViewController {
         print("updating all subscriptions in background")
         successfulUpdates = 0
         failingUpdates = 0
+        errorUpdates = 0
         for subscription in subscriptions {
             let podcast = subscription.podcast
             FeedParser.parsePodcast(podcast, withFeedParserDelegate: self)
@@ -154,11 +156,16 @@ class SubscriptionsViewController: UITableViewController {
     }
     
     private func stringForRefreshControl() -> String {
+        var retStr = ""
         if let lastDate = lastRefreshDate {
-            return "\(successfulUpdates) of \(self.subscriptions.count) podcasts updated, last \(lastDate.shortTimeAgoSinceNow())"
+            retStr += "\(successfulUpdates) of \(self.subscriptions.count) podcasts updated, last \(lastDate.shortTimeAgoSinceNow())"
         } else {
-            return "\(successfulUpdates) of \(self.subscriptions.count) podcasts updated"
+            retStr += "\(successfulUpdates) of \(self.subscriptions.count) podcasts updated"
         }
+        if errorUpdates > 0 {
+            retStr += "\n\(errorUpdates) unsuccessful updates"
+        }
+        return retStr
     }
     
     func refreshPodcasts() {
@@ -289,10 +296,33 @@ extension SubscriptionsViewController: FeedParserDelegate {
 //        User.sharedInstance.updateSubscriptionsWithNewPodcasts([podcast])
         // TODO : reassign subscriptions and reload data!
         
-        if (successfulUpdates + failingUpdates) == self.subscriptions.count {
+        if (successfulUpdates + failingUpdates + errorUpdates) == self.subscriptions.count {
             customRefreshControl.endRefreshing()
             successfulUpdates = 0
             failingUpdates = 0
+            errorUpdates = 0
+            subscriptions = User.sharedInstance.getSubscriptions()
+            lastRefreshDate = nil
+            refreshLabel.text = stringForRefreshControl()
+            lastRefreshDate = NSDate()
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+        }
+    }
+    func errorParsingPodcast(podcast: Podcast, error: NSError?) {
+        errorUpdates += 1
+        print("ERROR PARSING PODCAST \(podcast.title)")
+//        print("error was \(error)")
+        print("error updates is now \(errorUpdates)")
+        dispatch_async(dispatch_get_main_queue(), {
+            self.refreshLabel.text = self.stringForRefreshControl()
+        })
+        if (successfulUpdates + failingUpdates + errorUpdates) == self.subscriptions.count {
+            customRefreshControl.endRefreshing()
+            successfulUpdates = 0
+            failingUpdates = 0
+            errorUpdates = 0
             subscriptions = User.sharedInstance.getSubscriptions()
             lastRefreshDate = nil
             refreshLabel.text = stringForRefreshControl()

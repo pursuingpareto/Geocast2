@@ -11,6 +11,7 @@ import Foundation
 @objc protocol FeedParserDelegate {
     optional func didParseFeedIntoEpisodes(episodes: [Episode])
     optional func didParsePodcastSummaryData(data: [String: String])
+    optional func errorParsingPodcast(podcast: Podcast, error: NSError?)
 }
 
 class FeedParser: NSXMLParser, NSXMLParserDelegate {
@@ -59,22 +60,24 @@ class FeedParser: NSXMLParser, NSXMLParserDelegate {
     class func parsePodcast(podcast: Podcast, withFeedParserDelegate feedParserDelegate: FeedParserDelegate) {
 
         let feedUrl = podcast.feedUrl
-        
         let session = NSURLSession.sharedSession()
+        var parseSuccessful = false
         let task = session.dataTaskWithURL(feedUrl, completionHandler: {data, response, error -> Void in
             if (error != nil) {
                 print("oops, error is \(error)")
-            }
-            else {
+            } else {
                 if let data = data {
                     let parser = FeedParser(data: data, podcast: podcast)
                     parser.feedParserDelegate = feedParserDelegate
                     parser.shouldProcessNamespaces = true
-
-                    parser.parse()
+                    parseSuccessful = parser.parse()
                 }
             }
+            if !parseSuccessful {
+                feedParserDelegate.errorParsingPodcast?(podcast , error: error)
+            }
         })
+        
         task.resume()
     }
     
