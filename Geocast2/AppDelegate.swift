@@ -109,7 +109,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }
-        print("SUCCESSFULLY MADE PERSISTENT STORE COORDINATOR")
         return coordinator
     }()
     

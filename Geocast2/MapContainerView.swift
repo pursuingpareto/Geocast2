@@ -10,15 +10,11 @@ import UIKit
 
 class MapContainerView: UIView {
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
-        print("performing hit test")
         for v in subviews {
-            print("subview is \(v)")
             if let calloutView = v as? CalloutView {
-                print("hit the calloutview!")
                 return calloutView
             }
         }
-        
         return super.hitTest(point, withEvent: event)
     }
 }

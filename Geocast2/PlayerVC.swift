@@ -54,14 +54,11 @@ class PlayerViewController: UIViewController {
     }
     
     private func assignBackgroundImage() {
-        print("about to try getting podcast...")
         if let podcast = PodcastPlayer.sharedInstance.getCurrentEpisode()?.podcast {
-            print(" got podcast")
             if let url = podcast.largeImageURL {
                 imageView.kf_setImageWithURL(url)
             }
         } else {
-            print("failed to get podcast")
             dispatch_async(dispatch_get_main_queue(), {
                 self.imageView.image = nil
             })
@@ -138,13 +135,10 @@ class PlayerViewController: UIViewController {
     
     private func getCurrentReadinessState() -> ReadinessState {
         if player.getCurrentEpisode() == nil {
-            print("no data")
             return .NoData
         } else if player.currentItemStatus != .ReadyToPlay {
-            print("loading")
             return .Loading
         } else {
-            print("normal")
             return .Normal
         }
     }
@@ -225,7 +219,6 @@ class PlayerViewController: UIViewController {
             remainingTime.text = "00:00"
             playedTime.text = "00:00"
         }
-        print("about to update toolbar")
         updateToolbar()
     }
     
@@ -285,10 +278,8 @@ class PlayerViewController: UIViewController {
     func updateToolbar() {
         var btn: UIBarButtonItem!
         if player.isPlaying {
-            print("player is playing.")
             btn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Pause, target: self, action: "playPausePressed:")
         } else {
-            print("player is not playing")
             btn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Play, target: self, action: "playPausePressed:")
         }
         var items = playbackToolbar.items!

@@ -94,9 +94,6 @@ import Kingfisher
         scrollView.contentSize = scrollView.bounds.size
         scrollView.contentSize.height = scrollHeight
         scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollView.contentOffset.y), animated: true)
-
-        print("scrollView has size \(scrollView.bounds.size)")
-        print("scrollView has contentSize \(scrollView.contentSize)")
     }
     
     func setupEpisodeView() {

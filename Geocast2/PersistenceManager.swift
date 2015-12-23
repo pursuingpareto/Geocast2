@@ -55,9 +55,7 @@ class PersistenceManager: NSObject {
                 let pcSub = subscribedPC.toPodcastSubscription()
                 userSubs[pcSub.podcast.collectionId] = pcSub
             }
-            print("...userSubs has length \(userSubs.count)")
             if let epsWithStats = fetchEpisodeData() {
-                print("...epsWithStats has length \(epsWithStats.count)")
                 for ep in epsWithStats {
                     let userEpisodeData = ep.toUserEpisodeData()
 //                    let podcastSub = (ep.podcast as! SubscribedPodcast).toPodcastSubscription()

@@ -42,7 +42,6 @@ class NewTagLocationController: UIViewController {
         tableView.delegate = self
         mapView.delegate = self
         mapView.showsUserLocation = true
-        print("New Tag Location viewDidLoad")
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -160,9 +159,7 @@ extension NewTagLocationController: UISearchBarDelegate {
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        print("Search Bar text did end editing")
         setNavVisibile(true)
-        
         let fadeAnimation = CATransition()
         fadeAnimation.duration = 0.25
         fadeAnimation.type = kCATransitionFade
@@ -177,7 +174,6 @@ extension NewTagLocationController: UISearchBarDelegate {
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        print("about to search for \(searchText)")
         search(forString: searchText)
     }
     
@@ -190,7 +186,6 @@ extension NewTagLocationController: UISearchBarDelegate {
     }
     
     func setNavVisibile(visible:Bool) {
-        print("setting nav visible: \(visible)")
         let alpha: CGFloat = visible ? 1.0 : 0.0
         navigationController?.navigationBar.layer.opacity = Float(alpha)
         navigationItem.titleView?.alpha = alpha
@@ -225,7 +220,6 @@ extension NewTagLocationController: UITableViewDataSource {
 extension NewTagLocationController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("did select row at indexPath \(indexPath)")
         selectedIndexPath = indexPath
         
         tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
@@ -291,7 +285,6 @@ extension NewTagLocationController: MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("tapped accessory")
         if let annotation = view.annotation as? LocationAnnotation {
             let coord = annotation.coordinate
             let placemark = annotation.placemark

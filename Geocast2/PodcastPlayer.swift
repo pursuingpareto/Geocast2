@@ -132,12 +132,10 @@ class PodcastPlayer: UIResponder {
                     MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPMediaItemPropertyArtwork] = albumArt
                 } else {
                     if let url = episode.podcast.largeImageURL {
-                        print("got largeImageURL")
                         let cache = KingfisherManager.sharedManager.cache
                         cache.retrieveImageForKey(url.absoluteString, options: KingfisherManager.OptionsNone, completionHandler: {
                             (image, cacheType) -> () in
                             if let image = image {
-                                print("assigning artwork")
                                 self.albumArt = MPMediaItemArtwork(image: image)
                                 MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = self.albumArt
                             } else {
@@ -234,12 +232,10 @@ class PodcastPlayer: UIResponder {
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
             
             if let url = episode.podcast.largeImageURL {
-                print("got largeImageURL")
                 let cache = KingfisherManager.sharedManager.cache
                 cache.retrieveImageForKey(url.absoluteString, options: KingfisherManager.OptionsNone, completionHandler: {
                     (image, cacheType) -> () in
                     if let image = image {
-                        print("assigning artwork")
                         self.albumArt = MPMediaItemArtwork(image: image)
                         MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo?[MPMediaItemPropertyArtwork] = self.albumArt
                     } else {
@@ -280,8 +276,4 @@ class PodcastPlayer: UIResponder {
             }
         }
     }
-
-
-    
-    
 }

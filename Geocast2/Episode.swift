@@ -40,9 +40,6 @@ class Episode: NSObject {
     }
     
     func saveToParse(withPFPodcast pfPodcast: PFObject) -> PFObject {
-        print("about to save episode to parse")
-        print("episode is \(self.description)")
-        print("podcast is \(self.podcast)")
         let pfEpisode = PFObject(className: "Episode")
         pfEpisode["title"] = title
         pfEpisode["mp3Url"] = mp3URL.absoluteString
@@ -65,7 +62,6 @@ class Episode: NSObject {
         if let sub = subtitle {
             pfEpisode["itunesSubtitle"] = sub
         }
-        print("about to save episode in background \(pfEpisode)")
         pfEpisode.saveInBackground()
         return pfEpisode
     }

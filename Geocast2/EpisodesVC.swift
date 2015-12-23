@@ -28,7 +28,6 @@ class EpisodesController : UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("view will appear with podcast: \(podcast.title)")
         self.navigationItem.title = podcast.title
         if User.sharedInstance.isSubscribedTo(podcast) {
             navigationItem.setRightBarButtonItem(nil, animated: false)
@@ -66,7 +65,6 @@ class EpisodesController : UITableViewController {
         }
         
         // TODO : Check if this is really necessary
-        print("about to parse the podcast")
         FeedParser.parsePodcast(podcast, withFeedParserDelegate: self)
     }
     
@@ -117,10 +115,7 @@ class EpisodesController : UITableViewController {
             podcast.lastUpdated = episodes.first?.pubDate
         } else if let mostRecentEpPubDate = episodes.first?.pubDate {
             if podcast.lastUpdated!.compare(mostRecentEpPubDate) == NSComparisonResult.OrderedAscending {
-                print("changing \(podcast.title) lastUpdated from \(podcast.lastUpdated) to \(mostRecentEpPubDate)")
                 podcast.lastUpdated = mostRecentEpPubDate
-            } else {
-                print("NOT changing \(podcast.title) lastUpdated from \(podcast.lastUpdated) to \(mostRecentEpPubDate)")
             }
         }
         let user = User.sharedInstance
@@ -154,7 +149,6 @@ class EpisodesController : UITableViewController {
                 let cell = tableView.dequeueReusableCellWithIdentifier(summaryCellIdentifier, forIndexPath: indexPath) as! PodcastSummaryCell
                 cell.podcastSummary.text = podcast.summary
                 if let url = podcast.thumbnailImageURL {
-                    print("assigning image to summary cell from url \(url.absoluteString)")
                     cell.podcastImageView.kf_showIndicatorWhenLoading = true
                     cell.podcastImageView.kf_setImageWithURL(url)
                 } else {

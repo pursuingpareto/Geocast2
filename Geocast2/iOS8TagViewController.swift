@@ -39,11 +39,7 @@ class iOS8TagViewController: UIViewController {
         })
         
         let presentingVC = presentingViewController as! MainTabController
-
-        
-        print("presenting tabController selected index is \(presentingVC.selectedIndex)")
         presentingVC.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
-        
         self.dismissViewControllerAnimated(true, completion: {})
         
     }

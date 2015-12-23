@@ -57,10 +57,30 @@ class NewTagController: UITableViewController {
             (alert) in
             let locationToAdd = CLLocation(latitude: (self.coordinate?.latitude)!, longitude: (self.coordinate?.longitude)!)
             self.tagManager.addTag(forEpisode: self.episode, atLocation: locationToAdd, withName: self.nameForLocation!, withDescription: self.descriptionForTag, withAddress: self.addressForLocation!, withRadius: self.defaultRadius)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.showThanksForAddingTag()
         })
         alertController.addAction(confirmAction)
         self.presentViewController(alertController, animated: true, completion: {})
+    }
+    
+    private func showThanksForAddingTag() {
+        let alertController = UIAlertController(title: "Thanks for Contributing to the Podtripper Community!", message: "Your tag was added. Please help grow the Podtripper community by reviewing us on the App Store.", preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: "Not Now", style: .Cancel, handler: {
+            (alert) in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        alertController.addAction(cancelAction)
+        let confirmAction = UIAlertAction(title: "Review Podtripper", style: .Default, handler: {
+            (alert) in
+            let appID = 1060356774
+            let appStoreUrl = NSURL(string: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&onlyLatestVersion=true&pageNumber=0&sortOrdering=1)")!
+            UIApplication.sharedApplication().openURL(appStoreUrl)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        alertController.addAction(confirmAction)
+        self.presentViewController(alertController, animated: true, completion: {
+//            self.dismissViewControllerAnimated(true, completion: nil)
+        })
     }
     
     override func viewDidLoad() {
@@ -80,8 +100,18 @@ class NewTagController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         setupViewForEpisode()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        print("View will disappear!")
+        super.viewWillDisappear(animated)
+        if let tabVC = self.tabBarController as? MainTabController {
+            print("Changing selected tabIndex")
+            tabVC.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
+        } else {
+            print("NOT changing selected tag index")
+        }
     }
     
     func backButtonPressed(sender: AnyObject?) {
@@ -107,7 +137,6 @@ class NewTagController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        print("cell is \(cell) with identifier \(cell?.reuseIdentifier)")
         if let identifier = cell?.reuseIdentifier {
             switch identifier {
             case "listen":

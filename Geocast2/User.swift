@@ -140,10 +140,7 @@ class User : NSObject {
                     oldPC.lastUpdated = newPC.lastUpdated
                 } else if newPC.lastUpdated != nil {
                     if oldPC.lastUpdated!.compare(newPC.lastUpdated!) == NSComparisonResult.OrderedAscending {
-                        print("changing \(oldPC.title) lastUpdated from \(oldPC.lastUpdated) to \(newPC.lastUpdated)")
                         oldPC.lastUpdated = newPC.lastUpdated
-                    } else {
-                        print("NOT changing \(oldPC.title) lastUpdated from \(oldPC.lastUpdated) to \(newPC.lastUpdated)")
                     }
                 }
                 if oldPC.episodeCount == nil {
@@ -163,10 +160,7 @@ class User : NSObject {
             podcast.lastUpdated = episodes.first?.pubDate
         } else if let mostRecentEpPubDate = episodes.first?.pubDate {
             if podcast.lastUpdated!.compare(mostRecentEpPubDate) == NSComparisonResult.OrderedAscending {
-                print("changing \(podcast.title) lastUpdated from \(podcast.lastUpdated) to \(mostRecentEpPubDate)")
                 podcast.lastUpdated = mostRecentEpPubDate
-            } else {
-                print("NOT changing \(podcast.title) lastUpdated from \(podcast.lastUpdated) to \(mostRecentEpPubDate)")
             }
         }
         let user = User.sharedInstance
@@ -185,7 +179,6 @@ class User : NSObject {
         print("about to Wipe subscriptions and update...")
         self.subscriptions.removeAll()
         for (collID, podcastSub) in subs {
-            print("...adding \(podcastSub.podcast.title) to dict with id \(collID)")
             self.subscriptions[collID] = podcastSub
         }
         print("user subscriptions has length \(subscriptions.count)")
