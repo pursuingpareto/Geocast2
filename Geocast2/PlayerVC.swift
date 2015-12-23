@@ -97,6 +97,7 @@ class PlayerViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("Preparing for segue \(segue.identifier)")
         if segue.identifier == addTagSegueIdentifier {
             let navController = segue.destinationViewController as! UINavigationController
             let tagVC = navController.childViewControllers.last as! NewTagController
@@ -105,6 +106,12 @@ class PlayerViewController: UIViewController {
             } else {
                 return
             }
+        }
+        if let tabVC = self.tabBarController as? MainTabController {
+            print("changing lastSelected from \(tabVC.lastSelectedIndex) to \(MainTabController.TabIndex.playerIndex.rawValue)")
+            tabVC.lastSelectedIndex = MainTabController.TabIndex.playerIndex.rawValue
+        } else {
+            print("NOT changing lastSelected to \(MainTabController.TabIndex.playerIndex.rawValue)")
         }
         super.prepareForSegue(segue, sender: sender)
     }
