@@ -115,6 +115,13 @@ class EpisodesController : UITableViewController {
         podcast.episodeCount = episodes.count
         if podcast.lastUpdated == nil {
             podcast.lastUpdated = episodes.first?.pubDate
+        } else if let mostRecentEpPubDate = episodes.first?.pubDate {
+            if podcast.lastUpdated!.compare(mostRecentEpPubDate) == NSComparisonResult.OrderedAscending {
+                print("changing \(podcast.title) lastUpdated from \(podcast.lastUpdated) to \(mostRecentEpPubDate)")
+                podcast.lastUpdated = mostRecentEpPubDate
+            } else {
+                print("NOT changing \(podcast.title) lastUpdated from \(podcast.lastUpdated) to \(mostRecentEpPubDate)")
+            }
         }
         let user = User.sharedInstance
         let subscription = user.getSubscription(forPodcast: podcast)
