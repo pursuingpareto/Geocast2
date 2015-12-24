@@ -30,7 +30,9 @@ class Episode: NSObject {
         self.podcast = Podcast(pfPodcast: pfEpisode["podcast"] as! PFObject)
         self.title = pfEpisode["title"] as! String
         self.mp3URL = NSURL(string: (pfEpisode["mp3Url"] as! String))!
-        self.duration = pfEpisode["duration"] as! NSTimeInterval
+        if let duration = pfEpisode["duration"] as? NSTimeInterval {
+            self.duration = duration
+        }
         let df = NSDateFormatter()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         self.pubDate = df.dateFromString((pfEpisode["pubDate"] as! String))
