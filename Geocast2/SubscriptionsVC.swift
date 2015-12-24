@@ -99,6 +99,12 @@ class SubscriptionsViewController: UITableViewController {
 //                })
             case podcastSearchSegueIdentifier:
                 // TODO : Implement
+                if !Reachability.isConnectedToNetwork() {
+                    let alertController = Reachability.makeNoConnectionAlert()
+                    presentViewController(alertController, animated: true, completion: nil)
+                    return
+                }
+                
                 print("preparing for podcactSearchSegue")
             default:
                 break

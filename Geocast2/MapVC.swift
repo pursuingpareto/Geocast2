@@ -51,6 +51,11 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if !Reachability.isConnectedToNetwork() {
+            let alertController = Reachability.makeNoConnectionAlert()
+            alertController.message = "Episodes near you are only available when you have a network connection."
+            presentViewController(alertController, animated: true, completion: nil)
+        }
         switch CLLocationManager.authorizationStatus() {
         case .AuthorizedWhenInUse:
             locationManager.startUpdatingLocation()
@@ -240,29 +245,6 @@ extension MapViewController: UITableViewDataSource {
         let episodeTitle = episode.title
         
         let distance = currentPosition.distanceFromLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
-        
-//        if let ip = selectedIndexPath {
-//            if indexPath.compare(ip) == NSComparisonResult.OrderedSame {
-//                let cell = tableView.dequeueReusableCellWithIdentifier("tagDetailCell", forIndexPath: indexPath) as! TagNearMeDetailCell
-//                cell.geotag = geotag
-//                cell.podEpLabel.text = "\(podcastTitle) - \(episodeTitle)"
-//                cell.textView.text = geotag.tagDescription
-//                if let duration = episode.duration {
-//                    let cmDuration = CMTime(seconds: episode.duration!, preferredTimescale: 1)
-//                    cell.durationLabel.text = cmDuration.asString()
-//                }
-//                cell.locationLabel.text = geotag.locationName
-//                cell.distanceLabel.text = distance.toShortString()
-//                if let url = episode.podcast.thumbnailImageURL {
-//                    cell.podcastImageView.kf_showIndicatorWhenLoading = true
-//                    cell.podcastImageView.kf_setImageWithURL(url)
-//                }
-//                
-//                cell.playButton.addTarget(self, action: "detailCellPlayButtonPressed:", forControlEvents: .TouchUpInside)
-//                
-//                return cell
-//            }
-//        }
       
         let cell = tableView.dequeueReusableCellWithIdentifier("tagCell", forIndexPath: indexPath) as! TagNearMeCell
         
@@ -277,20 +259,9 @@ extension MapViewController: UITableViewDataSource {
         if selectedIndexPath == indexPath {
             cell.textView.numberOfLines = 0
             cell.textView.lineBreakMode = NSLineBreakMode.ByWordWrapping
-//            let playButton = UIButton(type: .System)
-//            playButton.hidden = false
-//            cell.playButton?.hidden = false
-//            playButton.setImage(UIImage(named: "Play"), forState: .Normal)
-//            playButton.addTarget(self, action: "detailCellPlayButtonPressed:", forControlEvents: .TouchUpInside)
-//            cell.playButton = playButton
-//            cell.playButton!.hidden = false
-//            cell.playButton!.sizeToFit()
-//            cell.playButton!.hidden = false
         } else {
             cell.textView.numberOfLines = 1
             cell.textView.lineBreakMode = NSLineBreakMode.ByTruncatingTail
-//            cell.playButton?.removeFromSuperview()
-//            cell.playButton?.hidden = true
         }
         
         if let url = episode.podcast.thumbnailImageURL {

@@ -11,6 +11,7 @@
 		A11BABD11C1BA728003A5A76 /* TagNearMeDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11BABD01C1BA728003A5A76 /* TagNearMeDetailCell.swift */; };
 		A126A15C1C24DF1600210750 /* PlayerSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A126A15B1C24DF1600210750 /* PlayerSliderView.swift */; };
 		A126A15E1C24E19400210750 /* white_vertical_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A126A15D1C24E19400210750 /* white_vertical_bar.png */; };
+		A126A1601C2B676200210750 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A126A15F1C2B676100210750 /* Reachability.swift */; };
 		A141E27E1C0FB6D800ABE766 /* vertical_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A141E27D1C0FB6D800ABE766 /* vertical_bar.png */; };
 		A141E2801C0FE45E00ABE766 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E27F1C0FE45E00ABE766 /* Helpers.swift */; };
 		A141E2821C10C5BF00ABE766 /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141E2811C10C5BF00ABE766 /* TagManager.swift */; };
@@ -104,6 +105,7 @@
 		A11BABD01C1BA728003A5A76 /* TagNearMeDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagNearMeDetailCell.swift; sourceTree = "<group>"; };
 		A126A15B1C24DF1600210750 /* PlayerSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerSliderView.swift; sourceTree = "<group>"; };
 		A126A15D1C24E19400210750 /* white_vertical_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_vertical_bar.png; sourceTree = "<group>"; };
+		A126A15F1C2B676100210750 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		A141E27D1C0FB6D800ABE766 /* vertical_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vertical_bar.png; path = ../../Geocast/Geocast/Images.xcassets/vertical_bar.imageset/vertical_bar.png; sourceTree = "<group>"; };
 		A141E27F1C0FE45E00ABE766 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A141E2811C10C5BF00ABE766 /* TagManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 				A1A9CBCD1C03BAC200628351 /* Episode.swift */,
 				A141E2831C10C90900ABE766 /* Geotag.swift */,
 				A1477C2D1C1A1D520074729C /* LocationAnnotation.swift */,
+				A126A15F1C2B676100210750 /* Reachability.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 				A141E2941C10EB5000ABE766 /* TagLocationButtonsCell.swift in Sources */,
 				A141E2AF1C11266300ABE766 /* EpisodeWithStats.swift in Sources */,
 				A1A9CBD71C03BB7900628351 /* User.swift in Sources */,
+				A126A1601C2B676200210750 /* Reachability.swift in Sources */,
 				A1A69DCB1C0E749700CB61C2 /* EpisodesVC.swift in Sources */,
 				A141E2AE1C11266300ABE766 /* EpisodeWithStats+CoreDataProperties.swift in Sources */,
 				A1A9CBE51C03BD1100628351 /* AddTagVC.swift in Sources */,

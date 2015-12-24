@@ -99,6 +99,12 @@ class PlayerViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print("Preparing for segue \(segue.identifier)")
         if segue.identifier == addTagSegueIdentifier {
+            if !Reachability.isConnectedToNetwork() {
+                let alertController = Reachability.makeNoConnectionAlert()
+                alertController.message = "Tagging is only available with a network connection. Please try again later."
+                presentViewController(alertController, animated: true, completion: nil)
+                return
+            }
             let navController = segue.destinationViewController as! UINavigationController
             let tagVC = navController.childViewControllers.last as! NewTagController
             if let episode = player.getCurrentEpisode() {
