@@ -64,15 +64,15 @@ class NewTagController: UITableViewController {
     }
     
     private func showThanksForAddingTag() {
-        let alertController = UIAlertController(title: "Thanks for Contributing to the Podtripper Community!", message: "Your tag was added. Please help grow the Podtripper community by reviewing us on the App Store.", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Thanks for Contributing to the Geocast Community!", message: "Your tag was added. Please help grow the Geocast community by reviewing us on the App Store.", preferredStyle: .Alert)
         let cancelAction = UIAlertAction(title: "Not Now", style: .Cancel, handler: {
             (alert) in
             self.dismissViewControllerAnimated(true, completion: nil)
         })
         alertController.addAction(cancelAction)
-        let confirmAction = UIAlertAction(title: "Review Podtripper", style: .Default, handler: {
+        let confirmAction = UIAlertAction(title: "Review Geocast", style: .Default, handler: {
             (alert) in
-            let appID = 1060356774
+            let appID = 1071564861
             let appStoreUrl = NSURL(string: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&onlyLatestVersion=true&pageNumber=0&sortOrdering=1)")!
             UIApplication.sharedApplication().openURL(appStoreUrl)
             self.dismissViewControllerAnimated(true, completion: nil)
