@@ -189,10 +189,10 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func detailCellPlayButtonPressed(sender: UIButton) {
-        if let ip = selectedIndexPath {
-            let geotag = currentTags[ip.row]
-            switchToPlayer(withEpisode: geotag.episode)
-        }
+        print("play episode pressed")
+        let ip = sender.tag
+        let geotag = currentTags[ip]
+        switchToPlayer(withEpisode: geotag.episode)
     }
     
     private func switchToPlayer(withEpisode episode: Episode) {
@@ -255,7 +255,7 @@ extension MapViewController: UITableViewDataSource {
         cell.episodeLabel.text = episodeTitle
         cell.textView.text = episode.summary
         cell.playButton?.addTarget(self, action: "detailCellPlayButtonPressed:", forControlEvents: .TouchUpInside)
-        
+        cell.playButton?.tag = indexPath.row
         if selectedIndexPath == indexPath {
             cell.textView.numberOfLines = 0
             cell.textView.lineBreakMode = NSLineBreakMode.ByWordWrapping
